@@ -4,27 +4,46 @@ using System;
 
 // Player class
 
-public class Player : Entity
+public class Player
 {
-    //constructor
-    public Player(string name, int health, int damage, int armor, string type) : base(name, health, damage, armor, type)
+    // initialize variables
+    protected Pokemon[] team = new Pokemon[6];
+    protected int currentPokemon = 0;
+    protected string name; 
+
+    // constructor
+    public Player(string name)
     {
+        this.name = name;
     }
 
-    // create pokemon team
-    public static Pokemon[] CreateTeam()
+    // getters and setters
+    public Pokemon[] Team
     {
-        // Create a new array of pokemon
-        Pokemon[] team = new Pokemon[6];
+        get { return team; }
+        set { team = value; }
+    }
 
-        // Create a new pokemon
+    public int CurrentPokemon
+    {
+        get { return currentPokemon; }
+        set { currentPokemon = value; }
+    }
+
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    // get the starter pokemon
+    public void GetStarter()
+    {
+        // create a new pokemon
         Pokemon pokemon = Pokemon.CreatePokemon();
 
-        // Add the pokemon to the team
+        // add the pokemon to the team
         team[0] = pokemon;
-
-        // Return the team
-        return team;
     }
 
 }

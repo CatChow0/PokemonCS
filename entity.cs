@@ -9,15 +9,17 @@ public class Entity
     protected int damage;
     protected int armor;
     protected string type;
+    protected int level;
 
     //constructor
-    public Entity(string name, int health, int damage, int armor, string type)
+    public Entity(string name, int health, int damage, int armor, string type, int level)
     {
         this.name = name;
         this.health = health;
         this.damage = damage;
         this.armor = armor;
         this.type = type;
+        this.level = level;
     }
 
     //getters and setters
@@ -49,6 +51,12 @@ public class Entity
     {
         get { return type; }
         set { type = value; }
+    }
+
+    public int Level
+    {
+        get { return level; }
+        set { level = value; }
     }
 
 }

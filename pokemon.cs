@@ -15,7 +15,7 @@ public class Pokemon : Entity
     public static Pokemon CreatePokemon()
     {
         // Create a new pokemon
-        Pokemon pokemon = new Pokemon("Pikachu", 100, 10, 5, "Electric");
+        Pokemon pokemon = new Pokemon("Pikachu", 100, 10, 5, "Electric" , 5);
 
         // Return the pokemon
         return pokemon;
