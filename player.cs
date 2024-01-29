@@ -6,10 +6,11 @@ using System;
 
 public class Player
 {
+
     // initialize variables
-    protected Pokemon[] team = new Pokemon[6];
-    protected int currentPokemon = 0;
-    protected string name; 
+    public Pokemon[] Team = new Pokemon[6];
+    public int currentPokemon = 0;
+    public string name; 
 
     // constructor
     public Player(string name)
@@ -18,10 +19,11 @@ public class Player
     }
 
     // getters and setters
-    public Pokemon[] Team
+
+    public Pokemon[] team
     {
-        get { return team; }
-        set { team = value; }
+        get { return Team; }
+        set { Team = value; }
     }
 
     public int CurrentPokemon
@@ -36,14 +38,15 @@ public class Player
         set { name = value; }
     }
 
+
     // get the starter pokemon
-    public void GetStarter()
+    public void SetStarter()
     {
         // create a new pokemon
         Pokemon pokemon = Pokemon.CreatePokemon();
 
         // add the pokemon to the team
-        team[0] = pokemon;
+        Team[0] = pokemon;
     }
 
 }

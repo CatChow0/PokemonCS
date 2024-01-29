@@ -6,7 +6,7 @@ public class Fight {
 
 
     //method for round
-    public static void Round(Entity player, Entity enemy)
+    public static void Round(Pokemon player, Enemy enemy)
     {
         //player attacks enemy
         enemy.Health -= player.Damage;
@@ -36,13 +36,13 @@ public class Fight {
     }
 
     //method for fight
-    public static void CheckState(Entity player, Entity enemy)
+    public static void CheckState(Pokemon playerPokemon, Enemy enemyPokemon)
     {
         //while both players are alive
-        while (player.Health > 0 && enemy.Health > 0)
+        while (playerPokemon.Health > 0 && enemyPokemon.Health > 0)
         {
             //call round method
-            Round(player, enemy);
+            Round(playerPokemon, enemyPokemon);
         }
 
        

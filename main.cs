@@ -6,13 +6,21 @@ class Program
 {
     static void Main()
     {
-        // Create a new player
-        Pokemon player = Pokemon.CreatePokemon();
+        // Ask the player for their name
+        Console.WriteLine("What is your name?");
+        string name = Console.ReadLine();
+        Console.WriteLine(name);
 
-        // Create a new enemy
+        // Create a new player
+        Player player = new Player(name);
+
+        // Get the player's starter pokemon
+        player.GetStarter();
+
+        // Create an enemy
         Enemy enemy = Enemy.CreateEnemy();
 
-        // Fight the enemy
-        Fight.CheckState(player, enemy);
+        //show menu
+        Menu.ShowMenu();
     }
 }
