@@ -4,7 +4,7 @@ using System;
 
 // Enemy class
 
-protected class Enemy : Entity
+public class Enemy : Entity
 {
     //constructor
     public Enemy(string name, int health, int damage, int armor, string type) : base(name, health, damage, armor, type)

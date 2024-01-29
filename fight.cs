@@ -2,7 +2,7 @@
 
 using System;
 
-protected class Fight {
+public class Fight {
 
 
     //method for round
@@ -12,6 +12,7 @@ protected class Fight {
         enemy.Health -= player.Damage;
         Console.WriteLine(player.Name + " attacks " + enemy.Name + " for " + player.Damage + " damage!");
         Console.WriteLine(enemy.Name + " has " + enemy.Health + " health remaining!");
+        
 
         //enemy attacks player
         player.Health -= enemy.Damage;
@@ -20,7 +21,7 @@ protected class Fight {
     }
 
     //method for fight
-    public static void Fight(Entity player, Entity enemy)
+    public static void CheckFight(Entity player, Entity enemy)
     {
         //while both players are alive
         while (player.Health > 0 && enemy.Health > 0)

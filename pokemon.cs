@@ -4,7 +4,7 @@ using System;
 
 // Pokemon class
 
-protected class Pokemon : Entity
+public class Pokemon : Entity
 {
     //constructor
     public Pokemon(string name, int health, int damage, int armor, string type) : base(name, health, damage, armor, type)

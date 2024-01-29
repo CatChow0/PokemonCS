@@ -13,6 +13,6 @@ class Program
         Enemy enemy = Enemy.CreateEnemy();
 
         // Fight the enemy
-        Fight.Fight(player, enemy);
+        Fight.CheckFight(player, enemy);
     }
 }

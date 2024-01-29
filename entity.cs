@@ -1,7 +1,7 @@
 using System;
 
 // Entity class
-protected class Entity
+public class Entity
 {
     //set variables for entity
     protected string name;
