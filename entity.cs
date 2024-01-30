@@ -81,19 +81,19 @@ public class Entity
         else if (type == "Enemy")
         {
             //write all the enemy stats in the top right corner
-            Console.SetCursorPosition(150, 0);
+            Console.SetCursorPosition(150, 2);
             //print enemy stats
             Console.WriteLine("==============================");
-            Console.SetCursorPosition(150, 1);
+            Console.SetCursorPosition(150, 3);
             Console.WriteLine(" Name: " + name + " ");
             //Print life into a bar of 20
-            Console.SetCursorPosition(150, 2);
+            Console.SetCursorPosition(150, 4);
             Console.Write(" Health: ");
             for (int i = 0; i < health / 5; i++)
             {
                 Console.Write("█");
             }
-            Console.SetCursorPosition(150, 3);
+            Console.SetCursorPosition(150, 5);
             Console.WriteLine("==============================");
         }
 

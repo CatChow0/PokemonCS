@@ -74,10 +74,10 @@ public class Fight {
         // print the pokemon info
         currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
         Console.WriteLine("What do you want to do?");
-        Console.WriteLine("=====================================");
+        DrawBorderLine();
         Console.WriteLine("1. Attack           2. Change Pokemon");
         Console.WriteLine("3. Item             4. Run");
-        Console.WriteLine("=====================================");
+        DrawBorderLine();
     }
 
     // method to get the player's choice
@@ -182,7 +182,7 @@ public class Fight {
         {
             Console.Write("=");
         }
-        Console.WriteLine("\n");
+        Console.Write("\n");
 
         
     }
