@@ -59,10 +59,10 @@ public class Fight {
     public static void PrintMenu()
     {
         Console.WriteLine("What do you want to do?");
-        Console.WriteLine("1. Attack");
-        Console.WriteLine("2. Change Pokemon");
-        Console.WriteLine("3. Item");
-        Console.WriteLine("4. Run");
+        Console.WriteLine("=====================================");
+        Console.WriteLine("1. Attack           2. Change Pokemon");
+        Console.WriteLine("3. Item             4. Run");
+        Console.WriteLine("=====================================");
     }
 
     // method to get the player's choice
