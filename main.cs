@@ -4,23 +4,25 @@ using System;
 
 class Program
 {
+    private static string? name;
     static void Main()
     {
-        // Ask the player for their name
-        Console.WriteLine("What is your name?");
-        string name = Console.ReadLine();
-        Console.WriteLine(name);
+        name = Player.AskName();
 
         // Create a new player
         Player player = new Player(name);
 
         // Get the player's starter pokemon
-        player.GetStarter();
+        player.SetStarter();
 
         // Create an enemy
         Enemy enemy = Enemy.CreateEnemy();
 
-        //show menu
-        Menu.ShowMenu();
+        // Check the state of the fight
+        Fight.StartRound(player,player.Team[player.CurrentPokemon], enemy);
+
+        
     }
+
+    
 }
