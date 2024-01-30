@@ -99,4 +99,12 @@ public class Entity
 
     }
 
+    //method to draw a sprite
+    public void DrawSprite(string sprite)
+    {
+        //draw the sprite
+        Console.SetCursorPosition(10, 10);
+        Console.WriteLine(sprite);
+    }
+
 }
