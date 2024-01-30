@@ -13,11 +13,17 @@ public class Fight {
     //method for round
     public static void Round(Pokemon playerPokemon, Enemy enemyPokemon)
     {
-        
         //player attacks enemy
         enemyPokemon.Health -= playerPokemon.Damage;
+        currentEnemy.PrintStats("Enemy");
+        currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
+        Console.SetCursorPosition(0, 55);
+        DrawBorderLine();
         Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " for " + playerPokemon.Damage + " damage!");
         Console.WriteLine(enemyPokemon.Name + " has " + enemyPokemon.Health + " health remaining!");
+        DrawBorderLine();
+        Console.ReadKey();
+        Console.Clear();
 
         //if enemy is dead
         if (enemyPokemon.Health <= 0)
@@ -28,9 +34,16 @@ public class Fight {
 
 
         //enemy attacks player
+        
         playerPokemon.Health -= enemyPokemon.Damage;
+        currentEnemy.PrintStats("Enemy");
+        currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
+        DrawBorderLine();
         Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " for " + enemyPokemon.Damage + " damage!");
         Console.WriteLine(playerPokemon.Name + " has " + playerPokemon.Health + " health remaining!");
+        DrawBorderLine();
+        Console.ReadKey();
+        Console.Clear();
 
         //if player is dead
         if (playerPokemon.Health <= 0)
@@ -38,7 +51,7 @@ public class Fight {
             Console.WriteLine(playerPokemon.Name + " has died!");
             return;
         }
-        
+
     }
 
     //method for fight
@@ -58,6 +71,8 @@ public class Fight {
     // method to print the menu
     public static void PrintMenu()
     {
+        // print the pokemon info
+        currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
         Console.WriteLine("What do you want to do?");
         Console.WriteLine("=====================================");
         Console.WriteLine("1. Attack           2. Change Pokemon");
@@ -90,6 +105,7 @@ public class Fight {
         if (choice == 1)
         {
             // call the round method
+            Console.Clear();
             Round(playerPokemon, enemyPokemon);
         }
 
@@ -160,5 +176,17 @@ public class Fight {
         Round(currentPlayer.Team[currentPlayer.CurrentPokemon], currentEnemy);
     }
 
+    public static void DrawBorderLine()
+    {
+        for (int i = 0; i < 200; i++)
+        {
+            Console.Write("=");
+        }
+        Console.WriteLine("\n");
+
+        
+    }
+
     
 }
+

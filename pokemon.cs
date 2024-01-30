@@ -1,4 +1,4 @@
-// Class for pokemon
+﻿// Class for pokemon
 
 using System;
 

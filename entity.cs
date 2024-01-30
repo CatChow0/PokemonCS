@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 // Entity class
 public class Entity
@@ -57,6 +57,46 @@ public class Entity
     {
         get { return level; }
         set { level = value; }
+    }
+
+    public void PrintStats(string type)
+    {
+        if(type == "Player")
+        {
+            //print player stats
+            Console.SetCursorPosition(10, 50);
+            Console.WriteLine("==============================");
+            Console.SetCursorPosition(10, 51);
+            Console.WriteLine(" Name: " + name + " ");
+            //Print life into a bar of 20
+            Console.SetCursorPosition(10, 52);
+            Console.Write(" Health: ");
+            for (int i = 0; i < health / 5; i++)
+            {
+                Console.Write("█");
+            }
+            Console.SetCursorPosition(10, 53);
+            Console.WriteLine("==============================");
+        }
+        else if (type == "Enemy")
+        {
+            //write all the enemy stats in the top right corner
+            Console.SetCursorPosition(150, 0);
+            //print enemy stats
+            Console.WriteLine("==============================");
+            Console.SetCursorPosition(150, 1);
+            Console.WriteLine(" Name: " + name + " ");
+            //Print life into a bar of 20
+            Console.SetCursorPosition(150, 2);
+            Console.Write(" Health: ");
+            for (int i = 0; i < health / 5; i++)
+            {
+                Console.Write("█");
+            }
+            Console.SetCursorPosition(150, 3);
+            Console.WriteLine("==============================");
+        }
+
     }
 
 }

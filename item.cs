@@ -9,9 +9,11 @@ public class Item
     public static void PrintItemMenu(Player currentPlayer)
     {
         Console.WriteLine("What item do you want to use?");
+        Console.WriteLine("=====================================");
         Console.WriteLine("1. Potion");
         Console.WriteLine("2. Pokeball");
         Console.WriteLine("3. Back");
+        Console.WriteLine("=====================================");
         
         // get the input from the player
         string choice = Console.ReadLine();
@@ -41,10 +43,12 @@ public class Item
     public static void PrintPotionMenu(Player currentPlayer)
     {
         Console.WriteLine("What potion do you want to use?");
+        Console.WriteLine("=====================================");
         Console.WriteLine("1. Standard Potion : x" + currentPlayer.potion[0]);
-        Console.WriteLine("2. Super Potion");
-        Console.WriteLine("3. Hyper Potion");
+        Console.WriteLine("2. Super Potion    : x" + currentPlayer.potion[1]);
+        Console.WriteLine("3. Hyper Potion    : x" + currentPlayer.potion[2]);
         Console.WriteLine("4. Back");
+        Console.WriteLine("=====================================");
 
         // get the input from the player
         string choice = Console.ReadLine();
@@ -78,10 +82,12 @@ public class Item
     public static void PrintPokeballMenu(Player currentPlayer)
     {
         Console.WriteLine("What pokeball do you want to use?");
-        Console.WriteLine("1. Pokeball");
-        Console.WriteLine("2. Great Ball");
-        Console.WriteLine("3. Ultra Ball");
+        Console.WriteLine("=====================================");
+        Console.WriteLine("1. Pokeball   : x" + currentPlayer.pokeball[0]);
+        Console.WriteLine("2. Great Ball : x" + currentPlayer.pokeball[1]);
+        Console.WriteLine("3. Ultra Ball : x" + currentPlayer.pokeball[2]);
         Console.WriteLine("4. Back");
+        Console.WriteLine("=====================================");
 
         // get the input from the player
         string choice = Console.ReadLine();
