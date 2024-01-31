@@ -192,10 +192,23 @@ public class Player
         }
     }
 
-    // Add potion to the player
-    public void AddPotion(int amount, int type)
+    //method to add a new pokemon to the team in a free slot
+    public void AddPokemon(Pokemon pokemon)
     {
-        potion[type] += amount;
+        //loop through the team
+        for (int i = 0; i < Team.Length; i++)
+        {
+            //if the slot is empty
+            if (Team[i] == null)
+            {
+                //add the pokemon to the team
+                Team[i] = pokemon;
+                //print a message
+                Console.WriteLine("You caught " + pokemon.Name + "!");
+                //stop the loop
+                break;
+            }
+        }
     }
 
 }

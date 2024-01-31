@@ -1,23 +1,25 @@
 // Class for fight
 
 using System;
+using System.Security.Principal;
 
 public class Fight {
 
     // variable for the player
     public static Player currentPlayer;
     public static Item Item;
-    public static Enemy currentEnemy;
+    public static Pokemon currentEnemy;
+    private static bool isRunning = true;
 
 
     //method for round
-    public static void Round(Pokemon playerPokemon, Enemy enemyPokemon)
+    public static void Round(Pokemon playerPokemon, Pokemon enemyPokemon)
     {
         //player attacks enemy
         enemyPokemon.Health -= playerPokemon.Damage;
         currentEnemy.PrintStats("Enemy");
         currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
-        Console.SetCursorPosition(0, 55);
+        Console.SetCursorPosition(0, 35);
         DrawBorderLine();
         Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " for " + playerPokemon.Damage + " damage!");
         Console.WriteLine(enemyPokemon.Name + " has " + enemyPokemon.Health + " health remaining!");
@@ -54,20 +56,6 @@ public class Fight {
 
     }
 
-    //method for fight
-    public static void CheckState(Pokemon playerPokemon, Enemy enemyPokemon)
-    {
-        
-        //while both players are alive
-        while (playerPokemon.Health > 0 && enemyPokemon.Health > 0)
-        {
-            //call round method
-            Round(playerPokemon, enemyPokemon);
-        }
-
-       
-    }
-
     // method to print the menu
     public static void PrintMenu()
     {
@@ -99,7 +87,7 @@ public class Fight {
     }
 
     // method to apply the player's choice
-    public static void ApplyChoice(int choice, Pokemon playerPokemon, Enemy enemyPokemon)
+    public static void ApplyChoice(int choice, Pokemon playerPokemon, Pokemon enemyPokemon)
     {
         // if the player chose to attack
         if (choice == 1)
@@ -126,8 +114,11 @@ public class Fight {
         // if the player chose to run
         else if (choice == 4)
         {
+            isRunning = false;
             // print a message
+            Console.Clear();
             Console.WriteLine("You ran away!");
+            Console.ReadKey();
         }
 
         // if the player chose an invalid option
@@ -141,7 +132,7 @@ public class Fight {
 
 
     // method to start the round
-    public static void StartRound(Player player, Pokemon playerPokemon, Enemy enemyPokemon)
+    public static void StartRound(Player player, Pokemon playerPokemon, Pokemon enemyPokemon)
     {
         if(currentPlayer == null)
         {
@@ -155,7 +146,7 @@ public class Fight {
 
 
         // while both players are alive
-        while (playerPokemon.Health > 0 && enemyPokemon.Health > 0)
+        while ((playerPokemon.Health > 0 && enemyPokemon.Health > 0) && isRunning)
         {
             // print the menu
             PrintMenu();
@@ -178,7 +169,7 @@ public class Fight {
 
     public static void DrawBorderLine()
     {
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < 198; i++)
         {
             Console.Write("=");
         }

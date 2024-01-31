@@ -21,7 +21,7 @@ class Program
         player.SetStarter();
 
         // Create an enemy
-        Enemy enemy = Enemy.CreateEnemy();
+        Pokemon enemy = Pokemon.CreateEnemy();
 
         //Print the intro
         player.Intro();

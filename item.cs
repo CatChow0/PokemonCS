@@ -1,6 +1,7 @@
 //Class fot the item to use in fight
 
 using System;
+using System.Text.RegularExpressions;
 
 public class Item
 {
@@ -222,6 +223,10 @@ public class Item
     public class Pokeball
     {
 
+        //set an int list for the pokeball capture rate
+        protected static float[] BallRate = new float[3] { 1, 1.5f, 2 };
+        protected static float CaptureRate;
+
         //Method to use the pokeball
         public static void UsePokeball(Player player, Pokemon playerPokemon, string pokeball_type)
         {
@@ -246,56 +251,61 @@ public class Item
             switch (type_int)
             {
                 case 0:
-                    //If the player has a pokeball
-                    if (player.Pokeball[type_int] > 0)
-                    {
-                        //Remove 1 pokeball from the player
-                        player.Pokeball[type_int] -= 1;
-                        //Print that the player has caught the pokemon
-                        Console.WriteLine("You have caught the pokemon!");
-                    }
-                    //If the player doesn't have a pokeball
-                    else
-                    {
-                        //Print that the player doesn't have a pokeball
-                        Console.WriteLine(playerPokemon.Name + " doesn't have a pokeball!");
-                    }
+                    CatchPokemon(player, playerPokemon, type_int);
                     break;
                 case 1:
-                    //If the player has a pokeball
-                    if (player.Pokeball[type_int] > 0)
-                    {
-                        //Remove 1 pokeball from the player
-                        player.Pokeball[type_int] -= 1;
-                        //Print that the player has caught the pokemon
-                        Console.WriteLine("You have caught the pokemon!");
-                    }
-                    //If the player doesn't have a pokeball
-                    else
-                    {
-                        //Print that the player doesn't have a pokeball
-                        Console.WriteLine(playerPokemon.Name + " doesn't have a pokeball!");
-                    }
+                    CatchPokemon(player, playerPokemon, type_int);
                     break;
                 case 2:
-                    //If the player has a pokeball
-                    if (player.Pokeball[type_int] > 0)
-                    {
-                        //Remove 1 pokeball from the player
-                        player.Pokeball[type_int] -= 1;
-                        //Print that the player has caught the pokemon
-                        Console.WriteLine("You have caught the pokemon!");
-                    }
-                    //If the player doesn't have a pokeball
-                    else
-                    {
-                        //Print that the player doesn't have a pokeball
-                        Console.WriteLine(playerPokemon.Name + " doesn't have a pokeball!");
-                    }
+                    CatchPokemon(player, playerPokemon, type_int);
                     break;
                 default:
                     break;
             }
+        }
+
+
+        //method to catch the pokemon
+        public static void CatchPokemon(Player player, Pokemon enemyPokemon, int type_int)
+        {
+
+            //If the player has a pokeball
+            if (player.Pokeball[type_int] > 0)
+            {
+                //Remove 1 pokeball from the player
+                player.Pokeball[type_int] -= 1;
+            }
+            else
+            {
+                //Print that the player doesn't have a pokeball
+                Console.WriteLine(player.Name + " doesn't have a pokeball!");
+            }
+
+            //random number generator
+            Random rnd = new Random();
+            //random number
+            CaptureRate = ((1 + (enemyPokemon.MaxHp * 3 - enemyPokemon.Health * 2) * (int)Math.Floor(enemyPokemon.CatchRate * BallRate[type_int])) / (enemyPokemon.MaxHp * 3)) / 256;
+            
+            //Divide the capture rate
+            int result = (1048560 / (int)Math.Sqrt(Math.Sqrt(16711680 / CaptureRate)));
+            //Round the result to lower
+            result = (int)Math.Floor((double)result);
+
+            //random number between 0 and 65535
+            int CaptureChance = rnd.Next(0, 65535);
+            //If the capture chance is lower than the capture rate
+            if (result < CaptureRate)
+            {
+                player.AddPokemon(enemyPokemon);
+            }
+            //If the capture chance is higher than the capture rate
+            else
+            {
+                //Print that the player hasn't caught the pokemon
+                Console.WriteLine("The pokemon broke free!");
+            }
+
+            
         }
     }
 

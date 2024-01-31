@@ -10,9 +10,12 @@ public class Entity
     protected int armor;
     protected string type;
     protected int level;
+    protected int catchRate;
+    protected bool isCatchable;
+    protected int maxHp;
 
     //constructor
-    public Entity(string name, int health, int damage, int armor, string type, int level)
+    public Entity(string name, int health, int damage, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp)
     {
         this.name = name;
         this.health = health;
@@ -20,6 +23,9 @@ public class Entity
         this.armor = armor;
         this.type = type;
         this.level = level;
+        this.catchRate = catchRate;
+        this.isCatchable = isCatchable;
+        this.maxHp = maxHp;
     }
 
     //getters and setters
@@ -59,23 +65,41 @@ public class Entity
         set { level = value; }
     }
 
+    public int CatchRate
+    {
+        get { return catchRate; }
+        set { catchRate = value; }
+    }
+
+    public bool IsCatchable
+    {
+        get { return isCatchable; }
+        set { isCatchable = value; }
+    }
+
+    public int MaxHp
+    {
+        get { return maxHp; }
+        set { maxHp = value; }
+    }
+
     public void PrintStats(string type)
     {
         if(type == "Player")
         {
             //print player stats
-            Console.SetCursorPosition(10, 50);
+            Console.SetCursorPosition(10, 30);
             Console.WriteLine("==============================");
-            Console.SetCursorPosition(10, 51);
+            Console.SetCursorPosition(10, 31);
             Console.WriteLine(" Name: " + name + " ");
             //Print life into a bar of 20
-            Console.SetCursorPosition(10, 52);
+            Console.SetCursorPosition(10, 32);
             Console.Write(" Health: ");
             for (int i = 0; i < health / 5; i++)
             {
                 Console.Write("█");
             }
-            Console.SetCursorPosition(10, 53);
+            Console.SetCursorPosition(10, 33);
             Console.WriteLine("==============================");
         }
         else if (type == "Enemy")
