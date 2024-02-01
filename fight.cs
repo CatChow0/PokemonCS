@@ -9,6 +9,7 @@ public class Fight {
     public static Player currentPlayer;
     public static Item Item;
     public static Pokemon currentEnemy;
+    public static int damage;
     private static bool isRunning = true;
 
 
@@ -16,11 +17,59 @@ public class Fight {
     public static void Round(Pokemon playerPokemon, Pokemon enemyPokemon)
     {
         //player attacks enemy
-        enemyPokemon.Health -= playerPokemon.Damage;
+        damage = playerPokemon.Damage;
+        switch (playerPokemon.Type)
+        {
+            case "Fire":
+                if (enemyPokemon.Type == "Grass")
+                {
+                    damage *= 2;
+                }
+                else if (enemyPokemon.Type == "Water" || enemyPokemon.Type == "Fire")
+                {
+                    damage /= 2;
+                }
+                break;
+            case "Water":
+                if (enemyPokemon.Type == "Fire")
+                {
+                    damage = playerPokemon.Damage *= 2;
+                }
+                else if (enemyPokemon.Type == "Grass" || enemyPokemon.Type == "Water")
+                {
+                    damage /= 2;
+                }
+                break;
+            case "Electric":
+                if (enemyPokemon.Type == "Water")
+                {
+                    damage *= 2;
+                }
+                else if (enemyPokemon.Type == "Grass" || enemyPokemon.Type == "Electric")
+                {
+                    damage /= 2;
+                }
+                break;
+            case "Grass":
+                if (enemyPokemon.Type == "Water")
+                {
+                    damage *= 2;
+                }
+                else if (enemyPokemon.Type == "Fire" || enemyPokemon.Type == "Grass")
+                {
+                    damage /= 2;
+                }
+                break;
+            default:
+                damage = playerPokemon.Damage;
+                break;
+
+        }
+        enemyPokemon.Health -= damage;
         PrintStats();
         Console.SetCursorPosition(0, 35);
         DrawBorderLine();
-        Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " for " + playerPokemon.Damage + " damage!");
+        Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " for " + damage + " damage!");
         Console.WriteLine(enemyPokemon.Name + " has " + enemyPokemon.Health + " health remaining!");
         DrawBorderLine();
         Console.ReadKey();
@@ -35,11 +84,58 @@ public class Fight {
 
 
         //enemy attacks player
-        
-        playerPokemon.Health -= enemyPokemon.Damage;
+        damage = enemyPokemon.Damage;
+        switch (enemyPokemon.Type)
+        {
+            case "Fire":
+                if (playerPokemon.Type == "Grass")
+                {
+                    damage *= 2;
+                }
+                else if (playerPokemon.Type == "Water" || playerPokemon.Type == "Fire")
+                {
+                    damage /= 2;
+                }
+                break;
+            case "Water":
+                if (playerPokemon.Type == "Fire")
+                {
+                    damage = playerPokemon.Damage *= 2;
+                }
+                else if (playerPokemon.Type == "Grass" || playerPokemon.Type == "Water")
+                {
+                    damage /= 2;
+                }
+                break;
+            case "Electric":
+                if (playerPokemon.Type == "Water")
+                {
+                    damage *= 2;
+                }
+                else if (playerPokemon.Type == "Grass" || playerPokemon.Type == "Electric")
+                {
+                    damage /= 2;
+                }
+                break;
+            case "Grass":
+                if (playerPokemon.Type == "Water")
+                {
+                    damage *= 2;
+                }
+                else if (playerPokemon.Type == "Fire" || playerPokemon.Type == "Grass")
+                {
+                    damage /= 2;
+                }
+                break;
+            default:
+                damage = enemyPokemon.Damage;
+                break;
+
+        }
+        playerPokemon.Health -= damage;
         PrintStats();
         DrawBorderLine();
-        Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " for " + enemyPokemon.Damage + " damage!");
+        Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " for " + damage + " damage!");
         Console.WriteLine(playerPokemon.Name + " has " + playerPokemon.Health + " health remaining!");
         DrawBorderLine();
         Console.ReadKey();

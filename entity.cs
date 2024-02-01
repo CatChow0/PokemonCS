@@ -120,6 +120,18 @@ public class Entity
             }
             for (int i = 0; i < health / 5; i++)
             {
+                if ( health > maxHp / 2)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                }
+                else if (health < maxHp / 2 && health > maxHp / 4)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                }
+                else if (health < maxHp / 4)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                }
                 Console.Write("█");
             }
             Console.ResetColor();
