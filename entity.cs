@@ -97,8 +97,21 @@ public class Entity
             Console.Write(" Health: ");
             for (int i = 0; i < health / 5; i++)
             {
+                if ( health > maxHp / 2)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                }
+                else if (health < maxHp / 2 && health > maxHp / 4)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                }
+                else if (health < maxHp / 4)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                }
                 Console.Write("█");
             }
+            Console.ResetColor();
             Console.SetCursorPosition(10, 33);
             Console.WriteLine("==============================");
         }
@@ -115,8 +128,21 @@ public class Entity
             Console.Write(" Health: ");
             for (int i = 0; i < health / 5; i++)
             {
+                if (health < maxHp / 2 && health > maxHp / 4)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                else if (health < maxHp / 4)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
                 Console.Write("█");
             }
+            Console.ResetColor();
             Console.SetCursorPosition(150, 5);
             Console.WriteLine("==============================");
         }
