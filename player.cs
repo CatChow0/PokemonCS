@@ -63,11 +63,36 @@ public class Player
     // get the starter pokemon
     public Pokemon SetStarter()
     {
-        // create a new pokemon
-        Pokemon pokemon = Pokemon.CreatePokemon();
-
-        // add the pokemon to the team
-        Team[0] = pokemon;
+        Pokemon.CreatePokemon();
+        Pokemon pokemon = null;
+        Console.Clear();
+        Fight.DrawBorderLine();
+        Console.WriteLine("Now, you will chose your starter pokemon!");
+        Console.WriteLine("You can chose between:");
+        Console.WriteLine("1. Salamèche          2. Bulbizarre          3. Carapuce");
+        Console.WriteLine("Press the number of the pokemon you want to chose!");
+        Fight.DrawBorderLine();
+        // get the player's choice
+        string choice = Console.ReadLine();
+        switch(choice)
+        {
+            case "1":
+                Fight.DrawBorderLine();
+                Console.WriteLine("You chose Salamèche!");
+                Team[0] = Pokemon.pokemons[1];
+                break;
+            case "2":
+                Team[0] = Pokemon.pokemons[2];
+                break;
+            case "3":
+                Team[0] = Pokemon.pokemons[3];
+                break;
+            default:
+                Fight.DrawBorderLine();
+                Console.WriteLine("Please enter a number.");
+                Fight.DrawBorderLine();
+                break;
+        }
 
         return pokemon;
     }

@@ -6,6 +6,7 @@ public class Intro
 {
 
     private static string? name;
+    public static Player player;
     //method to print the intro
     public static void PrintIntro()
     {
@@ -32,6 +33,8 @@ public class Intro
         Console.ReadKey();
 
         //Dialogue to chose betwenn the starter pokemon
+        player.SetStarter();
+
         Console.Clear();
         Fight.DrawBorderLine();
         Console.WriteLine("You will start with 3 pokeballs and 3 potions!");
@@ -40,7 +43,6 @@ public class Intro
         Console.WriteLine("Good luck on your journey!");
         Console.WriteLine("Press any key to continue...");
 
-        player.SetStarter();
     }
 
 }

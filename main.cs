@@ -4,7 +4,8 @@ using System;
 
 class Program
 {
-    
+
+    private static Player player;
     static void Main()
     {
         Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
@@ -12,11 +13,11 @@ class Program
         Console.CursorVisible = false;
         Console.Clear();
 
-        // Create an enemy
-        Pokemon enemy = Pokemon.CreateEnemy();
-
         //Print the intro
-        player.Intro();
+        Intro.PrintIntro();
+        // Create an enemy
+        Pokemon enemy = Pokemon.pokemons[1];
+        player = Intro.player;
         // Check the state of the fight
         Fight.StartRound(player,player.Team[player.CurrentPokemon], enemy);
 
