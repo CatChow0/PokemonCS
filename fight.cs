@@ -1,4 +1,4 @@
-// Class for fight
+﻿// Class for fight
 
 using System;
 using System.Security.Principal;
@@ -269,7 +269,7 @@ public class Fight {
     {
         for (int i = 0; i < 198; i++)
         {
-            Console.Write("=");
+            Console.Write("▬");
         }
         Console.Write("\n");
 
@@ -282,7 +282,4 @@ public class Fight {
         currentEnemy.PrintStats("Enemy");
         currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
     }
-
-    
 }
-

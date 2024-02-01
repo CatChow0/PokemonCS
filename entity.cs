@@ -89,11 +89,11 @@ public class Entity
         {
             //print player stats
             Console.SetCursorPosition(10, 30);
-            Console.WriteLine("==============================");
+            Console.WriteLine("┌────────────────────────────┐");
             Console.SetCursorPosition(10, 31);
-            Console.WriteLine(" " + name + " ");
+            Console.WriteLine("│" + name + "                   │");
             Console.SetCursorPosition(10, 32);
-            Console.Write(" Lv: " + level);
+            Console.Write("│Lv: " + level + "                       │");
             //Print life into a bar of 20
             Console.SetCursorPosition(10, 33);
             //print life into a bar background
@@ -105,7 +105,7 @@ public class Entity
             }
             Console.ResetColor();
             Console.SetCursorPosition(10, 33);
-            Console.Write(" HP: ");
+            Console.Write("│HP: ");
             if (health > maxHp / 4 && health <= maxHp / 2)
             {
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -135,17 +135,18 @@ public class Entity
                 Console.Write("█");
             }
             Console.ResetColor();
+            Console.WriteLine("    │");
             Console.SetCursorPosition(10, 34);
-            Console.WriteLine(" " + health + "/" + maxHp);
+            Console.WriteLine("│" + health + "/" + maxHp + "                     │");
             Console.SetCursorPosition(10, 35);
-            Console.WriteLine("==============================");
+            Console.WriteLine("└────────────────────────────┘");
         }
         else if (type == "Enemy")
         {
             //write all the enemy stats in the top right corner
             Console.SetCursorPosition(150, 2);
             //print enemy stats
-            Console.WriteLine("==============================");
+            Console.WriteLine("──────────────────────────────");
             Console.SetCursorPosition(150, 3);
             Console.WriteLine(" " + name + " ");
             Console.SetCursorPosition(150, 4);
@@ -183,7 +184,7 @@ public class Entity
             Console.SetCursorPosition(150, 6);
             Console.WriteLine(" " + health + "/" + maxHp);
             Console.SetCursorPosition(150, 7);
-            Console.WriteLine("==============================");
+            Console.WriteLine("──────────────────────────────");
         }
 
     }
