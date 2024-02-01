@@ -14,8 +14,9 @@ public class Pokemon : Entity
     // Create an pokemon and return it to the player
     public static Pokemon CreatePokemon()
     {
+        Pokemon pikachu = new Pokemon("Pikachu", 100, 10, 5, "Electric", 5, 250, false, 100);
         // Create a new pokemon
-        Pokemon pokemon = new Pokemon("Pikachu", 100, 10, 5, "Electric" , 5, 200, false, 100);
+        Pokemon[] pokemon = new Pokemon[1] {pikachu};
 
         // Return the pokemon
         return pokemon;
@@ -24,7 +25,7 @@ public class Pokemon : Entity
     public static Pokemon CreateEnemy()
     {
         // Create a new enemy
-        Pokemon enemy = new Pokemon("salamèche", 100, 10, 5, "Fire", 5, 200, true, 100);
+        Pokemon enemy = new Pokemon("salamèche", 100, 10, 5, "Fire", 5, 250, true, 100);
 
         // Return the enemy
         return enemy;

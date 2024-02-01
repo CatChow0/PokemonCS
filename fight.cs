@@ -17,8 +17,7 @@ public class Fight {
     {
         //player attacks enemy
         enemyPokemon.Health -= playerPokemon.Damage;
-        currentEnemy.PrintStats("Enemy");
-        currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
+        PrintStats();
         Console.SetCursorPosition(0, 35);
         DrawBorderLine();
         Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " for " + playerPokemon.Damage + " damage!");
@@ -38,8 +37,7 @@ public class Fight {
         //enemy attacks player
         
         playerPokemon.Health -= enemyPokemon.Damage;
-        currentEnemy.PrintStats("Enemy");
-        currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
+        PrintStats();
         DrawBorderLine();
         Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " for " + enemyPokemon.Damage + " damage!");
         Console.WriteLine(playerPokemon.Name + " has " + playerPokemon.Health + " health remaining!");
@@ -60,7 +58,7 @@ public class Fight {
     public static void PrintMenu()
     {
         // print the pokemon info
-        currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
+        PrintStats();
         Console.WriteLine("What do you want to do?");
         DrawBorderLine();
         Console.WriteLine("1. Attack           2. Change Pokemon");
@@ -100,6 +98,8 @@ public class Fight {
         // if the player chose to change pokemon
         else if (choice == 2)
         {
+            Console.Clear();
+            PrintStats();
             // change the player's pokemon
             currentPlayer.ChangePokemon();
         }
@@ -107,6 +107,8 @@ public class Fight {
         // if the player chose to use an item
         else if (choice == 3)
         {
+            Console.Clear();
+            PrintStats();
             // print the player's items
             Item.PrintItemMenu(currentPlayer);
         }
@@ -176,6 +178,13 @@ public class Fight {
         Console.Write("\n");
 
         
+    }
+
+    //method to print Stats of pokemon
+    public static void PrintStats()
+    {
+        currentEnemy.PrintStats("Enemy");
+        currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
     }
 
     

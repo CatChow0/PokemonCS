@@ -91,15 +91,32 @@ public class Entity
             Console.SetCursorPosition(10, 30);
             Console.WriteLine("==============================");
             Console.SetCursorPosition(10, 31);
-            Console.WriteLine(" Name: " + name + " ");
-            //Print life into a bar of 20
+            Console.WriteLine(" " + name + " ");
             Console.SetCursorPosition(10, 32);
-            Console.Write(" Health: ");
+            Console.Write(" Lv: " + level);
+            //Print life into a bar of 20
+            Console.SetCursorPosition(10, 33);
+            Console.Write(" HP: ");
+            if (health > maxHp / 4 && health <= maxHp / 2)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+            }
+            else if (health <= maxHp / 4)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+            }
             for (int i = 0; i < health / 5; i++)
             {
                 Console.Write("█");
             }
-            Console.SetCursorPosition(10, 33);
+            Console.ResetColor();
+            Console.SetCursorPosition(10, 34);
+            Console.WriteLine(" " + health + "/" + maxHp);
+            Console.SetCursorPosition(10, 35);
             Console.WriteLine("==============================");
         }
         else if (type == "Enemy")
@@ -109,15 +126,33 @@ public class Entity
             //print enemy stats
             Console.WriteLine("==============================");
             Console.SetCursorPosition(150, 3);
-            Console.WriteLine(" Name: " + name + " ");
-            //Print life into a bar of 20
+            Console.WriteLine(" " + name + " ");
             Console.SetCursorPosition(150, 4);
-            Console.Write(" Health: ");
+            Console.Write(" Lv: " + level);
+            //Print life into a bar of 20
+            Console.SetCursorPosition(150, 5);
+            Console.Write(" HP: ");
+            if (health > maxHp / 4 && health <= maxHp / 2)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+            }
+            else if (health <= maxHp / 4)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+            }
             for (int i = 0; i < health / 5; i++)
             {
+                
                 Console.Write("█");
             }
-            Console.SetCursorPosition(150, 5);
+            Console.ResetColor();
+            Console.SetCursorPosition(150, 6);
+            Console.WriteLine(" " + health + "/" + maxHp);
+            Console.SetCursorPosition(150, 7);
             Console.WriteLine("==============================");
         }
 

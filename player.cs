@@ -78,7 +78,7 @@ public class Player
         // Ask the player for their name
         Console.WriteLine("What is your name?");
         string name = Console.ReadLine();
-        if(name != null)
+        if (name != null)
         {
             Console.WriteLine("Hi " + name + "!");
         }
@@ -147,20 +147,44 @@ public class Player
     }
 
     // Intro to the game and give 3 standard pokeballs and 3 standard potions
-    public void Intro()
+    public void PrintStartScreen()
     {
-        Console.WriteLine("=====================================================");
-        Console.WriteLine("Welcome to the world of Pokemon!");
-        Console.WriteLine("You will start with 3 pokeballs and 3 potions!");
-        AddItem(3,"Pokeball", "standard");
-        AddItem(3,"Potion", "standard");
-        Console.WriteLine("Good luck on your journey!");
-        Console.WriteLine("Press any key to continue...");
-        Console.WriteLine("=====================================================");
+        string asciiArt = "\t\t\t                                  ,'\\\n" +
+                          "\t\t\t    _.----.        ____         ,'  _\\   ___    ___     ____\n" +
+                          "\t\t\t_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`.\n" +
+                          "\t\t\t\\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |\n" +
+                          "\t\t\t \\.    \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\|  |\n" +
+                          "\t\t\t   \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |\n" +
+                          "\t\t\t    \\     ,-'/  /   \\    ,'   | \\/ / ,`.|         /  /   \\  |     |\n" +
+                          "\t\t\t     \\    \\ |   \\_/  |   `-.  \\    `'  /|  |    ||   \\_/  | |\\    |\n" +
+                          "\t\t\t      \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |\n" +
+                          "\t\t\t       \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |\n" +
+                          "\t\t\t        \\_.-'       |__|    `-._ |              '-.|     '-.| |   |\n" +
+                          "\t\t\t                                `'                            '-._|\n" +
+                          "                                             Press any key to continue...\n" +
+                          "\t\t\t\t\t             `;,;.;,;.;.'\n" +
+                          "\t\t\t\t\t              ..:;:;::;: \n" +
+                          "\t\t\t\t\t        ..--''' '' ' ' '''--.  \n" +
+                          "\t\t\t\t\t      /' .   .'        '.   .`\\\n" +
+                          "\t\t\t\t\t     | /    /            \\   '.|\n" +
+                          "\t\t\t\t\t     | |   :             :    :|\n" +
+                          "\t\t\t\t\t   .'| |   :             :    :|\n" +
+                          "\t\t\t\t\t ,: /\\ \\.._\\ __..===..__/_../ /`.\n" +
+                          "\t\t\t\t\t|'' |  :.|  `'          `'  |.'  ::.\n" +
+                          "\t\t\t\t\t|   |  ''|    :'';          | ,  `''\\\n" +
+                          "\t\t\t\t\t|.:  \\/  | /'-.`'   ':'.-'\\ |  \\,   |\n" +
+                          "\t\t\t\t\t| '  /  /  | / |...   | \\ |  |  |';'|\n" +
+                          "\t\t\t\t\t \\ _ |:.|  |_\\_|`.'   |_/_|  |.:| _ |\n" +
+                          "\t\t\t\t\t/,.,.|' \\__       . .      __/ '|.,.,\\\n" +
+                          "\t\t\t\t\t     | ':`.`----._____.---'.'   |\n" +
+                          "\t\t\t\t\t      \\   `:\"\"\"------ - '\"\"' |   | \n" +
+                          "\t\t\t\t\t       ',-,-',             .'-=,=,";
+
+        Console.WriteLine(asciiArt);
         Console.ReadKey();
         Console.Clear();
     }
-
+    
     // Add item to the player
     public void AddItem(int amount,string item, string type)
     {
