@@ -96,6 +96,15 @@ public class Entity
             Console.Write(" Lv: " + level);
             //Print life into a bar of 20
             Console.SetCursorPosition(10, 33);
+            //print life into a bar background
+            Console.Write("    ");
+            for (int i = 0; i < 20; i++)
+            {
+                Console.BackgroundColor = ConsoleColor.DarkGray;
+                Console.Write("█");
+            }
+            Console.ResetColor();
+            Console.SetCursorPosition(10, 33);
             Console.Write(" HP: ");
             if (health > maxHp / 4 && health <= maxHp / 2)
             {
@@ -130,6 +139,15 @@ public class Entity
             Console.SetCursorPosition(150, 4);
             Console.Write(" Lv: " + level);
             //Print life into a bar of 20
+            Console.SetCursorPosition(150, 5);
+            //print life into a bar background
+            Console.Write("    ");
+            for (int i = 0; i < 20; i++)
+            {
+                Console.BackgroundColor = ConsoleColor.DarkGray;
+                Console.Write("█");
+            }
+            Console.ResetColor();
             Console.SetCursorPosition(150, 5);
             Console.Write(" HP: ");
             if (health > maxHp / 4 && health <= maxHp / 2)

@@ -91,6 +91,7 @@ public class Player
                 Fight.DrawBorderLine();
                 Console.WriteLine("Please enter a number.");
                 Fight.DrawBorderLine();
+                SetStarter();
                 break;
         }
 
