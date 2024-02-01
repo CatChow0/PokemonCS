@@ -10,6 +10,41 @@ public class Intro
     //method to print the intro
     public static void PrintIntro()
     {
+        // Intro to the game and give 3 standard pokeballs and 3 standard potions
+        string asciiArt = "\t\t\t                                  ,'\\\n" +
+                              "\t\t\t    _.----.        ____         ,'  _\\   ___    ___     ____\n" +
+                              "\t\t\t_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`.\n" +
+                              "\t\t\t\\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |\n" +
+                              "\t\t\t \\.    \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\|  |\n" +
+                              "\t\t\t   \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |\n" +
+                              "\t\t\t    \\     ,-'/  /   \\    ,'   | \\/ / ,`.|         /  /   \\  |     |\n" +
+                              "\t\t\t     \\    \\ |   \\_/  |   `-.  \\    `'  /|  |    ||   \\_/  | |\\    |\n" +
+                              "\t\t\t      \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |\n" +
+                              "\t\t\t       \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |\n" +
+                              "\t\t\t        \\_.-'       |__|    `-._ |              '-.|     '-.| |   |\n" +
+                              "\t\t\t                                `'                            '-._|\n" +
+                              "                                             Press any key to continue...\n" +
+                              "\t\t\t\t\t             `;,;.;,;.;.'\n" +
+                              "\t\t\t\t\t              ..:;:;::;: \n" +
+                              "\t\t\t\t\t        ..--''' '' ' ' '''--.  \n" +
+                              "\t\t\t\t\t      /' .   .'        '.   .`\\\n" +
+                              "\t\t\t\t\t     | /    /            \\   '.|\n" +
+                              "\t\t\t\t\t     | |   :             :    :|\n" +
+                              "\t\t\t\t\t   .'| |   :             :    :|\n" +
+                              "\t\t\t\t\t ,: /\\ \\.._\\ __..===..__/_../ /`.\n" +
+                              "\t\t\t\t\t|'' |  :.|  `'          `'  |.'  ::.\n" +
+                              "\t\t\t\t\t|   |  ''|    :'';          | ,  `''\\\n" +
+                              "\t\t\t\t\t|.:  \\/  | /'-.`'   ':'.-'\\ |  \\,   |\n" +
+                              "\t\t\t\t\t| '  /  /  | / |...   | \\ |  |  |';'|\n" +
+                              "\t\t\t\t\t \\ _ |:.|  |_\\_|`.'   |_/_|  |.:| _ |\n" +
+                              "\t\t\t\t\t/,.,.|' \\__       . .      __/ '|.,.,\\\n" +
+                              "\t\t\t\t\t     | ':`.`----._____.---'.'   |\n" +
+                              "\t\t\t\t\t      \\   `:\"\"\"------ - '\"\"' |   | \n" +
+                              "\t\t\t\t\t       ',-,-',             .'-=,=,";
+
+        Console.WriteLine(asciiArt);
+        Console.ReadKey();
+        Console.Clear();
         Fight.DrawBorderLine();
         Console.WriteLine("Welcome to the world of Pokemon!");
         Console.WriteLine("My name is Oak! People call me the Pokemon Prof!");
@@ -22,7 +57,7 @@ public class Intro
 
         name = Player.AskName();
         // Create a new player
-        Player player = new Player(name);
+        player = new Player(name);
         Console.Clear();
         Fight.DrawBorderLine();
         Console.WriteLine("Right! So your name is " + player.Name + "!");
@@ -42,6 +77,9 @@ public class Intro
         player.AddItem(3, "Potion", "standard");
         Console.WriteLine("Good luck on your journey!");
         Console.WriteLine("Press any key to continue...");
+        Fight.DrawBorderLine();
+        Console.ReadKey();
+        Console.Clear();
 
     }
 
