@@ -14,6 +14,54 @@ public class Map
         {
             Console.WriteLine(line);
         }
+        ColorMap();
+    }
+
+    // create a function to color the map
+    public static void ColorMap()
+    {
+        for (int i = 0; i < lines.Length; i++)
+        {
+            for (int j = 0; j < lines[i].Length; j++)
+            {
+                if (lines[i].ElementAt(j) == '║' || lines[i].ElementAt(j) == '╣' || lines[i].ElementAt(j) == '╠' || lines[i].ElementAt(j) == '▓')
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write(lines[i].ElementAt(j));
+                    Console.ResetColor();
+                }
+                else if (lines[i].ElementAt(j) == '/' || lines[i].ElementAt(j) == '\\' || lines[i].ElementAt(j) == '-' || lines[i].ElementAt(j) == '_')
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.Write(lines[i].ElementAt(j));
+                    Console.ResetColor();
+                }
+
+                else if (lines[i].ElementAt(j) == '(' || lines[i].ElementAt(j) == ')')
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write(lines[i].ElementAt(j));
+                    Console.ResetColor();
+                }
+                else if (lines[i].ElementAt(j) == '|')
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write(lines[i].ElementAt(j));
+                    Console.ResetColor();
+                }
+                else if (lines[i].ElementAt(j) == '#')
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(lines[i].ElementAt(j));
+                    Console.ResetColor();
+                }
+            }
+        }
     }
 
     // create a method to spawn the player and to move the player
@@ -116,7 +164,7 @@ public class Map
 
     public static bool CanMove()
     {
-        if (lines[yPos].ElementAt(xPos).ToString() == "~" || lines[yPos].ElementAt(xPos).ToString() == "|" || lines[yPos].ElementAt(xPos).ToString() == "/" || lines[yPos].ElementAt(xPos).ToString() == "\\" || lines[yPos].ElementAt(xPos).ToString() == "(" || lines[yPos].ElementAt(xPos).ToString() == ")" || lines[yPos].ElementAt(xPos).ToString() == "_")
+        if (lines[yPos].ElementAt(xPos).ToString() == "~" || lines[yPos].ElementAt(xPos).ToString() == "|" || lines[yPos].ElementAt(xPos).ToString() == "/" || lines[yPos].ElementAt(xPos).ToString() == "\\" || lines[yPos].ElementAt(xPos).ToString() == "(" || lines[yPos].ElementAt(xPos).ToString() == ")" || lines[yPos].ElementAt(xPos).ToString() == "║" || lines[yPos].ElementAt(xPos).ToString() == "╣" || lines[yPos].ElementAt(xPos).ToString() == "╠" || lines[yPos].ElementAt(xPos).ToString() == "_" || lines[yPos].ElementAt(xPos).ToString() == "▓")
         {
             return true;
         }
