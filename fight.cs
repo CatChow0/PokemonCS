@@ -297,6 +297,9 @@ public class Fight {
             Console.Clear();
             Console.WriteLine("You ran away!");
             Console.ReadKey();
+            Console.Clear();
+            Map.ReadMap();
+            Map.SpawnPlayer(Map.xPos, Map.yPos);
         }
 
         // if the player chose an invalid option

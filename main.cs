@@ -5,7 +5,7 @@ using System;
 class Program
 {
 
-    private static Player player;
+    public static Player player;
     static void Main()
     {
         Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
@@ -16,10 +16,7 @@ class Program
         //Print the intro
         Intro.PrintIntro();
         // Create an enemy
-        Fight.currentEnemy = Pokemon.CreatePokemon(0);
         player = Intro.player;
-        // Check the state of the fight
-        //Fight.StartRound(player, Fight.currentEnemy);
 
         // display the map
         Map.ReadMap();

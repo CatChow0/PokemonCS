@@ -169,6 +169,24 @@ public class Map
             return true;
         }
 
+        if (lines[yPos].ElementAt(xPos).ToString() == "#")
+        {
+            Random rnd = new Random();
+            int random = rnd.Next(0, 9);
+            if (random == 3)
+            {
+                //Create a wild pokemon
+                Fight.currentEnemy = Pokemon.CreatePokemon(rnd.Next(0, 3));
+                Console.Clear();
+                Console.WriteLine("You found a wild pokemon!");
+                Console.WriteLine("Press any key to start the fight!");
+                Console.ReadKey();
+                Fight.StartRound(Program.player, Fight.currentEnemy);
+                return true;
+            }
+            return false;
+        }
+
         return false;
     }
 }
