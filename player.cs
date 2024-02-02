@@ -61,10 +61,8 @@ public class Player
 
 
     // get the starter pokemon
-    public Pokemon SetStarter()
+    public void SetStarter()
     {
-        Pokemon.CreatePokemon();
-        Pokemon pokemon = null;
         Console.Clear();
         Fight.DrawBorderLine();
         Console.WriteLine("Now, you will chose your starter pokemon!");
@@ -79,13 +77,13 @@ public class Player
             case "1":
                 Fight.DrawBorderLine();
                 Console.WriteLine("You chose Salamèche!");
-                Team[0] = Pokemon.pokemons[1];
+                Team[0] = Pokemon.CreatePokemon(1);
                 break;
             case "2":
-                Team[0] = Pokemon.pokemons[2];
+                Team[0] = Pokemon.CreatePokemon(2);
                 break;
             case "3":
-                Team[0] = Pokemon.pokemons[3];
+                Team[0] = Pokemon.CreatePokemon(3);
                 break;
             default:
                 Fight.DrawBorderLine();
@@ -95,7 +93,7 @@ public class Player
                 break;
         }
 
-        return pokemon;
+        return;
     }
 
     // Ask player name
@@ -215,7 +213,13 @@ public class Player
                 //add the pokemon to the team
                 Team[i] = pokemon;
                 //print a message
+                Console.Clear();
+                Fight.PrintStats();
+                Fight.DrawBorderLine();
                 Console.WriteLine("You caught " + pokemon.Name + "!");
+                Fight.DrawBorderLine();
+                Console.ReadKey();
+                Console.Clear();
                 //stop the loop
                 break;
             }

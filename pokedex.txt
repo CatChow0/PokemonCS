@@ -1,0 +1,4 @@
+pikachu,100,10,5,Electric,5,250,false,100,Bolt Strike,8,Electro Ball,18,Quick Attack,5,Thunder,18
+salamèche,140,10,5,Fire,5,250,false,140,Flamethrower,18,Ember,5,Scratch,5,Fire Blast,18
+bulbizarre,120,10,5,Grass,5,250,false,120,Razor Leaf,18,Vine Whip,5,Tackle,5,Solar Beam,18
+carapuce,160,10,5,Water,5,250,false,160,Hydro Pump,18,Bubble,5,Tackle,5,Surf,18

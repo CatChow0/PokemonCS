@@ -3,7 +3,7 @@
 // Entity class
 public class Entity
 {
-    //set variables for entity
+    //set variables for entitys
     protected string name;
     protected int health;
     protected int damage;
@@ -91,18 +91,23 @@ public class Entity
             Console.SetCursorPosition(10, 30);
             Console.WriteLine("┌────────────────────────────┐");
             Console.SetCursorPosition(10, 31);
-            Console.WriteLine("│" + name + "                   │");
+            Console.Write("│" + name);
+            //Get the number of spaces to print the border correctly
+            CheckSpaceNeed(name);
             Console.SetCursorPosition(10, 32);
-            Console.Write("│Lv: " + level + "                       │");
+            Console.Write("│Lv: " + level);
+            CheckSpaceNeed("Lv: " + level);
             //Print life into a bar of 20
             Console.SetCursorPosition(10, 33);
             //print life into a bar background
             Console.Write("    ");
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 25; i++)
             {
                 Console.BackgroundColor = ConsoleColor.DarkGray;
                 Console.Write("█");
             }
+            Console.ResetColor();
+            Console.WriteLine("│");
             Console.ResetColor();
             Console.SetCursorPosition(10, 33);
             Console.Write("│HP: ");
@@ -118,7 +123,7 @@ public class Entity
             {
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
             }
-            for (int i = 0; i < health / 5; i++)
+            for (int i = 0; i < Math.Floor((double)(health * 25 / maxHp)) - 1; i++)
             {
                 if ( health > maxHp / 2)
                 {
@@ -135,9 +140,9 @@ public class Entity
                 Console.Write("█");
             }
             Console.ResetColor();
-            Console.WriteLine("    │");
             Console.SetCursorPosition(10, 34);
-            Console.WriteLine("│" + health + "/" + maxHp + "                     │");
+            Console.Write("│" + health + "/" + maxHp);
+            CheckSpaceNeed(health + "/" + maxHp);
             Console.SetCursorPosition(10, 35);
             Console.WriteLine("└────────────────────────────┘");
         }
@@ -146,23 +151,26 @@ public class Entity
             //write all the enemy stats in the top right corner
             Console.SetCursorPosition(150, 2);
             //print enemy stats
-            Console.WriteLine("──────────────────────────────");
+            Console.WriteLine("┌────────────────────────────┐");
             Console.SetCursorPosition(150, 3);
-            Console.WriteLine(" " + name + " ");
+            Console.Write("│" + name);
+            CheckSpaceNeed(name);
             Console.SetCursorPosition(150, 4);
-            Console.Write(" Lv: " + level);
+            Console.Write("│Lv: " + level);
+            CheckSpaceNeed("Lv: " + level);
             //Print life into a bar of 20
             Console.SetCursorPosition(150, 5);
-            //print life into a bar background
             Console.Write("    ");
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 25; i++)
             {
                 Console.BackgroundColor = ConsoleColor.DarkGray;
                 Console.Write("█");
             }
             Console.ResetColor();
+            Console.WriteLine("│");
+            Console.ResetColor();
             Console.SetCursorPosition(150, 5);
-            Console.Write(" HP: ");
+            Console.Write("│HP: ");
             if (health > maxHp / 4 && health <= maxHp / 2)
             {
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -175,16 +183,17 @@ public class Entity
             {
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
             }
-            for (int i = 0; i < health / 5; i++)
+            for (int i = 0; i < Math.Floor((double)(health * 25 / maxHp)) - 1; i++)
             {
                 
                 Console.Write("█");
             }
             Console.ResetColor();
             Console.SetCursorPosition(150, 6);
-            Console.WriteLine(" " + health + "/" + maxHp);
+            Console.Write("│" + health + "/" + maxHp);
+            CheckSpaceNeed(health + "/" + maxHp);
             Console.SetCursorPosition(150, 7);
-            Console.WriteLine("──────────────────────────────");
+            Console.WriteLine("└────────────────────────────┘");
         }
 
     }
@@ -195,6 +204,17 @@ public class Entity
         //draw the sprite
         Console.SetCursorPosition(10, 10);
         Console.WriteLine(sprite);
+    }
+
+    //method to check the number of spaces needed to print the border correctly
+    public void CheckSpaceNeed(string name)
+    {
+        int spaceNeed = 28 - name.Length;
+        for (int i = 0; i < spaceNeed; i++)
+        {
+            Console.Write(" ");
+        }
+        Console.Write("│");
     }
 
 }

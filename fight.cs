@@ -9,6 +9,7 @@ public class Fight {
     public static Player currentPlayer;
     public static Item Item;
     public static Pokemon currentEnemy;
+    public static Pokemon playerPokemon;
     public static int damage;
     private static bool isRunning = true;
 
@@ -67,7 +68,7 @@ public class Fight {
         }
         enemyPokemon.Health -= damage;
         PrintStats();
-        Console.SetCursorPosition(0, 35);
+        Console.SetCursorPosition(0, 36);
         DrawBorderLine();
         Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " for " + damage + " damage!");
         Console.WriteLine(enemyPokemon.Name + " has " + enemyPokemon.Health + " health remaining!");
@@ -230,11 +231,16 @@ public class Fight {
 
 
     // method to start the round
-    public static void StartRound(Player player, Pokemon playerPokemon, Pokemon enemyPokemon)
+    public static void StartRound(Player player, Pokemon enemyPokemon)
     {
         if(currentPlayer == null)
         {
             currentPlayer = player;
+        }
+
+        if (playerPokemon == null)
+        {
+            playerPokemon = player.Team[player.CurrentPokemon];
         }
         // print a message
         Console.WriteLine("You encountered a " + enemyPokemon.Name + "!");
@@ -252,6 +258,8 @@ public class Fight {
             // get the player's choice
             int choice = GetChoice();
 
+            playerPokemon = player.Team[player.CurrentPokemon];
+
             // apply the player's choice
             ApplyChoice(choice, playerPokemon, currentEnemy);
         }
@@ -262,7 +270,7 @@ public class Fight {
     {
         // print a message
         Console.WriteLine("You went back to the fight menu!");
-        Round(currentPlayer.Team[currentPlayer.CurrentPokemon], currentEnemy);
+        PrintMenu();
     }
 
     public static void DrawBorderLine()

@@ -2,6 +2,7 @@
 
 using System;
 using System.Reflection.Emit;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 public class Item
@@ -137,6 +138,19 @@ public class Item
         {
             int type_int = 0;
             //link the potion type to an int
+            if (playerPokemon.Health == playerPokemon.MaxHp)
+            {
+                Console.Clear();
+                Fight.PrintStats();
+                Fight.DrawBorderLine();
+                //Print that the player has full health
+                Console.WriteLine(playerPokemon.Name + " has full health!");
+                Fight.DrawBorderLine();
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+
             switch (potion_type)
             {
                 case "standard":
@@ -164,10 +178,10 @@ public class Item
                         //Remove 1 potion from the player
                         player.Potion[type_int] -= 1;
                         //If the player has more than 100 health
-                        if (playerPokemon.Health > 100)
+                        if (playerPokemon.Health > playerPokemon.MaxHp)
                         {
                             //Set the health to 100
-                            playerPokemon.Health = 100;
+                            playerPokemon.Health = playerPokemon.MaxHp;
                         }
                         PrintEffect(playerPokemon, "potion");
                     }
@@ -186,10 +200,10 @@ public class Item
                         //Remove 1 potion from the player
                         player.Potion[type_int] -= 1;
                         //If the player has more than 100 health
-                        if (playerPokemon.Health > 100)
+                        if (playerPokemon.Health > playerPokemon.MaxHp)
                         {
                             //Set the health to 100
-                            playerPokemon.Health = 100;
+                            playerPokemon.Health = playerPokemon.MaxHp;
                         }
                         PrintEffect(playerPokemon, "potion");
                     }
@@ -208,10 +222,10 @@ public class Item
                         //Remove 1 potion from the player
                         player.Potion[type_int] -= 1;
                         //If the player has more than 100 health
-                        if (playerPokemon.Health > 100)
+                        if (playerPokemon.Health > playerPokemon.MaxHp)
                         {
                             //Set the health to 100
-                            playerPokemon.Health = 100;
+                            playerPokemon.Health = playerPokemon.MaxHp;
                         }
                         //Print the health of the player
                         PrintEffect(playerPokemon, "potion");
@@ -304,6 +318,9 @@ public class Item
             if (result < CaptureChance)
             {
                 player.AddPokemon(enemyPokemon);
+                Fight.currentEnemy = null;
+                int newEnemy = rnd.Next(0, 3);
+                Fight.currentEnemy = Pokemon.CreatePokemon(newEnemy);
             }
             //If the capture chance is higher than the capture rate
             else
@@ -379,6 +396,7 @@ public class Item
         Console.WriteLine(playerPokemon.Name + " has " + playerPokemon.Health + " health remaining!");
         Fight.DrawBorderLine();
         Console.ReadKey();
+        Console.Clear();
     }
 
     public static void PrintPokeballEffect()
@@ -390,6 +408,7 @@ public class Item
         Console.WriteLine("The pokemon broke free!");
         Fight.DrawBorderLine();
         Console.ReadKey();
+        Console.Clear();
     }
 
 }

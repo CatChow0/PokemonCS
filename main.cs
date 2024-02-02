@@ -16,10 +16,10 @@ class Program
         //Print the intro
         Intro.PrintIntro();
         // Create an enemy
-        Pokemon enemy = Pokemon.pokemons[1];
+        Fight.currentEnemy = Pokemon.CreatePokemon(0);
         player = Intro.player;
         // Check the state of the fight
-        Fight.StartRound(player,player.Team[player.CurrentPokemon], enemy);
+        Fight.StartRound(player, Fight.currentEnemy);
 
         
     }
