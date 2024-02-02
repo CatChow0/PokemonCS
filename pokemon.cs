@@ -7,7 +7,7 @@ using System;
 public class Pokemon : Entity
 {
     //constructor
-    public Pokemon(string name, int health, int damage, int armor, string type, int level, int catchRate, bool IsCatchable, int maxHp) : base(name, health, damage, armor, type, level, catchRate, IsCatchable, maxHp)
+    public Pokemon(string name, int health, int damage, int armor, string type, int level, int catchRate, bool IsCatchable, int maxHp, string attack, int dmg_attack, string attack_spe, int dmg_attack_spe) : base(name, health, armor, type, level, catchRate, IsCatchable, maxHp, attack, dmg_attack, attack_spe, dmg_attack_spe)
     {
     }
 
