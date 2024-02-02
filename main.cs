@@ -19,7 +19,12 @@ class Program
         Fight.currentEnemy = Pokemon.CreatePokemon(0);
         player = Intro.player;
         // Check the state of the fight
-        Fight.StartRound(player, Fight.currentEnemy);
+        //Fight.StartRound(player, Fight.currentEnemy);
+
+        // display the map
+        Map.ReadMap();
+        // make the player move
+        Map.SpawnPlayer(156, 69);
 
         
     }
