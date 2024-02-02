@@ -19,7 +19,12 @@ class Program
         Pokemon enemy = Pokemon.pokemons[1];
         player = Intro.player;
         // Check the state of the fight
-        Fight.StartRound(player,player.Team[player.CurrentPokemon], enemy);
+        //Fight.StartRound(player,player.Team[player.CurrentPokemon], enemy);
+
+        // display the map
+        Map.ReadMap();
+        // make the player move
+        Map.SpawnPlayer();
 
         
     }

@@ -18,7 +18,7 @@ public class Pokemon : Entity
         // Create a new enemy
         Pokemon pikachu = new Pokemon("pikachu", 100, 10, 5, "Electric", 5, 250, false, 100);
         Pokemon salamèche = new Pokemon("salamèche", 100, 10, 5, "Fire", 5, 250, true, 100);
-        Pokemon bulblizarre = new Pokemon("bulblizar", 100, 10, 5, "Grass", 5, 250, true, 100);
+        Pokemon bulblizarre = new Pokemon("bulblizar", 100, 10, 5, "Grass", 50, 250, true, 100);
         Pokemon carapuce = new Pokemon("carapuce", 100, 10, 5, "Water", 5, 250, true, 100);
         pokemons = new Pokemon[4] {pikachu,salamèche,bulblizarre,carapuce};
 

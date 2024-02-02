@@ -267,11 +267,12 @@ public class Fight {
 
     public static void DrawBorderLine()
     {
-        for (int i = 0; i < 198; i++)
+        Console.Write("\n");
+        for (int i = 0; i < Console.WindowWidth; i++)
         {
             Console.Write("▬");
         }
-        Console.Write("\n");
+        Console.Write("\n\n");
 
         
     }
