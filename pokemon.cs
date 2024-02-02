@@ -16,7 +16,7 @@ public class Pokemon : Entity
     {
         string[] lines = System.IO.File.ReadAllLines("pokedex.txt");
         string[] info = lines[lineIndex].Split(',');
-        Pokemon pokemon = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), int.Parse(info[3]), info[4], int.Parse(info[5]), int.Parse(info[6]), bool.Parse(info[7]), int.Parse(info[8]));
+        Pokemon pokemon = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), int.Parse(info[3]), info[4], int.Parse(info[5]), int.Parse(info[6]), bool.Parse(info[7]), int.Parse(info[8]), info[9], int.Parse(info[10]), info[11], int.Parse(info[12]));
         return pokemon;
 
     }
