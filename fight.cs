@@ -11,13 +11,26 @@ public class Fight {
     public static Pokemon currentEnemy;
     public static int damage;
     private static bool isRunning = true;
+    string attack_choice = "1";
 
 
     //method for round
-    public static void Round(Pokemon playerPokemon, Pokemon enemyPokemon)
+    public static void Round(Pokemon playerPokemon, Pokemon enemyPokemon, string attack_type)
     {
         //player attacks enemy
-        damage = playerPokemon.Damage;
+        if (attack_type == "1")
+        {
+            damage = playerPokemon.dmg_Attack;
+        }
+        else if (attack_type == "2")
+        {
+            damage = playerPokemon.dmg_Attack_Spe;
+        }
+        else
+        {
+            damage = playerPokemon.dmg_Attack;
+        }
+
         switch (playerPokemon.Type)
         {
             case "Fire":
@@ -33,7 +46,7 @@ public class Fight {
             case "Water":
                 if (enemyPokemon.Type == "Fire")
                 {
-                    damage = playerPokemon.Damage *= 2;
+                    damage *= 2;
                 }
                 else if (enemyPokemon.Type == "Grass" || enemyPokemon.Type == "Water")
                 {
@@ -61,7 +74,14 @@ public class Fight {
                 }
                 break;
             default:
-                damage = playerPokemon.Damage;
+                if (attack_type == "1")
+                {
+                    damage = playerPokemon.dmg_Attack;
+                }
+                else if (attack_type == "2")
+                {
+                    damage = playerPokemon.dmg_Attack_Spe;
+                }
                 break;
 
         }
@@ -69,7 +89,14 @@ public class Fight {
         PrintStats();
         Console.SetCursorPosition(0, 35);
         DrawBorderLine();
-        Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " for " + damage + " damage!");
+        if (attack_type == "1")
+        {
+            Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " with " + enemyPokemon.Attack + " for " + damage + " damage!");
+        }
+        else if (attack_type == "2")
+        {
+            Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " with " + enemyPokemon.Attack_Spe + " for " + damage + " damage!");
+        }
         Console.WriteLine(enemyPokemon.Name + " has " + enemyPokemon.Health + " health remaining!");
         DrawBorderLine();
         Console.ReadKey();
@@ -84,7 +111,18 @@ public class Fight {
 
 
         //enemy attacks player
-        damage = enemyPokemon.Damage;
+        Random random = new Random();
+        int attack_type_random = random.Next(1, 3);
+
+        if (attack_type_random == 1)
+        {
+            damage = playerPokemon.dmg_Attack;
+        }
+        else if (attack_type_random == 2)
+        {
+            damage = playerPokemon.dmg_Attack_Spe;
+        }
+
         switch (enemyPokemon.Type)
         {
             case "Fire":
@@ -100,7 +138,7 @@ public class Fight {
             case "Water":
                 if (playerPokemon.Type == "Fire")
                 {
-                    damage = playerPokemon.Damage *= 2;
+                    damage *= 2;
                 }
                 else if (playerPokemon.Type == "Grass" || playerPokemon.Type == "Water")
                 {
@@ -128,14 +166,28 @@ public class Fight {
                 }
                 break;
             default:
-                damage = enemyPokemon.Damage;
+                if (attack_type_random == 1)
+                {
+                    damage = playerPokemon.dmg_Attack;
+                }
+                else if (attack_type_random == 2)
+                {
+                    damage = playerPokemon.dmg_Attack_Spe;
+                }
                 break;
 
         }
         playerPokemon.Health -= damage;
         PrintStats();
         DrawBorderLine();
-        Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " for " + damage + " damage!");
+        if (attack_type_random == 1)
+        {
+            Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " with " + enemyPokemon.Attack + " for " + damage + " damage!");
+        }
+        else if (attack_type_random == 2)
+        {
+            Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " with " + enemyPokemon.Attack_Spe + " for " + damage + " damage!");
+        }
         Console.WriteLine(playerPokemon.Name + " has " + playerPokemon.Health + " health remaining!");
         DrawBorderLine();
         Console.ReadKey();
@@ -186,9 +238,36 @@ public class Fight {
         // if the player chose to attack
         if (choice == 1)
         {
-            // call the round method
+            // Choice of the attack
             Console.Clear();
-            Round(playerPokemon, enemyPokemon);
+            PrintStats();
+            Console.WriteLine("What attack do you want to use?");
+            DrawBorderLine();
+            Console.WriteLine("1. " + playerPokemon.Attack + "           2. " + playerPokemon.Attack_Spe);
+            DrawBorderLine();
+
+            string attack_choice = Console.ReadLine();
+
+            // if the choice is not 1 or 2
+            switch (attack_choice)
+            {
+                case "1":
+                    Console.WriteLine(playerPokemon.Name + " use " + playerPokemon.Attack);
+                    break;
+
+                case "2":
+                    Console.WriteLine(playerPokemon.Name + " use " + playerPokemon.Attack_Spe);
+                    break;
+
+                default:
+                    Console.WriteLine("That is not a valid choice, " + playerPokemon.Name + " is confused and choose to attack with " + playerPokemon.Attack);
+                    break;
+            }
+
+            // call the round method with attack choice
+            Console.ReadKey();
+            Console.Clear();
+            Round(playerPokemon, enemyPokemon, attack_choice);
         }
 
         // if the player chose to change pokemon
@@ -228,7 +307,6 @@ public class Fight {
     }
     
 
-
     // method to start the round
     public static void StartRound(Player player, Pokemon playerPokemon, Pokemon enemyPokemon)
     {
@@ -262,7 +340,7 @@ public class Fight {
     {
         // print a message
         Console.WriteLine("You went back to the fight menu!");
-        Round(currentPlayer.Team[currentPlayer.CurrentPokemon], currentEnemy);
+        PrintMenu();
     }
 
     public static void DrawBorderLine()

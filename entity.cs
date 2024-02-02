@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Net.Mime.MediaTypeNames;
 
 // Entity class
 public class Entity
@@ -6,26 +7,32 @@ public class Entity
     //set variables for entity
     protected string name;
     protected int health;
-    protected int damage;
     protected int armor;
     protected string type;
     protected int level;
     protected int catchRate;
     protected bool isCatchable;
     protected int maxHp;
+    protected string attack;
+    protected int dmg_attack;
+    protected string attack_spe;
+    protected int dmg_attack_spe;
 
     //constructor
-    public Entity(string name, int health, int damage, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp)
+    public Entity(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack_spe, int dmg_attack_spe)
     {
         this.name = name;
         this.health = health;
-        this.damage = damage;
         this.armor = armor;
         this.type = type;
         this.level = level;
         this.catchRate = catchRate;
         this.isCatchable = isCatchable;
         this.maxHp = maxHp;
+        this.attack = attack;
+        this.dmg_attack = dmg_attack;
+        this.attack_spe = attack_spe;
+        this.dmg_attack_spe = dmg_attack_spe;
     }
 
     //getters and setters
@@ -39,12 +46,6 @@ public class Entity
     {
         get { return health; }
         set { health = value; }
-    }
-
-    public int Damage
-    {
-        get { return damage; }
-        set { damage = value; }
     }
 
     public int Armor
@@ -81,6 +82,30 @@ public class Entity
     {
         get { return maxHp; }
         set { maxHp = value; }
+    }
+
+    public string Attack
+    {
+        get { return attack; }
+        set { attack = value; }
+    }
+
+    public int dmg_Attack
+    {
+        get { return dmg_attack; }
+        set { dmg_attack = value; }
+    }
+
+    public string Attack_Spe
+    {
+        get { return attack_spe; }
+        set { attack_spe = value; }
+    }
+
+    public int dmg_Attack_Spe
+    {
+        get { return dmg_attack_spe; }
+        set { dmg_attack_spe = value; }
     }
 
     public void PrintStats(string type)
