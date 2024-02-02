@@ -24,7 +24,7 @@ class Program
         // display the map
         Map.ReadMap();
         // make the player move
-        Map.SpawnPlayer();
+        Map.SpawnPlayer(156, 69);
 
         
     }

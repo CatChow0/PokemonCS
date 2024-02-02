@@ -9,7 +9,7 @@ public class Map
     public static void ReadMap()
     {
         // read the map
-        lines = System.IO.File.ReadAllLines("map.txt");
+        lines = System.IO.File.ReadAllLines(@"map.txt");
         foreach (string line in lines)
         {
             Console.WriteLine(line);
@@ -17,11 +17,12 @@ public class Map
     }
 
     // create a method to spawn the player and to move the player
-    public static void SpawnPlayer()
+    public static void SpawnPlayer(int _xPos, int _yPos)
     {
         player = "☺";
-        xPos = 156;
-        yPos = 69;
+
+        xPos = _xPos;
+        yPos = _yPos;
 
         // spawn the player
         Console.SetCursorPosition(xPos, yPos);
@@ -106,6 +107,8 @@ public class Map
                         elementPos = lines[yPos].ElementAt(xPos).ToString();
                         break;
                     }
+                default:
+                    break;
                     
             }
         } while (keyInfo.Key != ConsoleKey.Escape);
