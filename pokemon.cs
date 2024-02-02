@@ -8,7 +8,7 @@ public class Pokemon : Entity
 {
     public static Pokemon[] pokemons;
     //constructor
-    public Pokemon(string name, int health, int damage, int armor, string type, int level, int catchRate, bool IsCatchable, int maxHp, string attack, int dmg_attack, string attack_spe, int dmg_attack_spe) : base(name, health, armor, type, level, catchRate, IsCatchable, maxHp, attack, dmg_attack, attack_spe, dmg_attack_spe)
+    public Pokemon(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack2, int dmg_attack2, string attack3, int dmg_attack3, string attack_spe, int dmg_attack_spe) : base(name, health, armor, type, level, catchRate, IsCatchable, maxHp, attack, dmg_attack, attack2, dmg_attack2, attack3, dmg_attack3, attack_spe, dmg_attack_spe)
     {
     }
 
