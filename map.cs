@@ -98,7 +98,9 @@ public class Map
                     {
                         Console.Write(player);
                         Console.SetCursorPosition(xPos, yPos + 1);
+                        checkColor();
                         Console.Write(elementPos);
+                        Console.ResetColor();
                         elementPos = lines[yPos].ElementAt(xPos).ToString();
                         break;
                     }
@@ -115,7 +117,9 @@ public class Map
                     {
                         Console.Write(player);
                         Console.SetCursorPosition(xPos, yPos - 1);
+                        checkColor();
                         Console.Write(elementPos);
+                        Console.ResetColor();
                         elementPos = lines[yPos].ElementAt(xPos).ToString();
                         break;
                     }
@@ -133,7 +137,9 @@ public class Map
                     {
                         Console.Write(player);
                         Console.SetCursorPosition(xPos + 1, yPos);
+                        checkColor();
                         Console.Write(elementPos);
+                        Console.ResetColor();
                         elementPos = lines[yPos].ElementAt(xPos).ToString();
                         break;
                     }
@@ -151,7 +157,9 @@ public class Map
                     {
                         Console.Write(player);
                         Console.SetCursorPosition(xPos - 1, yPos);
+                        checkColor();
                         Console.Write(elementPos);
+                        Console.ResetColor();
                         elementPos = lines[yPos].ElementAt(xPos).ToString();
                         break;
                     }
@@ -170,5 +178,13 @@ public class Map
         }
 
         return false;
+    }
+
+    public static void checkColor()
+    {
+        if (elementPos == "#")
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        }
     }
 }
