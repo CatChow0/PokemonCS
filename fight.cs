@@ -11,8 +11,8 @@ public class Fight {
     public static Pokemon currentEnemy;
     public static Pokemon playerPokemon;
     public static int damage;
-    private static bool isRunning = true;
-    string attack_choice = "1";
+    public static bool isRunning = false;
+    private string attack_choice = "1";
 
 
     //method for round

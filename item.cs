@@ -56,7 +56,11 @@ public class Item
     public static void PrintPotionMenu(Player currentPlayer)
     {
         Console.Clear();
-        Fight.PrintStats();
+        // check if in fight
+        if (Fight.isRunning)
+        {
+            Fight.PrintStats();
+        }
         Console.WriteLine("What potion do you want to use?");
         Fight.DrawBorderLine();
         Console.WriteLine("1. Standard Potion : x" + currentPlayer.potion[0]);
@@ -153,7 +157,11 @@ public class Item
             if (playerPokemon.Health == playerPokemon.MaxHp)
             {
                 Console.Clear();
-                Fight.PrintStats();
+                // check if in fight
+                if (Fight.isRunning)
+                {
+                    Fight.PrintStats();
+                }
                 Fight.DrawBorderLine();
                 //Print that the player has full health
                 Console.WriteLine(playerPokemon.Name + " has full health!");
@@ -363,7 +371,11 @@ public class Item
     public static void NoPotion(Player player)
     {
         Console.Clear();
-        Fight.PrintStats();
+        // check if in fight
+        if (Fight.isRunning)
+        {
+            Fight.PrintStats();
+        }
         Fight.DrawBorderLine();
         //Print that the player doesn't have a potion
         Console.WriteLine(player.Name + " doesn't have a potion!");
@@ -402,7 +414,11 @@ public class Item
     public static void PrintPotionEffect(Pokemon playerPokemon)
     {
         Console.Clear();
-        Fight.PrintStats();
+        // check if in fight
+        if (Fight.isRunning)
+        {
+            Fight.PrintStats();
+        }
         Fight.DrawBorderLine();
         //Print the health of the player
         Console.WriteLine(playerPokemon.Name + " has " + playerPokemon.Health + " health remaining!");

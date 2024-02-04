@@ -42,8 +42,10 @@ public class Menu
         Console.Clear();
         Fight.DrawBorderLine();
         Console.WriteLine("1. Continue");
-        Console.WriteLine("2. Save Game");
-        Console.WriteLine("3. Exit");
+        Console.WriteLine("2. Team");
+        Console.WriteLine("3. Bag");
+        Console.WriteLine("4. Save Game");
+        Console.WriteLine("5. Exit Game");
         Console.WriteLine("Please enter your choice: ");
         Fight.DrawBorderLine();
         string choice = Console.ReadLine();
@@ -55,10 +57,26 @@ public class Menu
                 Map.SpawnPlayer(Map.xPos, Map.yPos);
                 break;
             case "2":
+                // Show team and can use potion to restore hp
+                TeamMenu();
+                break;
+            case "3":
+                // Bag
+                Console.Clear();
+                Fight.DrawBorderLine();
+                Console.WriteLine("Your bag:");
+                Console.WriteLine("Potions: " + Intro.player.Potion[0]);
+                Console.WriteLine("Pokeballs: " + Intro.player.Pokeball[0]);
+                Console.WriteLine("Press any key to continue...");
+                Fight.DrawBorderLine();
+                Console.ReadKey();
+                PauseMenu();
+                break;
+            case "4":
                 // Save game
                 SaveGame();
                 break;
-            case "3":
+            case "5":
                 Environment.Exit(0);
                 break;
             default:
@@ -68,6 +86,133 @@ public class Menu
                 break;
         }
     }
+
+    //method to show the team
+    public static void TeamMenu()
+    {
+        Console.Clear();
+        Fight.DrawBorderLine();
+        Console.WriteLine("Your team:");
+        for (int i = 0; i < 6; i++)
+        {
+            if (Intro.player.Team[i] != null)
+            {
+                Console.WriteLine((i + 1) + ". " + Intro.player.Team[i].Name + " Lv: " + Intro.player.Team[i].Level + " HP: " + Intro.player.Team[i].Health + "/" + Intro.player.Team[i].MaxHp);
+            }
+            else
+            {
+                Console.WriteLine((i + 1) + ". Empty");
+            }
+        }
+        Fight.DrawBorderLine();
+        Console.WriteLine("More info : 1 - 6 || Exit : 7");
+        Fight.DrawBorderLine();
+        string teamChoice = Console.ReadLine();
+        //check if choice is a number
+        if (int.TryParse(teamChoice, out int result))
+        {
+            if (result >= 1 && result <= 6)
+            {
+                if (Intro.player.Team[result - 1] != null)
+                {
+                    Console.Clear();
+                    Fight.DrawBorderLine();
+                    Console.WriteLine("Name: " + Intro.player.Team[result - 1].Name);
+                    Console.WriteLine("Level: " + Intro.player.Team[result - 1].Level);
+                    Console.WriteLine("Health: " + Intro.player.Team[result - 1].Health + "/" + Intro.player.Team[result - 1].MaxHp);
+                    Console.WriteLine("Attack: " + Intro.player.Team[result - 1].Attack);
+                    Console.WriteLine("Special Attack: " + Intro.player.Team[result - 1].Attack_Spe);
+                    Console.WriteLine("Type: " + Intro.player.Team[result - 1].Type);
+                    Console.WriteLine("Xp : " + Intro.player.Team[result - 1].Xp + "/100");
+                    Console.ResetColor();
+                    Fight.DrawBorderLine();
+                    Console.WriteLine("Use Potion : 1 || Rename : 2 || Exit : 3");
+                    Fight.DrawBorderLine();
+                    string choice = Console.ReadLine();
+                    // Check if choice is a number
+                    if (int.TryParse(choice, out int result2))
+                    {
+                        if (result2 == 1)
+                        {
+                            // Use potion
+                            if (Intro.player.Potion[0] > 0)
+                            {
+                                Item.PrintPotionMenu(Intro.player);
+                                TeamMenu();
+                            }
+                            else
+                            {
+                                Console.WriteLine("You don't have any potions!");
+                                Console.ReadKey();
+                                TeamMenu();
+                            }
+                        }
+                        else if (result2 == 2)
+                        {
+                            // Rename pokemon
+                            Console.Clear();
+                            Fight.DrawBorderLine();
+                            Console.WriteLine("Enter the new name for " + Intro.player.Team[result - 1].Name + ":");
+                            Fight.DrawBorderLine();
+                            string newName = Console.ReadLine();
+                            string oldName = Intro.player.Team[result - 1].Name;
+                            Intro.player.Team[result - 1].Name = newName;
+                            Console.Clear();
+                            Fight.DrawBorderLine();
+                            Console.WriteLine("You renamed " + oldName + " to " + newName + "!");
+                            Console.WriteLine("Press any key to continue...");
+                            Fight.DrawBorderLine();
+                            Console.ReadKey();
+                            TeamMenu();
+                        }
+                        else if (result2 == 3)
+                        {
+                            TeamMenu();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid choice");
+                            Console.ReadKey();
+                            TeamMenu();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid choice");
+                        Console.ReadKey();
+                        TeamMenu();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Empty slot");
+                    Console.ReadKey();
+                    TeamMenu();
+                }
+            }
+            else if (result == 7)
+            {
+                PauseMenu();
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice");
+                Console.ReadKey();
+                TeamMenu();
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid choice");
+            Console.ReadKey();
+            TeamMenu();
+        }
+        
+
+        Console.Clear();
+    }
+
+
 
     //method to save the game in a file
     public static void SaveGame()
@@ -116,6 +261,8 @@ public class Menu
         Console.WriteLine("Press any key to continue...");
         Fight.DrawBorderLine();
         Console.ReadKey();
+        Console.Clear();
+        PauseMenu();
     }
 
     //method to load the game from a file
