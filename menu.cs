@@ -67,6 +67,7 @@ public class Menu
                 Console.WriteLine("Your bag:");
                 Console.WriteLine("Potions: " + Intro.player.Potion[0]);
                 Console.WriteLine("Pokeballs: " + Intro.player.Pokeball[0]);
+                Console.WriteLine("Money : " + Intro.player.Money);
                 Console.WriteLine("Press any key to continue...");
                 Fight.DrawBorderLine();
                 Console.ReadKey();
@@ -238,16 +239,19 @@ public class Menu
         lines[7] = Map.xPos.ToString();
         lines[8] = Map.yPos.ToString();
 
+        // append to lines the player's money
+        lines[9] = Intro.player.Money.ToString();
+
         // append to lines the info of the player's team while checking if the pokemon is null
         for (int i = 0; i < 6; i++)
         {
             if (Intro.player.Team[i] != null)
             {
-                lines[i + 9] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + "10" + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].dmg_Attack + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].dmg_Attack_Spe + "," + Intro.player.Team[i].Xp;
+                lines[i + 10] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + "10" + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].dmg_Attack + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].dmg_Attack_Spe + "," + Intro.player.Team[i].Xp;
             }
             else
             {
-                lines[i + 9] = "null";
+                lines[i + 10] = "null";
             }
         }
 
@@ -290,10 +294,13 @@ public class Menu
         Map.xPos = int.Parse(lines[7]);
         Map.yPos = int.Parse(lines[8]);
 
+        // append to the player's money the info from the file
+        Intro.player.Money = int.Parse(lines[9]);
+
         // append to the player's team the info from the file while checking if the pokemon is null
         for (int i = 0; i < 6; i++)
         {
-            if (lines[i + 9] != "null")
+            if (lines[i + 10] != "null")
             {
                 string[] info = lines[i + 9].Split(',');
                 Intro.player.Team[i] = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), int.Parse(info[3]), info[4], int.Parse(info[5]), int.Parse(info[6]), bool.Parse(info[7]), int.Parse(info[8]), info[9], int.Parse(info[10]), info[11], int.Parse(info[12]), int.Parse(info[13]));
