@@ -17,9 +17,10 @@ public class Entity
     protected int dmg_attack;
     protected string attack_spe;
     protected int dmg_attack_spe;
+    protected int xp;
 
     //constructor
-    public Entity(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack_spe, int dmg_attack_spe)
+    public Entity(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack_spe, int dmg_attack_spe, int xp)
     {
         this.name = name;
         this.health = health;
@@ -33,6 +34,7 @@ public class Entity
         this.dmg_attack = dmg_attack;
         this.attack_spe = attack_spe;
         this.dmg_attack_spe = dmg_attack_spe;
+        this.xp = xp;
     }
 
     //getters and setters
@@ -106,6 +108,12 @@ public class Entity
     {
         get { return dmg_attack_spe; }
         set { dmg_attack_spe = value; }
+    }
+    
+    public int Xp
+    {
+        get { return xp; }
+        set { xp = value; }
     }
 
     public void PrintStats(string type)

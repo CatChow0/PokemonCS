@@ -11,7 +11,8 @@ public class Item
     // method to print the item
     public static void PrintItemMenu(Player currentPlayer)
     {
-
+        Console.Clear();
+        Fight.PrintStats();
         Console.WriteLine("What item do you want to use?");
         Fight.DrawBorderLine();
         Console.WriteLine("1. Potion");
@@ -44,6 +45,9 @@ public class Item
             default:
                 // Print an error message
                 Console.WriteLine("That is not a valid choice!");
+                Console.ReadKey();
+                Console.Clear();
+                PrintItemMenu(currentPlayer);
                 break;
         }
     }
@@ -51,6 +55,8 @@ public class Item
     // method to print the potion menu
     public static void PrintPotionMenu(Player currentPlayer)
     {
+        Console.Clear();
+        Fight.PrintStats();
         Console.WriteLine("What potion do you want to use?");
         Fight.DrawBorderLine();
         Console.WriteLine("1. Standard Potion : x" + currentPlayer.potion[0]);
@@ -83,6 +89,9 @@ public class Item
             default:
                 // Print an error message
                 Console.WriteLine("That is not a valid choice!");
+                Console.ReadKey();
+                Console.Clear();
+                PrintPotionMenu(currentPlayer);
                 break;
         }
     }
@@ -122,6 +131,9 @@ public class Item
             default:
                 // Print an error message
                 Console.WriteLine("That is not a valid choice!");
+                Console.ReadKey();
+                Console.Clear();
+                PrintPokeballMenu(currentPlayer, enemyPokemon);
                 break;
         }
     }
@@ -318,9 +330,9 @@ public class Item
             if (result < CaptureChance)
             {
                 player.AddPokemon(enemyPokemon);
-                Fight.currentEnemy = null;
-                int newEnemy = rnd.Next(0, 3);
-                Fight.currentEnemy = Pokemon.CreatePokemon(newEnemy);
+                Map.ReadMap();
+                Map.SpawnPlayer(Map.xPos, Map.yPos);
+
             }
             //If the capture chance is higher than the capture rate
             else

@@ -77,13 +77,13 @@ public class Player
             case "1":
                 Fight.DrawBorderLine();
                 Console.WriteLine("You chose Salamèche!");
-                Team[0] = Pokemon.CreatePokemon(1);
-                break;
-            case "2":
                 Team[0] = Pokemon.CreatePokemon(2);
                 break;
+            case "2":
+                Team[0] = Pokemon.CreatePokemon(5);
+                break;
             case "3":
-                Team[0] = Pokemon.CreatePokemon(3);
+                Team[0] = Pokemon.CreatePokemon(8);
                 break;
             default:
                 Fight.DrawBorderLine();
@@ -151,7 +151,13 @@ public class Player
         currentPokemon = result - 1;
 
         // print a message
+        Console.Clear();
+        Fight.PrintStats();
+        Fight.DrawBorderLine();
         Console.WriteLine("You switched to " + Team[currentPokemon].Name + "!");
+        Fight.DrawBorderLine();
+        Console.ReadKey();
+        Console.Clear();
     }
 
     // method to print the player's team

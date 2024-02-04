@@ -106,7 +106,17 @@ public class Fight {
         //if enemy is dead
         if (enemyPokemon.Health <= 0)
         {
-            Console.WriteLine(enemyPokemon.Name + " has died!");
+            int xp = playerPokemon.CalculateXp(enemyPokemon.Level);
+            currentPlayer.Team[currentPlayer.CurrentPokemon].AddXp(xp);
+            currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
+            DrawBorderLine();
+            Console.WriteLine("You defeated " + enemyPokemon.Name + "!");
+            Console.WriteLine("You earned " + xp + " xp!");
+            DrawBorderLine();
+            Console.ReadKey();
+            Console.Clear();
+            Map.ReadMap();
+            Map.SpawnPlayer(Map.xPos, Map.yPos);
             return;
         }
 
@@ -198,6 +208,30 @@ public class Fight {
         if (playerPokemon.Health <= 0)
         {
             Console.WriteLine(playerPokemon.Name + " has died!");
+            //if the player has more pokemon
+            if (currentPlayer.Team.Length > 1)
+            {
+                currentPlayer.ChangePokemon();
+                playerPokemon = currentPlayer.Team[currentPlayer.CurrentPokemon];
+                Console.Clear();
+                PrintStats();
+                DrawBorderLine();
+                Console.WriteLine("You changed to " + playerPokemon.Name + "!");
+                DrawBorderLine();
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+            else
+            {
+                Console.WriteLine("You have no more pokemon!");
+                Console.WriteLine("You blacked out!");
+                Console.ReadKey();
+                Console.Clear();
+                Map.ReadMap();
+                Map.SpawnPlayer(Map.xPos, Map.yPos);
+                return;
+            }
             return;
         }
 
@@ -323,12 +357,18 @@ public class Fight {
         {
             playerPokemon = player.Team[player.CurrentPokemon];
         }
+
+        if (currentEnemy == null)
+        {
+            currentEnemy = enemyPokemon;
+        }
+
+        if (isRunning == false)
+        {
+            isRunning = true;
+        }
         // print a message
         Console.WriteLine("You encountered a " + enemyPokemon.Name + "!");
-
-        currentEnemy = enemyPokemon;
-
-
 
         // while both players are alive
         while ((playerPokemon.Health > 0 && enemyPokemon.Health > 0) && isRunning)
@@ -350,7 +390,13 @@ public class Fight {
     public static void GoBack()
     {
         // print a message
+        Console.Clear();
+        PrintStats();
+        DrawBorderLine();
         Console.WriteLine("You went back to the fight menu!");
+        DrawBorderLine();
+        Console.ReadKey();
+        Console.Clear();
         PrintMenu();
     }
 

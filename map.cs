@@ -163,6 +163,10 @@ public class Map
                         elementPos = lines[yPos].ElementAt(xPos).ToString();
                         break;
                     }
+                // pause menu
+                case ConsoleKey.Spacebar:
+                    Menu.PauseMenu();
+                    break;
                 default:
                     break;
                     
@@ -184,12 +188,13 @@ public class Map
             if (random == 3)
             {
                 //Create a wild pokemon
-                Fight.currentEnemy = Pokemon.CreatePokemon(rnd.Next(0, 3));
+                Fight.currentEnemy = null;
+                Fight.currentEnemy = Pokemon.CreatePokemon(rnd.Next(0, 10));
                 Console.Clear();
                 Console.WriteLine("You found a wild pokemon!");
                 Console.WriteLine("Press any key to start the fight!");
                 Console.ReadKey();
-                Fight.StartRound(Program.player, Fight.currentEnemy);
+                Fight.StartRound(Intro.player, Fight.currentEnemy);
                 return true;
             }
             return false;
