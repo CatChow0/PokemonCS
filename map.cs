@@ -222,40 +222,7 @@ public class Map
             if (answer == "y")
             {
                 Console.Clear();
-                Console.WriteLine("Hello! I'm a person!");
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
-                Console.Clear();
-                ReadHouse();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else if (lines[yPos].ElementAt(xPos).ToString() == "®" && mapType == "house")
-        {
-            Console.Clear();
-            Fight.DrawBorderLine();
-            Console.WriteLine("Do you want to pick up the coin? (y/n)");
-            Fight.DrawBorderLine();
-            string answer = Console.ReadLine();
-            if (answer == "y")
-            {
-                // Pick up the item and remove it from the map
-                lines[yPos].ElementAt(xPos).ToString().Replace("®", " ");
-                //write the new map
-                System.IO.File.WriteAllLines("house.txt", lines);
-                //save the game
-                Console.Clear();
-                Console.WriteLine("You picked up the item!");
-                Console.WriteLine("Press any key to continue...");
-                Intro.player.Money += 10;
-                Menu.SaveGame(true);
-                Console.ReadKey();
-                Console.Clear();
-                ReadHouse();
+                Menu.VendorMenu();
                 return true;
             }
             else

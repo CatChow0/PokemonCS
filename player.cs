@@ -232,4 +232,95 @@ public class Player
         }
     }
 
+    // method to buy an item
+    public void BuyItem(int amount, string item, string type)
+    {
+        // ask the number of items the player wants to buy
+        Console.Clear();
+        Fight.DrawBorderLine();
+        Console.WriteLine("How many " + item + " do you want to buy?");
+        Fight.DrawBorderLine();
+        string choice = Console.ReadLine();
+        // if the choice is not a number
+        if (!int.TryParse(choice, out int result))
+        {
+            // print an error message
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("That is not a valid choice!");
+            Fight.DrawBorderLine();
+            Console.ReadKey();
+            Console.Clear();
+            Menu.PrintBuyMenu(Intro.player);
+            return;
+        }
+        // calculate the total cost
+        int total = amount * result;
+        // if the player have enough money
+        if (money >= total)
+        {
+            // subtract the amount from the player's money
+            money -= total;
+            // add the amount to the player
+            AddItem(result, item, type);
+            // print a message
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("You bought " + result + " " + item + "!");
+            Fight.DrawBorderLine();
+            Console.ReadKey();
+            Console.Clear();
+            Menu.PrintBuyMenu(Intro.player);
+        }
+        else
+        {
+            // print an error message
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("You don't have enough money!");
+            Fight.DrawBorderLine();
+            Console.ReadKey();
+            Console.Clear();
+            Menu.PrintBuyMenu(Intro.player);
+        }
+    }
+
+    // method to sell an item
+    public void SellItem(int amount, string item, string type)
+    {
+        // ask the number of items the player wants to sell
+        Console.Clear();
+        Fight.DrawBorderLine();
+        Console.WriteLine("How many " + item + " do you want to sell?");
+        Fight.DrawBorderLine();
+        string choice = Console.ReadLine();
+        // if the choice is not a number
+        if (!int.TryParse(choice, out int result))
+        {
+            // print an error message
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("That is not a valid choice!");
+            Fight.DrawBorderLine();
+            Console.ReadKey();
+            Console.Clear();
+            Menu.PrintSellMenu(Intro.player);
+            return;
+        }
+        // calculate the total cost
+        int total = amount * result;
+        // add the amount to the player's money
+        money += total;
+        // subtract the amount from the player
+        AddItem(-result, item, type);
+        // print a message
+        Console.Clear();
+        Fight.DrawBorderLine();
+        Console.WriteLine("You sold " + result + " " + item + "!");
+        Fight.DrawBorderLine();
+        Console.ReadKey();
+        Console.Clear();
+        Menu.PrintSellMenu(Intro.player);
+    }
+
 }

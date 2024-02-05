@@ -66,7 +66,11 @@ public class Menu
                 Fight.DrawBorderLine();
                 Console.WriteLine("Your bag:");
                 Console.WriteLine("Potions: " + Intro.player.Potion[0]);
+                Console.WriteLine("Super Potions: " + Intro.player.Potion[1]);
+                Console.WriteLine("Hyper Potions: " + Intro.player.Potion[2]);
                 Console.WriteLine("Pokeballs: " + Intro.player.Pokeball[0]);
+                Console.WriteLine("Great Balls: " + Intro.player.Pokeball[1]);
+                Console.WriteLine("Ultra Balls: " + Intro.player.Pokeball[2]);
                 Console.WriteLine("Money : " + Intro.player.Money);
                 Console.WriteLine("Press any key to continue...");
                 Fight.DrawBorderLine();
@@ -213,7 +217,243 @@ public class Menu
         Console.Clear();
     }
 
+    // method to shwow the vendor menu
+    public static void VendorMenu()
+    {
+        Console.Clear();
+        Fight.DrawBorderLine();
+        Console.WriteLine("Welcome to the PokeShop!");
+        Console.WriteLine("1. Buy");
+        Console.WriteLine("2. Sell");
+        Console.WriteLine("3. Exit");
+        Console.WriteLine("Please enter your choice: ");
+        Fight.DrawBorderLine();
+        string choice = Console.ReadLine();
+        switch (choice)
+        {
+            case "1":
+                // Buy
+                PrintBuyMenu(Intro.player);
+                VendorMenu();
+                break;
+            case "2":
+                // Sell
+                PrintSellMenu(Intro.player);
+                VendorMenu();
+                break;
+            case "3":
+                Console.Clear();
+                Map.ReadHouse();
+                break;
+            default:
+                Console.WriteLine("Invalid choice");
+                Console.ReadKey();
+                VendorMenu();
+                break;
+        }
+    }
 
+    // method to print the buy menu
+    public static void PrintBuyMenu(Player player)
+    {
+        Console.Clear();
+        Fight.DrawBorderLine();
+        Console.WriteLine("Welcome to the PokeShop!");
+        Console.WriteLine("Your Money :" + player.Money);
+        Console.WriteLine("1. Potion - 100$");
+        Console.WriteLine("2. Super Potion - 200$");
+        Console.WriteLine("3. Hyper Potion - 300$");
+        Console.WriteLine("4. Pokeball - 200$");
+        Console.WriteLine("5. Great Ball - 300$");
+        Console.WriteLine("6. Ultra Ball - 400$");
+        Console.WriteLine("7. Exit");
+        Console.WriteLine("Please enter your choice: ");
+        Fight.DrawBorderLine();
+        string choice = Console.ReadLine();
+        switch (choice)
+        {
+            case "1":
+                // Buy potion
+                player.BuyItem(100, "Potion", "standard");
+                break;
+            case "2":
+                // Buy super potion
+                player.BuyItem(200, "Potion", "great");
+                break;
+            case "3":
+                // Buy hyper potion
+                player.BuyItem(300, "Potion", "ultra");
+                break;
+            case "4":
+                // Buy pokeball
+                player.BuyItem(200, "Pokeball", "standard");
+                break;
+            case "5":
+                // Buy great ball
+                player.BuyItem(300, "Pokeball", "great");
+                break;
+            case "6":
+                // Buy ultra ball
+                player.BuyItem(400, "Pokeball", "ultra");
+                break;
+            case "7":
+                VendorMenu();
+                break;
+            default:
+                Console.WriteLine("Invalid choice");
+                Console.ReadKey();
+                PrintBuyMenu(player);
+                break;
+        }
+        
+    }
+
+    // method to print the sell menu
+    public static void PrintSellMenu(Player player)
+    {
+        Console.Clear();
+        Fight.DrawBorderLine();
+        Console.WriteLine("Welcome to the PokeShop!");
+        Console.WriteLine("1. Sell Item");
+        Console.WriteLine("2. Sell Pokemon");
+        Console.WriteLine("3. Exit");
+        Console.WriteLine("Please enter your choice: ");
+        Fight.DrawBorderLine();
+        string choice = Console.ReadLine();
+        switch (choice)
+        {
+            case "1":
+                // Sell item
+                PrintSellItemMenu(player);
+                break;
+            case "2":
+                // Sell pokemon
+                PrintSellPokemonMenu(player);
+                break;
+            case "3":
+                VendorMenu();
+                break;
+            default:
+                Console.WriteLine("Invalid choice");
+                Console.ReadKey();
+                PrintSellMenu(player);
+                break;
+        }
+    }
+
+    // method to print the sell item menu
+    public static void PrintSellItemMenu(Player player)
+    {
+        Console.Clear();
+        Fight.DrawBorderLine();
+        Console.WriteLine("Welcome to the PokeShop!");
+        Console.WriteLine("Your Money :" + player.Money);
+        Console.WriteLine("1. Potion - 50$");
+        Console.WriteLine("2. Super Potion - 100$");
+        Console.WriteLine("3. Hyper Potion - 150$");
+        Console.WriteLine("4. Pokeball - 100$");
+        Console.WriteLine("5. Great Ball - 150$");
+        Console.WriteLine("6. Ultra Ball - 200$");
+        Console.WriteLine("7. Exit");
+        Console.WriteLine("Please enter your choice: ");
+        Fight.DrawBorderLine();
+        string choice = Console.ReadLine();
+        switch (choice)
+        {
+            case "1":
+                // Sell potion
+                player.SellItem(50, "Potion", "standard");
+                break;
+            case "2":
+                // Sell super potion
+                player.SellItem(100, "Potion", "great");
+                break;
+            case "3":
+                // Sell hyper potion
+                player.SellItem(150, "Potion", "ultra");
+                break;
+            case "4":
+                // Sell pokeball
+                player.SellItem(100, "Pokeball", "standard");
+                break;
+            case "5":
+                // Sell great ball
+                player.SellItem(150, "Pokeball", "great");
+                break;
+            case "6":
+                // Sell ultra ball
+                player.SellItem(200, "Pokeball", "ultra");
+                break;
+            case "7":
+                VendorMenu();
+                break;
+            default:
+                Console.WriteLine("Invalid choice");
+                Console.ReadKey();
+                PrintSellItemMenu(player);
+                break;
+        }
+    }
+
+    // method to print the sell pokemon menu
+    public static void PrintSellPokemonMenu(Player player)
+    {
+        Console.Clear();
+        Fight.DrawBorderLine();
+        Console.WriteLine("Welcome to the PokeShop!");
+        Console.WriteLine("Your team:");
+        for (int i = 0; i < 6; i++)
+        {
+            if (player.Team[i] != null)
+            {
+                Console.WriteLine((i + 1) + ". " + player.Team[i].Name + " Lv: " + player.Team[i].Level + " HP: " + player.Team[i].Health + "/" + player.Team[i].MaxHp);
+            }
+            else
+            {
+                Console.WriteLine((i + 1) + ". Empty");
+            }
+        }
+        Fight.DrawBorderLine();
+        Console.WriteLine("Please enter the number of the pokemon you want to sell: ");
+        string choice = Console.ReadLine();
+        // Check if choice is a number
+        if (int.TryParse(choice, out int result))
+        {
+            if (result >= 1 && result <= 6)
+            {
+                if (player.Team[result - 1] != null)
+                {
+                    Console.Clear();
+                    Fight.DrawBorderLine();
+                    Console.WriteLine("You sold " + player.Team[result - 1].Name + " for " + player.Team[result - 1].Level * 100 + "$!");
+                    player.Money += player.Team[result - 1].Level * 100;
+                    player.Team[result - 1] = null;
+                    Console.WriteLine("Press any key to continue...");
+                    Fight.DrawBorderLine();
+                    Console.ReadKey();
+                    Menu.PrintSellMenu(player);
+                }
+                else
+                {
+                    Console.WriteLine("Empty slot");
+                    Console.ReadKey();
+                    PrintSellMenu(player);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice");
+                Console.ReadKey();
+                PrintSellMenu(player);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid choice");
+            Console.ReadKey();
+            PrintSellPokemonMenu(player);
+        }
+    }
 
     //method to save the game in a file
     public static void SaveGame(bool hidden)

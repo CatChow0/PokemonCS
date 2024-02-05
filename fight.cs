@@ -309,10 +309,10 @@ public class Fight {
             PrintStats();
             Console.WriteLine("What attack do you want to use?");
             DrawBorderLine();
-            Console.WriteLine("1. Basic Attack" + playerPokemon.Attack + " " + playerPokemon.Use_nb_baseAtk + "/30");
-            Console.WriteLine("2. " + playerPokemon.Attack2 + " " + playerPokemon.Use_nb_Atk + "/50");
-            Console.WriteLine("3. " + playerPokemon.Attack3 + " " + playerPokemon.Use_nb_Atk2 + "/50");
-            Console.WriteLine("4. " + playerPokemon.Attack_Spe + " " + playerPokemon.Use_nb_Atk_Spe + "/10");
+            Console.WriteLine("1. Basic Attack" + playerPokemon.Attack + " " + playerPokemon.Use_nb_baseAtk + "/" + playerPokemon.Max_nb_base_Atk);
+            Console.WriteLine("2. " + playerPokemon.Attack2 + " " + playerPokemon.Use_nb_Atk + "/" + playerPokemon.Max_nb_Atk1);
+            Console.WriteLine("3. " + playerPokemon.Attack3 + " " + playerPokemon.Use_nb_Atk2 + "/" + playerPokemon.Max_nb_Atk2);
+            Console.WriteLine("4. " + playerPokemon.Attack_Spe + " " + playerPokemon.Use_nb_Atk_Spe + "/" + playerPokemon.Max_nb_Atk_Spe);
             DrawBorderLine();
 
             string attack_choice = Console.ReadLine();
