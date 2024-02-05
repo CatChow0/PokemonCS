@@ -200,7 +200,82 @@ public class Map
             return false;
         }
 
+        //Check if the player is front of a door
+        if (lines[yPos].ElementAt(xPos).ToString() == "▒")
+        {
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("Do you want to enter the house? (y/n)");
+            Fight.DrawBorderLine();
+            string answer = Console.ReadLine();
+            if (answer == "y")
+            {
+                Console.Clear();
+                Console.WriteLine("You entered the house!");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+                Menu.PauseMenu();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         return false;
+    }
+
+    // Read the house map and color it
+    public static void ReadHouse()
+    {
+        lines = System.IO.File.ReadAllLines("house.txt");
+        foreach (string line in lines)
+        {
+            Console.WriteLine(line);
+        }
+        ColorHouse();
+    }
+
+    //Color the house map
+    public static void ColorHouse()
+    {
+        for (int i = 0; i < lines.Length; i++)
+        {
+            for (int j = 0; j < lines[i].Length; j++)
+            {
+                if (lines[i].ElementAt(j) == '║' || lines[i].ElementAt(j) == '╣' || lines[i].ElementAt(j) == '╠' || lines[i].ElementAt(j) == '▓')
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write(lines[i].ElementAt(j));
+                    Console.ResetColor();
+                }
+                else if (lines[i].ElementAt(j) == '/' || lines[i].ElementAt(j) == '\\' || lines[i].ElementAt(j) == '-' || lines[i].ElementAt(j) == '_')
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.Write(lines[i].ElementAt(j));
+                    Console.ResetColor();
+                }
+
+                else if (lines[i].ElementAt(j) == '(' || lines[i].ElementAt(j) == ')')
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write(lines[i].ElementAt(j));
+                    Console.ResetColor();
+                }
+                else if (lines[i].ElementAt(j) == '|')
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write(lines[i].ElementAt(j));
+                    Console.ResetColor();
+                }
+            }
+        }
     }
 
     public static void checkColor()

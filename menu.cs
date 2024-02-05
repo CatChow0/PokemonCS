@@ -220,7 +220,7 @@ public class Menu
     {
         //Open the data file and write the player's info
         string path = "data.txt";
-        string[] lines = new string[15];
+        string[] lines = new string[16];
 
         lines[0] = Intro.player.Name;
         
@@ -302,7 +302,7 @@ public class Menu
         {
             if (lines[i + 10] != "null")
             {
-                string[] info = lines[i + 9].Split(',');
+                string[] info = lines[i + 10].Split(',');
                 Intro.player.Team[i] = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), int.Parse(info[3]), info[4], int.Parse(info[5]), int.Parse(info[6]), bool.Parse(info[7]), int.Parse(info[8]), info[9], int.Parse(info[10]), info[11], int.Parse(info[12]), int.Parse(info[13]));
             }
         }
