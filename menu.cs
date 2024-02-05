@@ -244,6 +244,7 @@ public class Menu
             case "3":
                 Console.Clear();
                 Map.ReadHouse();
+                Map.SpawnPlayer(Map.xPos, Map.yPos);
                 break;
             default:
                 Console.WriteLine("Invalid choice");
