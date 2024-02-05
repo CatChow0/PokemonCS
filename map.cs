@@ -227,7 +227,10 @@ public class Map
             }
             else
             {
-                return false;
+                Console.Clear();
+                ReadHouse();
+                SpawnPlayer(xPos,yPos);
+                return true;
             }
         }
 
@@ -246,6 +249,8 @@ public class Map
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
                 Console.Clear();
+                xMap = xPos;
+                yMap = yPos;
                 ReadHouse();
                 SpawnPlayer(1, 1);
                 return true;
