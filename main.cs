@@ -11,6 +11,11 @@ class Program
         Console.CursorVisible = false;
         Console.Clear();
 
+        // Set the buffer size
+        Console.BufferWidth = 600;
+        Console.BufferHeight = 200;
+
+
         //Print the intro
         Menu.SplachScreen();
     }

@@ -7,6 +7,23 @@ public class Map
     public static string elementPos, player;
     public static string[] lines;
     public static string mapType;
+    public static Dictionary<char, ConsoleColor> colorMap = new Dictionary<char, ConsoleColor>
+        {
+            { '║', ConsoleColor.DarkYellow },
+            { '╣', ConsoleColor.DarkYellow },
+            { '╠', ConsoleColor.DarkYellow },
+            { '▓', ConsoleColor.DarkYellow },
+            { '/', ConsoleColor.DarkRed },
+            { '\\', ConsoleColor.DarkRed },
+            { '-', ConsoleColor.DarkRed },
+            { '_', ConsoleColor.DarkRed },
+            { '(', ConsoleColor.DarkGreen },
+            { ')', ConsoleColor.DarkGreen },
+            { '|', ConsoleColor.DarkGray },
+            { '█', ConsoleColor.DarkGray },
+            { '#', ConsoleColor.Yellow },
+            { '░', ConsoleColor.DarkCyan }
+        };
 
     // create a method to read the map
     public static void ReadMap()
@@ -24,51 +41,21 @@ public class Map
     // create a function to color the map
     public static void ColorMap()
     {
+        
+
         for (int i = 0; i < lines.Length; i++)
         {
             for (int j = 0; j < lines[i].Length; j++)
             {
-                if (lines[i].ElementAt(j) == '║' || lines[i].ElementAt(j) == '╣' || lines[i].ElementAt(j) == '╠' || lines[i].ElementAt(j) == '▓')
+                char currentChar = lines[i].ElementAt(j);
+                if (colorMap.ContainsKey(currentChar))
                 {
-                    Console.SetCursorPosition(j, i);
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.Write(lines[i].ElementAt(j));
-                    Console.ResetColor();
-                }
-                else if (lines[i].ElementAt(j) == '/' || lines[i].ElementAt(j) == '\\' || lines[i].ElementAt(j) == '-' || lines[i].ElementAt(j) == '_')
-                {
-                    Console.SetCursorPosition(j, i);
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.Write(lines[i].ElementAt(j));
-                    Console.ResetColor();
-                }
-
-                else if (lines[i].ElementAt(j) == '(' || lines[i].ElementAt(j) == ')')
-                {
-                    Console.SetCursorPosition(j, i);
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.Write(lines[i].ElementAt(j));
-                    Console.ResetColor();
-                }
-                else if (lines[i].ElementAt(j) == '|' || lines[i].ElementAt(j) == '█')
-                {
-                    Console.SetCursorPosition(j, i);
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
-                    Console.Write(lines[i].ElementAt(j));
-                    Console.ResetColor();
-                }
-                else if (lines[i].ElementAt(j) == '#')
-                {
-                    Console.SetCursorPosition(j, i);
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(lines[i].ElementAt(j));
-                    Console.ResetColor();
-                }
-                else if (lines[i].ElementAt(j) == '░')
-                {
-                    Console.SetCursorPosition(j, i);
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.Write(lines[i].ElementAt(j));
+                    if (j < Console.BufferWidth && i < Console.BufferHeight)
+                    {
+                        Console.SetCursorPosition(j, i);
+                    }
+                    Console.ForegroundColor = colorMap[currentChar];
+                    Console.Write(currentChar);
                     Console.ResetColor();
                 }
             }
@@ -189,7 +176,7 @@ public class Map
 
     public static bool CanMove()
     {
-        if (lines[yPos].ElementAt(xPos).ToString() == "~" || lines[yPos].ElementAt(xPos).ToString() == "|" || lines[yPos].ElementAt(xPos).ToString() == "/" || lines[yPos].ElementAt(xPos).ToString() == "\\" || lines[yPos].ElementAt(xPos).ToString() == "(" || lines[yPos].ElementAt(xPos).ToString() == ")" || lines[yPos].ElementAt(xPos).ToString() == "║" || lines[yPos].ElementAt(xPos).ToString() == "╣" || lines[yPos].ElementAt(xPos).ToString() == "╠" || lines[yPos].ElementAt(xPos).ToString() == "_" || lines[yPos].ElementAt(xPos).ToString() == "▓")
+        if (lines[yPos].ElementAt(xPos).ToString() == "~" || lines[yPos].ElementAt(xPos).ToString() == "|" || lines[yPos].ElementAt(xPos).ToString() == "/" || lines[yPos].ElementAt(xPos).ToString() == "\\" || lines[yPos].ElementAt(xPos).ToString() == "(" || lines[yPos].ElementAt(xPos).ToString() == ")" || lines[yPos].ElementAt(xPos).ToString() == "║" || lines[yPos].ElementAt(xPos).ToString() == "╣" || lines[yPos].ElementAt(xPos).ToString() == "╠" || lines[yPos].ElementAt(xPos).ToString() == "_" || lines[yPos].ElementAt(xPos).ToString() == "▓" || lines[yPos].ElementAt(xPos).ToString() == "@")
         {
             return true;
         }
