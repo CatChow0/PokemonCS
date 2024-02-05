@@ -232,7 +232,6 @@ public class Fight {
                 Map.SpawnPlayer(Map.xPos, Map.yPos);
                 return;
             }
-            return;
         }
 
     }

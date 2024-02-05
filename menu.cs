@@ -53,7 +53,7 @@ public class Menu
         {
             case "1":
                 Console.Clear();
-                Map.ReadMap();
+                Map.CheckMap();
                 Map.SpawnPlayer(Map.xPos, Map.yPos);
                 break;
             case "2":
@@ -75,7 +75,7 @@ public class Menu
                 break;
             case "4":
                 // Save game
-                SaveGame();
+                SaveGame(false);
                 break;
             case "5":
                 Environment.Exit(0);
@@ -216,11 +216,11 @@ public class Menu
 
 
     //method to save the game in a file
-    public static void SaveGame()
+    public static void SaveGame(bool hidden)
     {
         //Open the data file and write the player's info
         string path = "data.txt";
-        string[] lines = new string[16];
+        string[] lines = new string[21];
 
         lines[0] = Intro.player.Name;
         
@@ -238,35 +238,54 @@ public class Menu
         // append to lines the info of the player's position
         lines[7] = Map.xPos.ToString();
         lines[8] = Map.yPos.ToString();
+        // Update the player's position in the map
+        if (Map.mapType == "house")
+        {
+            Map.xHouse = Map.xPos;
+            Map.yHouse = Map.yPos;
+        }
+        else if (Map.mapType == "map")
+        {
+            Map.xMap = Map.xPos;
+            Map.yMap = Map.yPos;
+        }
+        lines[9] = Map.yMap.ToString();
+        lines[10] = Map.xMap.ToString();
+        lines[11] = Map.yHouse.ToString();
+        lines[12] = Map.xHouse.ToString();
+        lines[13] = Map.mapType;
 
         // append to lines the player's money
-        lines[9] = Intro.player.Money.ToString();
+        lines[14] = Intro.player.Money.ToString();
 
         // append to lines the info of the player's team while checking if the pokemon is null
         for (int i = 0; i < 6; i++)
         {
             if (Intro.player.Team[i] != null)
             {
-                lines[i + 10] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + "10" + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].dmg_Attack + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].dmg_Attack_Spe + "," + Intro.player.Team[i].Xp;
+                lines[i + 15] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + "10" + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].dmg_Attack + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].dmg_Attack_Spe + "," + Intro.player.Team[i].Xp;
             }
             else
             {
-                lines[i + 10] = "null";
+                lines[i + 15] = "null";
             }
         }
 
         //write the lines to the file
         System.IO.File.WriteAllLines(path, lines);
 
-        // Save the game
-        Console.Clear();
-        Fight.DrawBorderLine();
-        Console.WriteLine("Game saved!");
-        Console.WriteLine("Press any key to continue...");
-        Fight.DrawBorderLine();
-        Console.ReadKey();
-        Console.Clear();
-        PauseMenu();
+        if (hidden == false)
+        {
+            // Save the game
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("Game saved!");
+            Console.WriteLine("Press any key to continue...");
+            Fight.DrawBorderLine();
+            Console.ReadKey();
+            Console.Clear();
+            PauseMenu();
+        }
     }
 
     //method to load the game from a file
@@ -293,16 +312,21 @@ public class Menu
         // append to the player's position the info from the file
         Map.xPos = int.Parse(lines[7]);
         Map.yPos = int.Parse(lines[8]);
+        Map.yMap = int.Parse(lines[9]);
+        Map.xMap = int.Parse(lines[10]);
+        Map.yHouse = int.Parse(lines[11]);
+        Map.xHouse = int.Parse(lines[12]);
+        Map.mapType = lines[13];
 
         // append to the player's money the info from the file
-        Intro.player.Money = int.Parse(lines[9]);
+        Intro.player.Money = int.Parse(lines[14]);
 
         // append to the player's team the info from the file while checking if the pokemon is null
         for (int i = 0; i < 6; i++)
         {
-            if (lines[i + 10] != "null")
+            if (lines[i + 15] != "null")
             {
-                string[] info = lines[i + 10].Split(',');
+                string[] info = lines[i + 15].Split(',');
                 Intro.player.Team[i] = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), int.Parse(info[3]), info[4], int.Parse(info[5]), int.Parse(info[6]), bool.Parse(info[7]), int.Parse(info[8]), info[9], int.Parse(info[10]), info[11], int.Parse(info[12]), int.Parse(info[13]));
             }
         }
@@ -315,7 +339,7 @@ public class Menu
         Fight.DrawBorderLine();
         Console.ReadKey();
         Console.Clear();
-        Map.ReadMap();
+        Map.CheckMap();
         Map.SpawnPlayer(Map.xPos, Map.yPos);
     }
 

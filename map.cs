@@ -2,12 +2,16 @@
 public class Map
 {
     public static int xPos, yPos;
+    public static int xMap, yMap;
+    public static int xHouse, yHouse;
     public static string elementPos, player;
     public static string[] lines;
+    public static string mapType;
 
     // create a method to read the map
     public static void ReadMap()
     {
+        mapType = "map";
         // read the map
         lines = System.IO.File.ReadAllLines(@"map.txt");
         foreach (string line in lines)
@@ -69,8 +73,10 @@ public class Map
     {
         player = "☺";
 
+        // spawn the player
         xPos = _xPos;
         yPos = _yPos;
+        
 
         // spawn the player
         Console.SetCursorPosition(xPos, yPos);
@@ -200,8 +206,66 @@ public class Map
             return false;
         }
 
+        if ((lines[yPos].ElementAt(xPos).ToString() == "│" || lines[yPos].ElementAt(xPos).ToString() == "─" || lines[yPos].ElementAt(xPos).ToString() == "┌" || lines[yPos].ElementAt(xPos).ToString() == "┐" || lines[yPos].ElementAt(xPos).ToString() == "└" || lines[yPos].ElementAt(xPos).ToString() == "┘") && mapType == "house") //Colision in the house
+        {
+            return true;
+        }
+
+        // check if the player is in front of an item or a pnj in a house
+        if (lines[yPos].ElementAt(xPos).ToString() == "☻" && mapType == "house")
+        {
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("Do you want to talk to the person? (y/n)");
+            Fight.DrawBorderLine();
+            string answer = Console.ReadLine();
+            if (answer == "y")
+            {
+                Console.Clear();
+                Console.WriteLine("Hello! I'm a person!");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+                ReadHouse();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (lines[yPos].ElementAt(xPos).ToString() == "®" && mapType == "house")
+        {
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("Do you want to pick up the coin? (y/n)");
+            Fight.DrawBorderLine();
+            string answer = Console.ReadLine();
+            if (answer == "y")
+            {
+                // Pick up the item and remove it from the map
+                lines[yPos].ElementAt(xPos).ToString().Replace("®", " ");
+                //write the new map
+                System.IO.File.WriteAllLines("house.txt", lines);
+                //save the game
+                Console.Clear();
+                Console.WriteLine("You picked up the item!");
+                Console.WriteLine("Press any key to continue...");
+                Intro.player.Money += 10;
+                Menu.SaveGame(true);
+                Console.ReadKey();
+                Console.Clear();
+                ReadHouse();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         //Check if the player is front of a door
-        if (lines[yPos].ElementAt(xPos).ToString() == "▒")
+        if (lines[yPos].ElementAt(xPos).ToString() == "▒" && mapType == "map")
         {
             Console.Clear();
             Fight.DrawBorderLine();
@@ -215,7 +279,31 @@ public class Map
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
                 Console.Clear();
-                Menu.PauseMenu();
+                ReadHouse();
+                SpawnPlayer(1, 1);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (lines[yPos].ElementAt(xPos).ToString() == "▒" && mapType == "house")
+        {
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("Do you want to leave the house? (y/n)");
+            Fight.DrawBorderLine();
+            string answer = Console.ReadLine();
+            if (answer == "y")
+            {
+                Console.Clear();
+                Console.WriteLine("You left the house!");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+                ReadMap();
+                SpawnPlayer(xMap, yMap);
                 return true;
             }
             else
@@ -230,6 +318,7 @@ public class Map
     // Read the house map and color it
     public static void ReadHouse()
     {
+        mapType = "house";
         lines = System.IO.File.ReadAllLines("house.txt");
         foreach (string line in lines)
         {
@@ -275,6 +364,19 @@ public class Map
                     Console.ResetColor();
                 }
             }
+        }
+    }
+
+    //Check the map to read
+    public static void CheckMap()
+    {
+        if (mapType == "map")
+        {
+            ReadMap();
+        }
+        else if (mapType == "house")
+        {
+            ReadHouse();
         }
     }
 
