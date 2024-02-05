@@ -25,6 +25,14 @@ public class Fight {
         }
         else if (attack_type == "2")
         {
+            damage = playerPokemon.dmg_Attack2;
+        }
+        else if (attack_type == "3")
+        {
+            damage = playerPokemon.dmg_Attack3;
+        }
+        else if (attack_type == "4")
+        {
             damage = playerPokemon.dmg_Attack_Spe;
         }
         else
@@ -92,11 +100,19 @@ public class Fight {
         DrawBorderLine();
         if (attack_type == "1")
         {
-            Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " with " + enemyPokemon.Attack + " for " + damage + " damage!");
+            Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " with " + playerPokemon.Attack + " for " + damage + " damage!");
         }
         else if (attack_type == "2")
         {
-            Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " with " + enemyPokemon.Attack_Spe + " for " + damage + " damage!");
+            Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " with " + playerPokemon.Attack2 + " for " + damage + " damage!");
+        }
+        else if (attack_type == "3")
+        {
+            Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " with " + playerPokemon.Attack3 + " for " + damage + " damage!");
+        }
+        else if (attack_type == "4")
+        {
+            Console.WriteLine(playerPokemon.Name + " attacks " + enemyPokemon.Name + " with " + playerPokemon.Attack_Spe + " for " + damage + " damage!");
         }
         Console.WriteLine(enemyPokemon.Name + " has " + enemyPokemon.Health + " health remaining!");
         DrawBorderLine();
@@ -123,13 +139,21 @@ public class Fight {
 
         //enemy attacks player
         Random random = new Random();
-        int attack_type_random = random.Next(1, 3);
+        int attack_type_random = random.Next(1, 5);
 
         if (attack_type_random == 1)
         {
             damage = playerPokemon.dmg_Attack;
         }
         else if (attack_type_random == 2)
+        {
+            damage = playerPokemon.dmg_Attack2;
+        }
+        else if (attack_type_random == 3)
+        {
+            damage = playerPokemon.dmg_Attack3;
+        }
+        else if (attack_type_random == 4)
         {
             damage = playerPokemon.dmg_Attack_Spe;
         }
@@ -196,6 +220,14 @@ public class Fight {
             Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " with " + enemyPokemon.Attack + " for " + damage + " damage!");
         }
         else if (attack_type_random == 2)
+        {
+            Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " with " + enemyPokemon.Attack2 + " for " + damage + " damage!");
+        }
+        else if (attack_type_random == 3)
+        {
+            Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " with " + enemyPokemon.Attack3 + " for " + damage + " damage!");
+        }
+        else if (attack_type_random == 4)
         {
             Console.WriteLine(enemyPokemon.Name + " attacks " + playerPokemon.Name + " with " + enemyPokemon.Attack_Spe + " for " + damage + " damage!");
         }
@@ -277,7 +309,10 @@ public class Fight {
             PrintStats();
             Console.WriteLine("What attack do you want to use?");
             DrawBorderLine();
-            Console.WriteLine("1. " + playerPokemon.Attack + "           2. " + playerPokemon.Attack_Spe);
+            Console.WriteLine("1. Basic Attack" + playerPokemon.Attack + " " + playerPokemon.Use_nb_baseAtk + "/30");
+            Console.WriteLine("2. " + playerPokemon.Attack2 + " " + playerPokemon.Use_nb_Atk + "/50");
+            Console.WriteLine("3. " + playerPokemon.Attack3 + " " + playerPokemon.Use_nb_Atk2 + "/50");
+            Console.WriteLine("4. " + playerPokemon.Attack_Spe + " " + playerPokemon.Use_nb_Atk_Spe + "/10");
             DrawBorderLine();
 
             string attack_choice = Console.ReadLine();
@@ -286,22 +321,75 @@ public class Fight {
             switch (attack_choice)
             {
                 case "1":
-                    Console.WriteLine(playerPokemon.Name + " use " + playerPokemon.Attack);
-                    break;
+                    if (playerPokemon.Use_nb_baseAtk > 0)
+                    {
+                        Console.WriteLine(playerPokemon.Name + " use " + playerPokemon.Attack);
+                        playerPokemon.Use_nb_baseAtk -= 1;
+                        ApplyAttack(playerPokemon, enemyPokemon, attack_choice);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You can no longer use this attack");
+                        Console.ReadKey();
+                        ApplyChoice(choice, playerPokemon, enemyPokemon);
+                        break;
+                    }
 
                 case "2":
-                    Console.WriteLine(playerPokemon.Name + " use " + playerPokemon.Attack_Spe);
-                    break;
+                    if (playerPokemon.Use_nb_Atk > 0)
+                    {
+                        Console.WriteLine(playerPokemon.Name + " use " + playerPokemon.Attack2);
+                        playerPokemon.Use_nb_Atk -= 1;
+                        ApplyAttack(playerPokemon, enemyPokemon, attack_choice);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You can no longer use this attack");
+                        Console.ReadKey();
+                        ApplyChoice(choice, playerPokemon, enemyPokemon);
+                        break;
+                    }
+
+                case "3":
+                    if (playerPokemon.Use_nb_Atk2 > 0)
+                    {
+                        Console.WriteLine(playerPokemon.Name + " use " + playerPokemon.Attack3);
+                        playerPokemon.Use_nb_Atk2 -= 1;
+                        ApplyAttack(playerPokemon, enemyPokemon, attack_choice);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You can no longer use this attack");
+                        Console.ReadKey();
+                        ApplyChoice(choice, playerPokemon, enemyPokemon);
+                        break;
+                    }
+
+                case "4":
+                    if (playerPokemon.Use_nb_Atk_Spe > 0)
+                    {
+                        Console.WriteLine(playerPokemon.Name + " use " + playerPokemon.Attack_Spe);
+                        playerPokemon.Use_nb_Atk_Spe -= 1;
+                        ApplyAttack(playerPokemon, enemyPokemon, attack_choice);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You can no longer use this attack");
+                        Console.ReadKey();
+                        ApplyChoice(choice, playerPokemon, enemyPokemon);
+                        break;
+                    }
 
                 default:
-                    Console.WriteLine("That is not a valid choice, " + playerPokemon.Name + " is confused and choose to attack with " + playerPokemon.Attack);
-                    break;
+                        Console.WriteLine("That is not a valid choice");
+                        Console.ReadKey();
+                        ApplyChoice(choice, playerPokemon, enemyPokemon);
+                        break;
             }
-
-            // call the round method with attack choice
-            Console.ReadKey();
-            Console.Clear();
-            Round(playerPokemon, enemyPokemon, attack_choice);
         }
 
         // if the player chose to change pokemon
@@ -343,6 +431,14 @@ public class Fight {
         }
     }
     
+    public static void ApplyAttack(Pokemon playerPokemon, Pokemon enemyPokemon, string attack_choice)
+    {
+        // call the round method with attack choice
+        Console.ReadKey();
+        Console.Clear();
+        Round(playerPokemon, enemyPokemon, attack_choice);
+    }
+
 
     // method to start the round
     public static void StartRound(Player player, Pokemon enemyPokemon)
