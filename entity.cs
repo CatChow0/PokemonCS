@@ -26,9 +26,13 @@ public class Entity
     protected int use_nb_atk;
     protected int use_nb_atk2;
     protected int use_nb_atk_spe;
+    protected int max_nb_base_atk;
+    protected int max_nb_atk;
+    protected int max_nb_atk2;
+    protected int max_nb_atk_spe;
 
     //constructor
-    public Entity(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack2, int dmg_attack2, string attack3, int dmg_attack3, string attack_spe, int dmg_attack_spe, int xp, int use_nb_base_atk, int use_nb_atk, int use_nb_atk2, int use_nb_atk_spe)
+    public Entity(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack2, int dmg_attack2, string attack3, int dmg_attack3, string attack_spe, int dmg_attack_spe, int xp, int use_nb_base_atk, int use_nb_atk, int use_nb_atk2, int use_nb_atk_spe, int max_nb_base_atk, int max_nb_atk, int max_nb_atk2, int max_nb_atk_spe)
     {
         this.name = name;
         this.health = health;
@@ -51,6 +55,10 @@ public class Entity
         this.use_nb_atk = use_nb_atk;
         this.use_nb_atk = use_nb_atk2;
         this.use_nb_atk_spe = use_nb_atk_spe;
+        this.max_nb_base_atk = max_nb_base_atk;
+        this.max_nb_atk = max_nb_atk;
+        this.max_nb_atk2 = max_nb_atk2;
+        this.max_nb_atk_spe = max_nb_atk_spe;
     }
 
     //getters and setters
@@ -178,6 +186,30 @@ public class Entity
     {
         get { return use_nb_atk_spe; }
         set { use_nb_atk_spe = value; }
+    }
+
+    public int Max_nb_base_Atk
+    {
+        get { return max_nb_base_atk; }
+        set { max_nb_base_atk = value; }
+    }
+
+    public int Max_nb_Atk1
+    {
+        get { return max_nb_atk; }
+        set { max_nb_atk = value; }
+    }
+
+    public int Max_nb_Atk2
+    {
+        get { return max_nb_atk2; }
+        set { max_nb_atk2 = value; }
+    }
+
+    public int Max_nb_Atk_Spe
+    {
+        get { return max_nb_atk_spe; }
+        set { max_nb_atk_spe = value; }
     }
 
     public void PrintStats(string type)
