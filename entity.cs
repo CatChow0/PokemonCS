@@ -121,6 +121,10 @@ public class Entity
         if(type == "Player")
         {
             //print player stats
+            Console.SetCursorPosition(20, 28);
+            Console.WriteLine("┌────────────────────────────┐");
+            Console.SetCursorPosition(20, 29);
+            Console.WriteLine("└────────────────────────────┘");
             Console.SetCursorPosition(10, 30);
             Console.WriteLine("┌────────────────────────────┐");
             Console.SetCursorPosition(10, 31);
@@ -226,6 +230,10 @@ public class Entity
             Console.Write("│" + health + "/" + maxHp);
             CheckSpaceNeed(health + "/" + maxHp);
             Console.SetCursorPosition(150, 7);
+            Console.WriteLine("└────────────────────────────┘");
+            Console.SetCursorPosition(138, 17);
+            Console.WriteLine("┌────────────────────────────┐");
+            Console.SetCursorPosition(138, 18);
             Console.WriteLine("└────────────────────────────┘");
         }
 

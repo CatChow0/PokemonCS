@@ -1,11 +1,11 @@
-pikachu,100,10,5,Electric,5,250,false,100,Bolt Strike,8,Electro Ball,18,0
-raichu,120,10,5,Electric,10,250,false,120,Bolt Strike,8,Electro Ball,18,0
-salamèche,140,10,5,Fire,5,250,false,140,Flamethrower,18,Ember,5,0
-reptincel,160,10,5,Fire,10,250,false,160,Flamethrower,18,Ember,5,0
-dracaufeu,180,10,5,Fire,15,250,false,180,Flamethrower,18,Ember,5,0
-bulbizarre,120,10,5,Grass,5,250,false,120,Razor Leaf,18,Vine Whip,5,0
-herbizarre,140,10,5,Grass,10,250,false,140,Razor Leaf,18,Vine Whip,5,0
-florizarre,160,10,5,Grass,15,250,false,160,Razor Leaf,18,Vine Whip,5,0
-carapuce,160,10,5,Water,5,250,false,160,Hydro Pump,18,Bubble,5,0
-carabaffe,180,10,5,Water,10,250,false,180,Hydro Pump,18,Bubble,5,0
-tortank,200,10,5,Water,15,250,false,200,Hydro Pump,18,Bubble,5,0
+pikachu,100,5,Electric,5,30,true,100,Thunderbolt,10,Quick Attack,5,Iron Tail,12,Thunder,30,0,40,40,30,10,40,40,30,10
+raichu,120,5,Electric,10,30,true,120,Thunderbolt,10,Quick Attack,5,Iron Tail,12,Thunder,30,0,40,40,30,10,40,40,30,10
+salamèche,140,5,Fire,5,100,true,140,Flamethrower,10,Ember,5,Fury Swipes,12,Fire Spin,100,0,40,40,30,10,40,40,30,10
+reptincel,160,5,Fire,10,100,true,160,Flamethrower,10,Ember,5,Fury Swipes,12,Fire Spin,100,0,40,40,30,10,40,40,30,10
+dracaufeu,180,5,Fire,15,100,true,180,Flamethrower,10,Ember,5,Fury Swipes,12,Fire Spin,100,0,40,40,30,10,40,40,30,10
+bulbizarre,120,5,Grass,5,100,true,120,Razor Leaf,10,Vine Whip,5,Take Down,12,Solar Beam,100,0,40,40,30,10,40,40,30,10
+herbizarre,140,5,Grass,10,100,true,140,Razor Leaf,10,Vine Whip,5,Take Down,12,Solar Beam,100,0,40,40,30,10,40,40,30,10
+florizarre,160,5,Grass,15,100,true,160,Razor Leaf,10,Vine Whip,5,Take Down,12,Solar Beam,100,0,40,40,30,10,40,40,30,10
+carapuce,160,5,Water,5,100,true,160,Hydro Pump,10,Bubble,5,Bite,12,Surf,100,0,40,40,30,10,40,40,30,10
+carabaffe,180,5,Water,10,100,true,180,Hydro Pump,10,Bubble,5,Bite,12,Surf,100,0,40,40,30,10,40,40,30,10
+tortank,200,5,Water,15,100,true,200,Hydro Pump,10,Bubble,5,Bite,12,Surf,100,0,40,40,30,10,40,40,30,10
