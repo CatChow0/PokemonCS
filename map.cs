@@ -50,7 +50,7 @@ public class Map
                     Console.Write(lines[i].ElementAt(j));
                     Console.ResetColor();
                 }
-                else if (lines[i].ElementAt(j) == '|')
+                else if (lines[i].ElementAt(j) == '|' || lines[i].ElementAt(j) == '█')
                 {
                     Console.SetCursorPosition(j, i);
                     Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -61,6 +61,13 @@ public class Map
                 {
                     Console.SetCursorPosition(j, i);
                     Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(lines[i].ElementAt(j));
+                    Console.ResetColor();
+                }
+                else if (lines[i].ElementAt(j) == '░')
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
                     Console.Write(lines[i].ElementAt(j));
                     Console.ResetColor();
                 }
