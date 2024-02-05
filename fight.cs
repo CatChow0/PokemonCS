@@ -412,6 +412,10 @@ public class Fight {
         }
         // print a message
         Console.WriteLine("You encountered a " + enemyPokemon.Name + "!");
+        playerPokemon.Use_nb_baseAtk = 30;
+        playerPokemon.Use_nb_Atk = 50;
+        playerPokemon.Use_nb_Atk2 = 50;
+        playerPokemon.Use_nb_Atk_Spe = 10;
 
         currentEnemy = enemyPokemon;
 
