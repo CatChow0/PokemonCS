@@ -34,7 +34,8 @@ public class Map
     {
         mapType = "map";
         // read the map
-        lines = System.IO.File.ReadAllLines(@"map.txt");
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "map.txt");
+        lines = System.IO.File.ReadAllLines(path);
         ColorMap();
     }
 
@@ -295,7 +296,8 @@ public class Map
     public static void ReadHouse()
     {
         mapType = "house";
-        lines = System.IO.File.ReadAllLines("house.txt");
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "house.txt");
+        lines = System.IO.File.ReadAllLines(path);
         foreach (string line in lines)
         {
             Console.WriteLine(line);
