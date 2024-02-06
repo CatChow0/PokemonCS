@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 public class Map
 {
     public static int xPos, yPos;
@@ -24,6 +25,9 @@ public class Map
             { '#', ConsoleColor.Yellow },
             { '░', ConsoleColor.DarkCyan }
         };
+    private static readonly HashSet<char> immovableCharacters = new HashSet<char> { '~', '|', '/', '\\', '(', ')', '║', '╣', '╠', '_', '▓', '@' };
+    private static readonly Random rnd = new Random();
+
 
     // create a method to read the map
     public static void ReadMap()
@@ -31,35 +35,40 @@ public class Map
         mapType = "map";
         // read the map
         lines = System.IO.File.ReadAllLines(@"map.txt");
-        foreach (string line in lines)
-        {
-            Console.WriteLine(line);
-        }
         ColorMap();
     }
 
     // create a function to color the map
     public static void ColorMap()
     {
-        
 
-        for (int i = 0; i < lines.Length; i++)
+        StringBuilder sb = new StringBuilder();
+        ConsoleColor currentColor = ConsoleColor.White;
+
+        foreach (string line in lines)
         {
-            for (int j = 0; j < lines[i].Length; j++)
+            foreach (char c in line)
             {
-                char currentChar = lines[i].ElementAt(j);
-                if (colorMap.ContainsKey(currentChar))
+                ConsoleColor nextColor = colorMap.ContainsKey(c) ? colorMap[c] : ConsoleColor.White;
+
+                if (nextColor != currentColor)
                 {
-                    if (j < Console.BufferWidth && i < Console.BufferHeight)
-                    {
-                        Console.SetCursorPosition(j, i);
-                    }
-                    Console.ForegroundColor = colorMap[currentChar];
-                    Console.Write(currentChar);
-                    Console.ResetColor();
+                    Console.ForegroundColor = currentColor;
+                    Console.Write(sb.ToString());
+                    sb.Clear();
+                    currentColor = nextColor;
                 }
+
+                sb.Append(c);
             }
+
+            Console.ForegroundColor = currentColor;
+            Console.Write(sb.ToString());
+            sb.Clear();
+            Console.WriteLine();
         }
+
+        Console.ResetColor();
     }
 
     // create a method to spawn the player and to move the player
@@ -176,14 +185,15 @@ public class Map
 
     public static bool CanMove()
     {
-        if (lines[yPos].ElementAt(xPos).ToString() == "~" || lines[yPos].ElementAt(xPos).ToString() == "|" || lines[yPos].ElementAt(xPos).ToString() == "/" || lines[yPos].ElementAt(xPos).ToString() == "\\" || lines[yPos].ElementAt(xPos).ToString() == "(" || lines[yPos].ElementAt(xPos).ToString() == ")" || lines[yPos].ElementAt(xPos).ToString() == "║" || lines[yPos].ElementAt(xPos).ToString() == "╣" || lines[yPos].ElementAt(xPos).ToString() == "╠" || lines[yPos].ElementAt(xPos).ToString() == "_" || lines[yPos].ElementAt(xPos).ToString() == "▓" || lines[yPos].ElementAt(xPos).ToString() == "@")
+        string currentPos = lines[yPos].ElementAt(xPos).ToString();
+
+        if (immovableCharacters.Contains(currentPos[0]))
         {
             return true;
         }
 
-        if (lines[yPos].ElementAt(xPos).ToString() == "#")
+        if (currentPos == "#")
         {
-            Random rnd = new Random();
             int random = rnd.Next(0, 9);
             if (random == 3)
             {
