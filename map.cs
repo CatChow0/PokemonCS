@@ -49,6 +49,9 @@ namespace PokemonCS
             StringBuilder sb = new();
             ConsoleColor currentColor = ConsoleColor.White;
 
+            // Set the console buffer width to match the width of the map
+            Console.BufferWidth = lines[0].Length;
+
             foreach (string line in lines)
             {
                 foreach (char c in line)
@@ -109,6 +112,10 @@ namespace PokemonCS
                         }
                         else
                         {
+                            if (mapType == "map")
+                            {
+                                Player.CheckStep();
+                            }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos, yPos + 1);
                             CheckColor();
@@ -128,6 +135,10 @@ namespace PokemonCS
                         }
                         else
                         {
+                            if (mapType == "map")
+                            {
+                                Player.CheckStep();
+                            }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos, yPos - 1);
                             CheckColor();
@@ -148,6 +159,10 @@ namespace PokemonCS
                         }
                         else
                         {
+                            if (mapType == "map")
+                            {
+                                Player.CheckStep();
+                            }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos + 1, yPos);
                             CheckColor();
@@ -168,6 +183,10 @@ namespace PokemonCS
                         }
                         else
                         {
+                            if (mapType == "map")
+                            {
+                                Player.CheckStep();
+                            }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos - 1, yPos);
                             CheckColor();

@@ -270,7 +270,8 @@ namespace PokemonCS
             Console.WriteLine("4. Pokeball - 200$");
             Console.WriteLine("5. Great Ball - 300$");
             Console.WriteLine("6. Ultra Ball - 400$");
-            Console.WriteLine("7. Exit");
+            Console.WriteLine("7. Pokemon Egg - 1000$");
+            Console.WriteLine("8. Exit");
             Console.WriteLine("Please enter your choice: ");
             Fight.DrawBorderLine();
             string choice = Console.ReadLine();
@@ -301,6 +302,20 @@ namespace PokemonCS
                     player.BuyItem(400, "Pokeball", "ultra");
                     break;
                 case "7":
+                    // Buy egg
+                    if (player.Money >= 1000)
+                    {
+                        player.Money -= 1000;
+                        Pokemon.AddEgg();
+                    }
+                    else
+                    {
+                        Console.WriteLine("You don't have enough money!");
+                        Console.ReadKey();
+                        PrintBuyMenu(player);
+                    }
+                    break;
+                case "8":
                     VendorMenu();
                     break;
                 default:
@@ -464,7 +479,7 @@ namespace PokemonCS
         {
             //Open the data file and write the player's info
             string path = "data.txt";
-            string[] lines = new string[21];
+            string[] lines = new string[22];
 
             lines[0] = Intro.player.Name;
 
@@ -501,17 +516,18 @@ namespace PokemonCS
 
             // append to lines the player's money
             lines[14] = Intro.player.Money.ToString();
+            lines[15] = Intro.player.Step.ToString();
 
             // append to lines the info of the player's team while checking if the pokemon is null
             for (int i = 0; i < 6; i++)
             {
                 if (Intro.player.Team[i] != null)
                 {
-                    lines[i + 15] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].Dmg_Attack + "," + Intro.player.Team[i].Attack2 + "," + Intro.player.Team[i].Dmg_Attack2 + "," + Intro.player.Team[i].Attack3 + "," + Intro.player.Team[i].Dmg_Attack3 + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].Dmg_Attack_Spe + "," + Intro.player.Team[i].Xp + "," + Intro.player.Team[i].Use_nb_baseAtk + "," + Intro.player.Team[i].Use_nb_Atk + "," + Intro.player.Team[i].Use_nb_Atk2 + "," + Intro.player.Team[i].Use_nb_Atk_Spe + "," + Intro.player.Team[i].Max_nb_base_Atk + "," + Intro.player.Team[i].Max_nb_Atk1 + "," + Intro.player.Team[i].Max_nb_Atk2 + "," + Intro.player.Team[i].Max_nb_Atk_Spe;
+                    lines[i + 16] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].Dmg_Attack + "," + Intro.player.Team[i].Attack2 + "," + Intro.player.Team[i].Dmg_Attack2 + "," + Intro.player.Team[i].Attack3 + "," + Intro.player.Team[i].Dmg_Attack3 + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].Dmg_Attack_Spe + "," + Intro.player.Team[i].Xp + "," + Intro.player.Team[i].Use_nb_baseAtk + "," + Intro.player.Team[i].Use_nb_Atk + "," + Intro.player.Team[i].Use_nb_Atk2 + "," + Intro.player.Team[i].Use_nb_Atk_Spe + "," + Intro.player.Team[i].Max_nb_base_Atk + "," + Intro.player.Team[i].Max_nb_Atk1 + "," + Intro.player.Team[i].Max_nb_Atk2 + "," + Intro.player.Team[i].Max_nb_Atk_Spe;
                 }
                 else
                 {
-                    lines[i + 15] = "null";
+                    lines[i + 16] = "null";
                 }
             }
 
@@ -564,13 +580,14 @@ namespace PokemonCS
 
             // append to the player's money the info from the file
             Intro.player.Money = int.Parse(lines[14]);
+            Intro.player.Step = int.Parse(lines[15]);
 
             // append to the player's team the info from the file while checking if the pokemon is null
             for (int i = 0; i < 6; i++)
             {
-                if (lines[i + 15] != "null")
+                if (lines[i + 16] != "null")
                 {
-                    string[] info = lines[i + 15].Split(',');
+                    string[] info = lines[i + 16].Split(',');
                     Intro.player.Team[i] = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]));
                 }
             }
@@ -588,7 +605,7 @@ namespace PokemonCS
         }
 
 
-        public static void SplachScreen()
+        public static void SplashScreen()
         {
             // Intro to the game and give 3 standard pokeballs and 3 standard potions
             string asciiArt = "\t\t\t                                  ,'\\\n" +

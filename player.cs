@@ -17,6 +17,7 @@ namespace PokemonCS
         public int money = 0;
         public int[] potion = new int[3];
         public int[] pokeball = new int[3];
+        public int Step = 0;
 
         // constructor
         public Player(string name)
@@ -60,6 +61,12 @@ namespace PokemonCS
         {
             get { return pokeball; }
             set { pokeball = value; }
+        }
+
+        public int PlayerStep
+        {
+            get { return Step; }
+            set { Step = value; }
         }
 
 
@@ -325,5 +332,38 @@ namespace PokemonCS
             Menu.PrintSellMenu(Intro.player);
         }
 
+        // Check the step number
+        public static void CheckStep()
+        {
+            if (CheckEgg())
+            {
+                Intro.player.Step += 1;
+                if (Intro.player.Step >= 1000 && Map.mapType =="map")
+                {
+                    Pokemon.HatchEgg();
+                    Intro.player.Step = 0;
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        // check if the player got an egg in his team
+        public static bool CheckEgg()
+        {
+            for (int i = 0; i < Intro.player.Team.Length; i++)
+            {
+                if (Intro.player.Team[i] != null && Intro.player.Team[i].Name == "Egg")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
+
+
 }

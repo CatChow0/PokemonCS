@@ -18,7 +18,7 @@ class Program
 
 
         //Print the intro
-        Menu.SplachScreen();
+        Menu.SplashScreen();
     }
 
     
