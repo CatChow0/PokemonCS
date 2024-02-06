@@ -47,7 +47,6 @@ public class Intro
         Console.ReadKey();
         Console.Clear();
 
-        //Start the game
         // display the map
         Map.ReadMap();
         // make the player move

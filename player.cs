@@ -226,7 +226,6 @@ public class Player
                 Fight.DrawBorderLine();
                 Console.ReadKey();
                 Console.Clear();
-                //stop the loop
                 break;
             }
         }
