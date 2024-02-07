@@ -126,7 +126,6 @@ namespace PokemonCS
             {
                 int xp = playerPokemon.CalculateXp(enemyPokemon.Level);
                 currentPlayer.Team[currentPlayer.CurrentPokemon].AddXp(xp);
-                currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
                 DrawBorderLine();
                 Console.WriteLine("You defeated " + enemyPokemon.Name + "!");
                 Console.WriteLine("You earned " + xp + " xp!");

@@ -14,7 +14,7 @@ namespace PokemonCS
 
         private static readonly string[] lines = File.ReadAllLines("pokedex.txt");
         //constructor
-        public Pokemon(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack2, int dmg_attack2, string attack3, int dmg_attack3, string attack_spe, int dmg_attack_spe, int xp, int use_nb_base_atk, int use_nb_atk, int use_nb_atk2, int use_nb_atk_spe, int max_nb_base_atk, int max_nb_atk, int max_nb_atk2, int max_nb_atk_spe) : base(name, health, armor, type, level, catchRate, isCatchable, maxHp, attack, dmg_attack, attack2, dmg_attack2, attack3, dmg_attack3, attack_spe, dmg_attack_spe, xp, use_nb_base_atk, use_nb_atk, use_nb_atk2, use_nb_atk_spe, max_nb_base_atk, max_nb_atk, max_nb_atk2, max_nb_atk_spe)
+        public Pokemon(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack2, int dmg_attack2, string attack3, int dmg_attack3, string attack_spe, int dmg_attack_spe, int xp, int use_nb_base_atk, int use_nb_atk, int use_nb_atk2, int use_nb_atk_spe, int max_nb_base_atk, int max_nb_atk, int max_nb_atk2, int max_nb_atk_spe, bool CanEvolve) : base(name, health, armor, type, level, catchRate, isCatchable, maxHp, attack, dmg_attack, attack2, dmg_attack2, attack3, dmg_attack3, attack_spe, dmg_attack_spe, xp, use_nb_base_atk, use_nb_atk, use_nb_atk2, use_nb_atk_spe, max_nb_base_atk, max_nb_atk, max_nb_atk2, max_nb_atk_spe, CanEvolve)
         {
         }
 
@@ -22,22 +22,22 @@ namespace PokemonCS
         public static Pokemon CreatePokemon(int lineIndex)
         {
             string[] info = lines[lineIndex].Split(',');
-            Pokemon pokemon = new (info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]));
+            Pokemon pokemon = new (info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]), bool.Parse(info[25]));
             return pokemon;
 
         }
 
         // method to add xp to the pokemon
-        public void AddXp(int xp)
+        public void AddXp(int GainXp)
         {
-            this.xp += xp;
-            if (this.xp >= 100)
+            xp += GainXp;
+            if (xp >= 100)
             {
                 level += 1;
-                this.xp = 0;
-                maxHp += 5;
+                xp -= 100;
+                maxHp += 2;
                 health = maxHp;
-                armor += 5;
+                armor += 2;
                 dmg_attack += 2;
                 dmg_attack2 += 2;
                 dmg_attack3 += 2;
@@ -47,9 +47,54 @@ namespace PokemonCS
                 use_nb_atk2 = max_nb_atk2;
                 use_nb_atk_spe = max_nb_atk_spe;
 
+                Fight.DrawBorderLine();
                 Console.WriteLine("Congratulations! " + name + " leveled up to level " + level + "!");
+                Console.WriteLine("Your " + name + " has now " + maxHp + " HP, " + armor + " armor and does " + dmg_attack + " damage with " + attack + "!");
+                Console.WriteLine("Press any key to continue...");
+                Fight.DrawBorderLine();
+                Console.ReadKey();
+                Console.Clear();
+                // check if the pokemon can evolve
+                if ((level == 10 || level == 15) && CanEvolve)
+                {
+                    Evolve(name);
+                }
+
             }
         }
+
+        // method to evolve the pokemon
+        public static void Evolve(string name)
+        {
+
+            // Seach for the next evolution of the pokemon
+            string[] info = lines[Array.IndexOf(lines, name) + 1].Split(',');
+            Pokemon pokemon = new(info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]), bool.Parse(info[25]));
+            
+            //look for the pokemon in the player's team
+            for (int i = 0; i < Intro.player.Team.Length; i++)
+            {
+                if (Intro.player.Team[i].name == name)
+                {
+                    Intro.player.Team[i] = pokemon;
+                    break;
+                }
+            }
+
+            Parallel.Invoke(() =>
+            {
+                Console.Clear();
+                Fight.DrawBorderLine();
+                Console.WriteLine("Congratulations! Your " + name + " evolved into a " + pokemon.name + "!");
+                Fight.DrawBorderLine();
+                Console.ReadKey();
+                Console.Clear();
+                Map.ColorMap();
+                Map.SpawnPlayer(Map.xPos, Map.yPos);
+            });
+        }
+
+
 
         // method to calculate the xp earned by defeating an enemy based on the level of the enemy and the level of the pokemon
         public int CalculateXp(int enemyLevel)
@@ -68,7 +113,7 @@ namespace PokemonCS
         // Add an egg to the player's team
         public static void AddEgg()
         {
-            Pokemon egg = new ("Egg", 0, 0, "Normal", 1, 0, true, 0, "Tackle", 0, "Tackle", 0, "Tackle", 0, "Tackle", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            Pokemon egg = new ("Egg", 0, 0, "Normal", 1, 0, true, 0, "Tackle", 0, "Tackle", 0, "Tackle", 0, "Tackle", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
             for (int i = 0; i < Intro.player.Team.Length; i++)
             {
                 if (Intro.player.Team[i] == null )
