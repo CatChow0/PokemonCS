@@ -1,0 +1,28 @@
+﻿[*.cs]
+
+# CA2211: Les champs non constants ne doivent pas être visibles
+dotnet_diagnostic.CA2211.severity = none
+
+# CS8602: Déréférencement d'une éventuelle référence null.
+dotnet_diagnostic.CS8602.severity = none
+
+# CS8600: Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+dotnet_diagnostic.CS8600.severity = none
+
+# CS8604: Existence possible d'un argument de référence null.
+dotnet_diagnostic.CS8604.severity = none
+
+# IDE0210: Convertir en instructions de niveau supérieur
+csharp_style_prefer_top_level_statements = false
+
+# CA1416: Valider la compatibilité de la plateforme
+dotnet_diagnostic.CA1416.severity = none
+
+# CS8601: Existence possible d'une assignation de référence null.
+dotnet_diagnostic.CS8601.severity = none
+
+# CS8603: Existence possible d'un retour de référence null.
+dotnet_diagnostic.CS8603.severity = none
+
+# CS8625: Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
+dotnet_diagnostic.CS8625.severity = none
