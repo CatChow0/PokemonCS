@@ -24,7 +24,7 @@ namespace PokemonCS
         protected int dmg_attack3;
         protected string attack_spe;
         protected int dmg_attack_spe;
-        protected int xp;
+        public int xp;
         protected int use_nb_base_atk;
         protected int use_nb_atk;
         protected int use_nb_atk2;

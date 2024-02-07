@@ -78,7 +78,7 @@ namespace PokemonCS
             {
                 case "1":
                     //if the player is test
-                    if (CurrentPlayer.Name == "TestPlayer")
+                    if (CurrentPlayer.Name == "Test")
                     {
                         CurrentPlayer.Team[0] = Pokemon.CreatePokemon(2);
                         break;
@@ -93,7 +93,7 @@ namespace PokemonCS
                     break;
                 case "2":
                     //if the player is test
-                    if (CurrentPlayer.Name == "TestPlayer")
+                    if (CurrentPlayer.Name == "Test")
                     {
                         CurrentPlayer.Team[0] = Pokemon.CreatePokemon(5);
                         break;
@@ -108,7 +108,7 @@ namespace PokemonCS
                     break;
                 case "3":
                     //if the player is test
-                    if (CurrentPlayer.Name == "TestPlayer")
+                    if (CurrentPlayer.Name == "Test")
                     {
                         CurrentPlayer.Team[0] = Pokemon.CreatePokemon(8);
                         break;
@@ -360,15 +360,15 @@ namespace PokemonCS
         }
 
         // Check the step number
-        public static void CheckStep()
+        public static void CheckStep(Player currentPlayer)
         {
-            if (CheckEgg())
+            if (CheckEgg(currentPlayer))
             {
-                Intro.player.Step += 1;
-                if (Intro.player.Step >= 1000 && Map.mapType =="map")
+                currentPlayer.Step += 1;
+                if (currentPlayer.Step >= 1000 && Map.mapType =="map")
                 {
                     Pokemon.HatchEgg();
-                    Intro.player.Step = 0;
+                    currentPlayer.Step = 0;
                 }
             }
             else
@@ -378,11 +378,11 @@ namespace PokemonCS
         }
 
         // check if the player got an egg in his team
-        public static bool CheckEgg()
+        public static bool CheckEgg(Player currentPlayer)
         {
-            for (int i = 0; i < Intro.player.Team.Length; i++)
+            for (int i = 0; i < currentPlayer.Team.Length; i++)
             {
-                if (Intro.player.Team[i] != null && Intro.player.Team[i].Name == "Egg")
+                if (currentPlayer.Team[i] != null && currentPlayer.Team[i].Name == "Egg")
                 {
                     return true;
                 }

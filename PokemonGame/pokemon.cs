@@ -28,13 +28,13 @@ namespace PokemonCS
         }
 
         // method to add xp to the pokemon
-        public void AddXp(int GainXp)
+        public void AddXp(int XpEarn)
         {
-            xp += GainXp;
+            xp += XpEarn;
             if (xp >= 100)
             {
                 level += 1;
-                xp -= 100;
+                xp = 0;
                 maxHp += 2;
                 health = maxHp;
                 armor += 2;
@@ -57,30 +57,44 @@ namespace PokemonCS
                 // check if the pokemon can evolve
                 if ((level == 10 || level == 15) && CanEvolve)
                 {
-                    Evolve(name);
+                    Evolve(name, Intro.player);
                 }
 
             }
         }
 
         // method to evolve the pokemon
-        public static void Evolve(string name)
+        public static void Evolve(string name, Player currentPlayer)
         {
 
-            // Seach for the next evolution of the pokemon
-            string[] info = lines[Array.IndexOf(lines, name) + 1].Split(',');
-            Pokemon pokemon = new(info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]), bool.Parse(info[25]));
-            
-            //look for the pokemon in the player's team
-            for (int i = 0; i < Intro.player.Team.Length; i++)
+            //Search for the pokemon evolution in the pokedex lines based on the name of the pokemon
+            string[] info = new string[26];
+            for (int i = 0; i < lines.Length; i++)
             {
-                if (Intro.player.Team[i].name == name)
+                info = lines[i].Split(',');
+                if (info[0] == name)
                 {
-                    Intro.player.Team[i] = pokemon;
+                    info = lines[i + 1].Split(',');
                     break;
                 }
             }
 
+            Pokemon pokemon = new(info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]), bool.Parse(info[25]));
+
+            //look for the pokemon in the player's team
+            for (int i = 0; i < currentPlayer.Team.Length; i++)
+            {
+                if (currentPlayer.Team[i].name == name)
+                {
+                    currentPlayer.Team[i] = pokemon;
+                    break;
+                }
+            }
+
+            if (currentPlayer.Name == "Test")
+            {
+                return;
+            }
             Parallel.Invoke(() =>
             {
                 Console.Clear();
@@ -99,26 +113,27 @@ namespace PokemonCS
         // method to calculate the xp earned by defeating an enemy based on the level of the enemy and the level of the pokemon
         public int CalculateXp(int enemyLevel)
         {
+            int XpEarn;
             if (enemyLevel > level)
             {
-                xp = (enemyLevel - level) * 10;
+                XpEarn = (enemyLevel - level) * 10;
             }
             else
             {
-                xp = (level - enemyLevel) * 10;
+                XpEarn = (level - enemyLevel) * 10;
             }
-            return xp;
+            return XpEarn;
         }
 
         // Add an egg to the player's team
-        public static void AddEgg()
+        public static void AddEgg(Player currentPlayer)
         {
             Pokemon egg = new ("Egg", 0, 0, "Normal", 1, 0, true, 0, "Tackle", 0, "Tackle", 0, "Tackle", 0, "Tackle", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
-            for (int i = 0; i < Intro.player.Team.Length; i++)
+            for (int i = 0; i < currentPlayer.Team.Length; i++)
             {
-                if (Intro.player.Team[i] == null )
+                if (currentPlayer.Team[i] == null )
                 {
-                    Intro.player.Team[i] = egg;
+                    currentPlayer.Team[i] = egg;
                     return;
                 }
 

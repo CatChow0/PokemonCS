@@ -321,7 +321,7 @@ namespace PokemonCS
                     if (player.Money >= 1000)
                     {
                         player.Money -= 1000;
-                        Pokemon.AddEgg();
+                        Pokemon.AddEgg(Intro.player);
                     }
                     else
                     {

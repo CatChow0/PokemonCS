@@ -114,7 +114,7 @@ namespace PokemonCS
                         {
                             if (mapType == "map")
                             {
-                                Player.CheckStep();
+                                Player.CheckStep(Intro.player);
                             }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos, yPos + 1);
@@ -137,7 +137,7 @@ namespace PokemonCS
                         {
                             if (mapType == "map")
                             {
-                                Player.CheckStep();
+                                Player.CheckStep(Intro.player);
                             }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos, yPos - 1);
@@ -161,7 +161,7 @@ namespace PokemonCS
                         {
                             if (mapType == "map")
                             {
-                                Player.CheckStep();
+                                Player.CheckStep(Intro.player);
                             }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos + 1, yPos);
@@ -185,7 +185,7 @@ namespace PokemonCS
                         {
                             if (mapType == "map")
                             {
-                                Player.CheckStep();
+                                Player.CheckStep(Intro.player);
                             }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos - 1, yPos);
