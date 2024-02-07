@@ -220,7 +220,7 @@ namespace PokemonCS
             Console.Clear();
         }
 
-        // method to shwow the vendor menu
+        // method to show the vendor menu
         public static void VendorMenu()
         {
             Console.Clear();
