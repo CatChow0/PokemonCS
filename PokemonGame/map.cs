@@ -6,6 +6,7 @@ namespace PokemonCS
     {
         public static int xPos, yPos;
         public static int xMap, yMap;
+        public static int xCam, yCam;
         public static int xHouse, yHouse;
         public static string? elementPos, player;
         public static string[]? lines;
@@ -93,10 +94,12 @@ namespace PokemonCS
             Console.Write(player);
             Console.SetCursorPosition(xPos, yPos);
 
+
             // move the player
             ConsoleKeyInfo keyInfo;
             do
             {
+                SetCam();
                 keyInfo = Console.ReadKey();
                 switch (keyInfo.Key)
                 {
@@ -311,6 +314,20 @@ namespace PokemonCS
             }
 
             return false;
+        }
+
+        // Set the camera based on the player's position on the map
+        public static void SetCam()
+        {
+            if (xPos - Console.WindowWidth / 2 >= 0 && xPos + Console.WindowWidth / 2 <= lines[yPos].Length - 1)
+            {
+                xCam = xPos - Console.WindowWidth / 2;
+            }
+            if (yPos - Console.WindowHeight / 2 >= 0 && yPos + Console.WindowHeight / 2 <= lines.Length)
+            {
+                yCam = yPos - Console.WindowHeight / 2;
+            }
+            Console.SetWindowPosition(xCam, yCam);
         }
 
         // Read the house map and color it
