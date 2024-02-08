@@ -47,7 +47,7 @@ namespace PokemonCS
             Console.WriteLine("1. Continue");
             Console.WriteLine("2. Team");
             Console.WriteLine("3. Bag");
-            Console.WriteLine("4.Pokedex");
+            Console.WriteLine("4. Pokedex");
             Console.WriteLine("5. Save Game");
             Console.WriteLine("6. Exit Game");
             Console.WriteLine("Please enter your choice: ");
@@ -118,7 +118,7 @@ namespace PokemonCS
                     Console.WriteLine($"{i + 1}. {pokedexEntries[i].Split(',')[0]}");
                 }
 
-                Console.WriteLine("Enter the number of the Pokémon to view its stats (or 0 to exit): ");
+                Console.WriteLine("Enter the number of the Pokemon to view its stats (or 0 to exit): ");
 
                 // Get user choice
                 if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= pokedexEntries.Length)
