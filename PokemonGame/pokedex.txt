@@ -30,6 +30,7 @@ miaouss,100,5,Normal,5,100,true,100,Hyper Fang,10,Scratch,5,Tail Whip,12,Super F
 persian,120,5,Normal,10,100,true,120,Hyper Fang,10,Scratch,5,Tail Whip,12,Super Fang,30,0,40,40,30,10,40,40,30,10,false
 psykokwak,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
 akwakwak,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
+ferosinge, 100, 5,Fighting,10,100,true,140,Low Kick,10,Scratch,5,Focus Energy,12,Seismic Toss,30,0,40,40,30,10,40,40,30,10,true
 colossinge,140,5,Fighting,15,100,true,140,Low Kick,10,Scratch,5,Focus Energy,12,Seismic Toss,30,0,40,40,30,10,40,40,30,10,false
 caninos,140,5,Fire,5,100,true,140,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,30,0,40,40,30,10,40,40,30,10,true
 arcanin,160,5,Fire,10,100,true,160,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,30,0,40,40,30,10,40,40,30,10,false
