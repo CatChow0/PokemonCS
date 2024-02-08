@@ -1,0 +1,56 @@
+         X      X                                       
+XHX       H      HX      H                              
+ H;HX     XHX    X HX     HHX          X              XH
+  H; XHX   XHH    H; HX    HHHHX       HX          XHHH 
+   HH;  HHX HHHH   H;  HX   H;  HHX    HH       XHH HH  
+    XH;;   HHXHHHX HH;   HHX H;    HHHHH;H   XHH  ;HX   
+      HH;;    HHHHHHH;XHHHHHHHH     HHHHHHHHHH  ;HH     
+       XH;;;     HHHHH; XH          XHH  HH   ;HHH      
+         HX;;       HH;   HH;;       HH;H;H ;HHHX       
+          HH;;;         ;;;;HH;;      XHHH;;HHH         
+           XHX;;;          ;;XHH       ;;H;HHHHHHX      
+             HH;;;;          XH        ;;XHX;  HX       
+  XHHHHHHHHHHHHH;;;;        ;H  ;;     ;;;XHHHHHHHHHXXX 
+      XHHHHHHHHHHX;;;;      H  ;;H    ;;;;;;; XHHHXXX   
+         XHHHHHHHHH;;;;    H ;;HH     ;;;;;; XHHXXX     
+             XHHHHHHH;    H HHXXH    ;;;;;H; HXXX       
+            XHHHHHH      HHX ;;X    ;;;;XHH; HX         
+     XHHHHHH            H   ;;;H   ;;;XHHXHX;HHHHXXXX   
+ XHHH;;;                   ;;; H  ;;;XH;XXHX;HHXXXX     
+     XHHH;;;;;;           ;;  X  ;;;HX;;;XHH;HXX        
+         XHHH;;;;;;;          H ;;XH;; ;;XHH;H          
+             XHHHH;;;         H;;HH;;  ;;XHHXH          
+                  HHH        X;HH;;;   ;;HHHHX          
+                XH     ;;    HH  ;;   ;;XHHHXXXX        
+             XHH     ;;;HHX  H   ;    ;;XHHHHHXXXX      
+           XH     ;;;;;;H H          ;;;HHHX            
+         XH ;;;;;;HHHHHXHH H;;;    ;;;;XHXXX            
+       XH ;;HHHHHX      HH;HHHX;;;;;;;;X HXXX           
+     XHHHHHX     ;HH    H H  ;;H;;;;;;X    XX   HX      
+                 H  HH H;;H; H;;X;;;;XH      X XXH      
+                  HH ;HH;HXH H;XH;;;XHH        H H  XHX 
+                    HH ;HHHH;HXXH;XXH;;X       H H H ;H 
+                     H H XXH;HXHHXXHXX;H      X ;HH ;H  
+                    HHHHHHXXX HHXHHXXXHH      H HH ;H   
+                 HHH ;;XXXXXXXHHHHHXXXHHX     H;H ;H    
+                H  ;HHHHHHHXXXHHHHHHHHX;HHH  H H ;H     
+                XHHH   HHHHHHX HHHHHHHHH;  HH   ;H XHHH 
+                       HHXX;;H;H        HH;    ;HHHHHHX 
+                       HX;;;;HH H         HHHH;HHHHX    
+                       H;;;   HXH           H;HHH       
+                       H;;     HHH          H HH        
+                       H;;       ;H         H H         
+                       H;       X ;H        X H         
+                       H;      ;;HH;H        H X        
+                       H;   ;H  ;HHHHHX      H H        
+                       H;   ;HH  HHHHXHXX    H H        
+                       H; H ;HHH ;HHHH        HX        
+                       H; HH ;HHH HHHHX                 
+                       H; HH ;HHHH;H HHX                
+                       H;HHHH;HHHHHH   H                
+                       H;HHHH;HHHX HH   X               
+                       H;HHHHHHHHH  H                   
+                       HH HHXHHH H   H                  
+                       HH HH HHX  X                     
+                       H  HX  H                         
+                       X  H   X

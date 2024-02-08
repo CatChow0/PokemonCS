@@ -224,7 +224,7 @@ namespace PokemonCS
                 {
                     //Create a wild pokemon
                     Fight.currentEnemy = null;
-                    Fight.currentEnemy = Pokemon.CreatePokemon(rnd.Next(0, 10));
+                    Fight.currentEnemy = Pokemon.CreatePokemon(rnd.Next(0, 128));
                     Console.Clear();
                     Console.WriteLine("You found a wild pokemon!");
                     Console.WriteLine("Press any key to start the fight!");

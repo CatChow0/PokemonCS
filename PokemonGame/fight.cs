@@ -514,7 +514,7 @@ namespace PokemonCS
             while (line != null)
             {
                 (x, y) = Console.GetCursorPosition();
-                Console.SetCursorPosition(165, y);
+                Console.SetCursorPosition(135, y);
                 //write the line to console window
                 Console.WriteLine(line);
                 //Read the next line

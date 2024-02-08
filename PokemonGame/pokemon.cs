@@ -179,10 +179,10 @@ namespace PokemonCS
             });
         }
 
-        // method to check the type advantage of the pokemon against the enemy pokemon type and return the damage multiplier (based on the type chart) 
+        //method to check the type advantage of the pokemon against the enemy pokemon type and return the damage multiplier(based on the type chart)
         public static float CheckTypeAdvantages(string atkType, string defType)
         {
-            
+
             switch (atkType)
             {
                 case "Normal":
