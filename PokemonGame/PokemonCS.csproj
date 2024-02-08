@@ -382,7 +382,7 @@
     <None Update="sprite_ascii\feunard.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="sprite_ascii\herbizzare.txt">
+    <None Update="sprite_ascii\herbizarre.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="sprite_ascii\pikachu.txt">
