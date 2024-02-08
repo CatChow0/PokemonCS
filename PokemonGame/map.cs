@@ -28,8 +28,10 @@ namespace PokemonCS
             { '|', ConsoleColor.DarkGray },
             { '█', ConsoleColor.DarkGray },
             { '#', ConsoleColor.Yellow },
+            { '■', ConsoleColor.Magenta },
             { '░', ConsoleColor.DarkCyan }
         };
+        public static List<(int, int, bool)> chestStats = new List<(int, int, bool)>();
         private static readonly HashSet<char> immovableCharacters = new() { '~', '|', '/', '\\', '(', ')', '║', '╣', '╠', '_', '▓','@', '█' };
         private static readonly Random rnd = new();
 
@@ -286,7 +288,7 @@ namespace PokemonCS
                         Console.ReadKey();
                         Console.Clear();
                         ReadMap();
-                        SpawnPlayer(xPos, yPos);
+                        SpawnPlayer(xPos, yPos + 1);
                     }
 
                     return true;
@@ -295,7 +297,7 @@ namespace PokemonCS
                 {
                     Console.Clear();
                     ReadMap();
-                    SpawnPlayer(xPos, yPos);
+                    SpawnPlayer(xPos, yPos + 1);
                     return true;
                 }
             }
@@ -329,21 +331,10 @@ namespace PokemonCS
                     Fight.StartRound(Intro.player, Fight.currentEnemy);
                     return true;
                 }
-                else if (random >= 59 && random <= 60) // 1% chance to find an item
-                {
-                    // give the player a random item
-                    Player.GetRandomItem(Intro.player);
-                    Console.Clear();
-                    Console.WriteLine("You found an item!");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey();
-                    Console.Clear();
-                    ReadMap();
-                    SpawnPlayer(xPos, yPos);
-                    return true;
-                }
                 return false;
             }
+
+            CheckChest();
 
             if ((lines[yPos].ElementAt(xPos).ToString() == "│" || lines[yPos].ElementAt(xPos).ToString() == "─" || lines[yPos].ElementAt(xPos).ToString() == "┌" || lines[yPos].ElementAt(xPos).ToString() == "┐" || lines[yPos].ElementAt(xPos).ToString() == "└" || lines[yPos].ElementAt(xPos).ToString() == "┘") && mapType == "house") //Colision in the house
             {
@@ -411,7 +402,7 @@ namespace PokemonCS
                     Console.ReadKey();
                     Console.Clear();
                     xMap = xPos;
-                    yMap = yPos;
+                    yMap = yPos + 1;
                     ReadHouse();
                     SpawnPlayer(1, 1);
                     return true;
@@ -420,7 +411,7 @@ namespace PokemonCS
                 {
                     Console.Clear();
                     ReadMap();
-                    SpawnPlayer(xPos, yPos);
+                    SpawnPlayer(xPos, yPos + 1);
                     return true;
                 }
             }
@@ -531,12 +522,57 @@ namespace PokemonCS
             }
         }
 
+        // Check if the the element the player is being needs to be colored
         public static void CheckColor()
         {
             if (elementPos == "#")
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
             }
+            if (elementPos == "■")
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+            }
+
         }
+
+        // Check if the chest is in list and if it has been opened
+        public static void CheckChest()
+        {
+            string currentPos = lines[yPos].ElementAt(xPos).ToString();
+
+            if (currentPos == "■")
+            {
+                if (!chestStats.Any(chest => chest.Item1 == xPos && chest.Item2 == yPos))
+                {
+                    chestStats.Add((xPos, yPos, false));
+                }
+
+                if (chestStats.Contains((xPos, yPos, false)))
+                {
+                    chestStats.RemoveAll(chest => chest.Item1 == xPos && chest.Item2 == yPos && !chest.Item3);
+                    chestStats.Add((xPos, yPos, true));
+                    Player.GetRandomItem(Intro.player);
+                    Console.Clear();
+                    Console.WriteLine("You found an item!");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    ReadMap();
+                    SpawnPlayer(xPos, yPos);
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("You already opened the chest!");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    ReadMap();
+                    SpawnPlayer(xPos, yPos);
+                }
+            }
+        }
+
     }
 }
