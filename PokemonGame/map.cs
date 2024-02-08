@@ -319,6 +319,11 @@ namespace PokemonCS
         // Set the camera based on the player's position on the map
         public static void SetCam()
         {
+            if(mapType != "map")
+            {
+                return;
+            }
+
             if (xPos - Console.WindowWidth / 2 >= 0 && xPos + Console.WindowWidth / 2 <= lines[yPos].Length - 1)
             {
                 xCam = xPos - Console.WindowWidth / 2;
