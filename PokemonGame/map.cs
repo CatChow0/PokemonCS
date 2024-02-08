@@ -28,7 +28,7 @@ namespace PokemonCS
             { '#', ConsoleColor.Yellow },
             { '░', ConsoleColor.DarkCyan }
         };
-        private static readonly HashSet<char> immovableCharacters = new() { '~', '|', '/', '\\', '(', ')', '║', '╣', '╠', '_', '▓', '@' };
+        private static readonly HashSet<char> immovableCharacters = new() { '~', '|', '/', '\\', '(', ')', '║', '╣', '╠', '_', '▓', '@', '█' };
         private static readonly Random rnd = new();
 
 
@@ -322,6 +322,11 @@ namespace PokemonCS
         // Set the camera based on the player's position on the map
         public static void SetCam()
         {
+            if(mapType != "map")
+            {
+                return;
+            }
+
             if (xPos - Console.WindowWidth / 2 >= 0 && xPos + Console.WindowWidth / 2 <= lines[yPos].Length - 1)
             {
                 xCam = xPos - Console.WindowWidth / 2;
