@@ -219,8 +219,8 @@ namespace PokemonCS
 
             if (currentPos == "#")
             {
-                int random = rnd.Next(0, 9);
-                if (random == 3)
+                int random = rnd.Next(0, 99);
+                if (random < 7)
                 {
                     //Create a wild pokemon
                     Fight.currentEnemy = null;
@@ -230,6 +230,19 @@ namespace PokemonCS
                     Console.WriteLine("Press any key to start the fight!");
                     Console.ReadKey();
                     Fight.StartRound(Intro.player, Fight.currentEnemy);
+                    return true;
+                }
+                else if (random >= 59 && random <= 60) // 1% chance to find an item
+                {
+                    // give the player a random item
+                    Player.GetRandomItem(Intro.player);
+                    Console.Clear();
+                    Console.WriteLine("You found an item!");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    ReadMap();
+                    SpawnPlayer(xPos, yPos);
                     return true;
                 }
                 return false;

@@ -240,6 +240,56 @@ namespace PokemonCS
             }
         }
 
+        // Get Random Item
+        public static void GetRandomItem(Player currentPlayer)
+        {
+            Random random = new Random();
+            int index = random.Next(0, 1);
+            string item;
+            if (index == 0)
+            {
+                 item = "Potion";
+            }
+            else
+            {
+                 item = "Pokeball";
+            }
+
+            // Get the type of the item
+            int type = random.Next(0, 99);
+            string type_item;
+            if (type > 89)
+            {
+                type_item = "ultra";
+            }
+            else if (type > 69 && type < 89)
+            {
+                type_item = "great";
+            }
+            else
+            {
+                type_item = "standard";
+            }
+
+            // get the amount of the item based on the type
+            int amount = 0;
+            switch (type_item)
+            {
+                case "standard":
+                    amount = random.Next(1, 5);
+                    break;
+                case "great":
+                    amount = random.Next(1, 3);
+                    break;
+                case "ultra":
+                    amount = 1;
+                    break;
+            }
+
+            // add the item to the player
+            currentPlayer.AddItem(amount, item, type_item);
+        }
+
         
         //method to add a new pokemon to the team in a free slot
         public void AddPokemon(Pokemon pokemon)
