@@ -224,7 +224,8 @@
         {
             if (type == "Player")
             {
-                int y = 30;
+                int y;
+                (_, y) = Console.GetCursorPosition();
                 //print player stats
                 Console.SetCursorPosition(10, y);
                 Console.WriteLine("┌────────────────────────────┐");
