@@ -9,4 +9,4 @@ A C# project made to learm in 2 week.
 - [@StratiX0](https://github.com/StratiX0)
 - [@Kagutsuchi84](https://github.com/Mattys8423)
 
-(Le diagramme de classe est [Ici](https://drive.google.com/file/d/1Ub_ITLGlxn_zfrcLgQ0lpOmvMFNheEGZ/view?usp=sharing) et également sous format PNG "PokemonCS.dr
+(Le diagramme de classe est [Ici](https://drive.google.com/file/d/1Ub_ITLGlxn_zfrcLgQ0lpOmvMFNheEGZ/view?usp=sharing) et également sous format PNG dans la banche main
