@@ -16,6 +16,7 @@ namespace PokemonCS
         public static Pokemon? playerPokemon;
         public static int damage;
         public static bool isRunning = false;
+        private static float damageMultiplier;
 
 
         //method for round
@@ -43,60 +44,8 @@ namespace PokemonCS
                 damage = playerPokemon.Dmg_Attack;
             }
 
-            switch (playerPokemon.Type)
-            {
-                case "Fire":
-                    if (enemyPokemon.Type == "Grass")
-                    {
-                        damage *= 2;
-                    }
-                    else if (enemyPokemon.Type == "Water" || enemyPokemon.Type == "Fire")
-                    {
-                        damage /= 2;
-                    }
-                    break;
-                case "Water":
-                    if (enemyPokemon.Type == "Fire")
-                    {
-                        damage *= 2;
-                    }
-                    else if (enemyPokemon.Type == "Grass" || enemyPokemon.Type == "Water")
-                    {
-                        damage /= 2;
-                    }
-                    break;
-                case "Electric":
-                    if (enemyPokemon.Type == "Water")
-                    {
-                        damage *= 2;
-                    }
-                    else if (enemyPokemon.Type == "Grass" || enemyPokemon.Type == "Electric")
-                    {
-                        damage /= 2;
-                    }
-                    break;
-                case "Grass":
-                    if (enemyPokemon.Type == "Water")
-                    {
-                        damage *= 2;
-                    }
-                    else if (enemyPokemon.Type == "Fire" || enemyPokemon.Type == "Grass")
-                    {
-                        damage /= 2;
-                    }
-                    break;
-                default:
-                    if (attack_type == "1")
-                    {
-                        damage = playerPokemon.Dmg_Attack;
-                    }
-                    else if (attack_type == "2")
-                    {
-                        damage = playerPokemon.Dmg_Attack_Spe;
-                    }
-                    break;
-
-            }
+            damageMultiplier = Pokemon.CheckTypeAdvantages(playerPokemon.Type, enemyPokemon.Type);
+            damage = (int)Math.Floor(damage * damageMultiplier);
             enemyPokemon.Health -= damage;
             PrintStats();
             DrawBorderLine();
@@ -125,8 +74,8 @@ namespace PokemonCS
             if (enemyPokemon.Health <= 0)
             {
                 int xp = playerPokemon.CalculateXp(enemyPokemon.Level);
-                currentPlayer.Team[currentPlayer.CurrentPokemon].AddXp(xp);
-                currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
+                playerPokemon.AddXp(xp);
+                playerPokemon.PrintStats("Player");
                 DrawBorderLine();
                 Console.WriteLine("You defeated " + enemyPokemon.Name + "!");
                 Console.WriteLine("You earned " + xp + " xp!");
@@ -160,60 +109,8 @@ namespace PokemonCS
                 damage = playerPokemon.Dmg_Attack_Spe;
             }
 
-            switch (enemyPokemon.Type)
-            {
-                case "Fire":
-                    if (playerPokemon.Type == "Grass")
-                    {
-                        damage *= 2;
-                    }
-                    else if (playerPokemon.Type == "Water" || playerPokemon.Type == "Fire")
-                    {
-                        damage /= 2;
-                    }
-                    break;
-                case "Water":
-                    if (playerPokemon.Type == "Fire")
-                    {
-                        damage *= 2;
-                    }
-                    else if (playerPokemon.Type == "Grass" || playerPokemon.Type == "Water")
-                    {
-                        damage /= 2;
-                    }
-                    break;
-                case "Electric":
-                    if (playerPokemon.Type == "Water")
-                    {
-                        damage *= 2;
-                    }
-                    else if (playerPokemon.Type == "Grass" || playerPokemon.Type == "Electric")
-                    {
-                        damage /= 2;
-                    }
-                    break;
-                case "Grass":
-                    if (playerPokemon.Type == "Water")
-                    {
-                        damage *= 2;
-                    }
-                    else if (playerPokemon.Type == "Fire" || playerPokemon.Type == "Grass")
-                    {
-                        damage /= 2;
-                    }
-                    break;
-                default:
-                    if (attack_type_random == 1)
-                    {
-                        damage = playerPokemon.Dmg_Attack;
-                    }
-                    else if (attack_type_random == 2)
-                    {
-                        damage = playerPokemon.Dmg_Attack_Spe;
-                    }
-                    break;
-
-            }
+            damageMultiplier = Pokemon.CheckTypeAdvantages(enemyPokemon.Type, playerPokemon.Type);
+            damage = (int)Math.Floor(damage * damageMultiplier);
             playerPokemon.Health -= damage;
             PrintStats();
             DrawBorderLine();
@@ -462,6 +359,11 @@ namespace PokemonCS
             playerPokemon.Use_nb_Atk2 = playerPokemon.Max_nb_Atk2;
             playerPokemon.Use_nb_Atk_Spe = playerPokemon.Max_nb_Atk_Spe;
 
+            enemyPokemon.Use_nb_baseAtk = enemyPokemon.Max_nb_base_Atk;
+            enemyPokemon.Use_nb_Atk = enemyPokemon.Max_nb_Atk1;
+            enemyPokemon.Use_nb_Atk2 = enemyPokemon.Max_nb_Atk2;
+            enemyPokemon.Use_nb_Atk_Spe = enemyPokemon.Max_nb_Atk_Spe;
+
             // while both players are alive
             while (playerPokemon.Health > 0 && enemyPokemon.Health > 0 && isRunning)
             {
@@ -548,9 +450,20 @@ namespace PokemonCS
         public static void PrintStats()
         {
             currentEnemy.PrintStats("Enemy");
-            enemy_sprite(currentEnemy);
-            player_pokemon_sprite(playerPokemon);
             currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
+        }
+
+        // Check if the pokemon as a sprite
+        public static bool CheckSprite(Pokemon pokemon)
+        {
+            if (System.IO.File.Exists("sprite_ascii\\" + pokemon.Name + ".txt"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

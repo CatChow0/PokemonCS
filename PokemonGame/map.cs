@@ -11,6 +11,7 @@ namespace PokemonCS
         public static string? elementPos, player;
         public static string[]? lines;
         public static string? mapType;
+        public static bool Secret = false;
         public static Dictionary<char, ConsoleColor> colorMap = new()
         {
             { '║', ConsoleColor.DarkYellow },
@@ -28,7 +29,7 @@ namespace PokemonCS
             { '#', ConsoleColor.Yellow },
             { '░', ConsoleColor.DarkCyan }
         };
-        private static readonly HashSet<char> immovableCharacters = new() { '~', '|', '/', '\\', '(', ')', '║', '╣', '╠', '_', '▓', '@', '█' };
+        private static readonly HashSet<char> immovableCharacters = new() { '~', '|', '/', '\\', '(', ')', '║', '╣', '╠', '_', '▓','@', '█' };
         private static readonly Random rnd = new();
 
 
@@ -217,6 +218,20 @@ namespace PokemonCS
                 return true;
             }
 
+            // Check if the player is between y = 73 and y = 80 and x= 462 and x = 474
+            if (yPos >= 73 && yPos <= 80 && xPos >= 462 && xPos <= 474 && !Secret && currentPos == "#")
+            {
+                // Fight with Mewtwo
+                Fight.currentEnemy = Pokemon.CreatePokemon(126);
+                // Start the fight
+                Console.Clear();
+                Console.WriteLine("You found a wild pokemon!");
+                Console.WriteLine("Press any key to start the fight!");
+                Console.ReadKey();
+                Fight.StartRound(Intro.player, Fight.currentEnemy);
+                return true;
+            }
+
             if (currentPos == "#")
             {
                 int random = rnd.Next(0, 99);
@@ -224,7 +239,15 @@ namespace PokemonCS
                 {
                     //Create a wild pokemon
                     Fight.currentEnemy = null;
-                    Fight.currentEnemy = Pokemon.CreatePokemon(rnd.Next(0, 10));
+                    // 3% chance to find a legendary pokemon
+                    if (rnd.Next(0,99) < 3)
+                    {
+                        Fight.currentEnemy = Pokemon.CreatePokemon(rnd.Next(121, 125));
+                    }
+                    else
+                    {
+                        Fight.currentEnemy = Pokemon.CreatePokemon(rnd.Next(0, 121));
+                    }
                     Console.Clear();
                     Console.WriteLine("You found a wild pokemon!");
                     Console.WriteLine("Press any key to start the fight!");
@@ -271,6 +294,28 @@ namespace PokemonCS
                 {
                     Console.Clear();
                     ReadHouse();
+                    SpawnPlayer(xPos, yPos);
+                    return true;
+                }
+            }
+
+            if (lines[yPos].ElementAt(xPos).ToString() == "☻" && mapType == "map")
+            {
+                Console.Clear();
+                Fight.DrawBorderLine();
+                Console.WriteLine("Do you want to talk to the person? (y/n)");
+                Fight.DrawBorderLine();
+                string answer = Console.ReadLine();
+                if (answer == "y")
+                {
+                    Console.Clear();
+                    Menu.SurfMenu();
+                    return true;
+                }
+                else
+                {
+                    Console.Clear();
+                    ReadMap();
                     SpawnPlayer(xPos, yPos);
                     return true;
                 }

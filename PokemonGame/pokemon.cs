@@ -216,6 +216,8 @@ namespace PokemonCS
                             return 0;
                         case "Dragon":
                             return 1;
+                        case "Normal":
+                            return 1;
                     }
                     break;
                 case "Electric":
@@ -249,23 +251,468 @@ namespace PokemonCS
                             return 1;
                         case "Dragon":
                             return 0.5f;
+                        case "Normal":
+                            return 1;
                     }
                     break;
                 case "Fire":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 0.5f;
+                        case "Water":
+                            return 0.5f;
+                        case "Grass":
+                            return 2;
+                        case "Ice":
+                            return 2;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 1;
+                        case "Ground":
+                            return 1;
+                        case "Flying":
+                            return 1;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 2;
+                        case "Rock":
+                            return 0.5f;
+                        case "Ghost":
+                            return 1;
+                        case "Dragon":
+                            return 0.5f;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
                 case "Water":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 2;
+                        case "Water":
+                            return 0.5f;
+                        case "Grass":
+                            return 0.5f;
+                        case "Ice":
+                            return 1;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 1;
+                        case "Ground":
+                            return 2;
+                        case "Flying":
+                            return 1;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 1;
+                        case "Rock":
+                            return 2;
+                        case "Ghost":
+                            return 1;
+                        case "Dragon":
+                            return 0.5f;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
                 case "Grass":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 0.5f;
+                        case "Water":
+                            return 2;
+                        case "Grass":
+                            return 0.5f;
+                        case "Ice":
+                            return 2;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 0.5f;
+                        case "Ground":
+                            return 2;
+                        case "Flying":
+                            return 0.5f;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 0.5f;
+                        case "Rock":
+                            return 2;
+                        case "Ghost":
+                            return 1;
+                        case "Dragon":
+                            return 0.5f;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
                 case "Ice":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 0.5f;
+                        case "Water":
+                            return 0.5f;
+                        case "Grass":
+                            return 2;
+                        case "Ice":
+                            return 0.5f;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 1;
+                        case "Ground":
+                            return 2;
+                        case "Flying":
+                            return 2;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 1;
+                        case "Rock":
+                            return 1;
+                        case "Ghost":
+                            return 1;
+                        case "Dragon":
+                            return 2;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
                 case "Fighting":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 1;
+                        case "Water":
+                            return 1;
+                        case "Grass":
+                            return 1;
+                        case "Ice":
+                            return 2;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 0.5f;
+                        case "Ground":
+                            return 1;
+                        case "Flying":
+                            return 0.5f;
+                        case "Psychic":
+                            return 0.5f;
+                        case "Bug":
+                            return 0.5f;
+                        case "Rock":
+                            return 2;
+                        case "Ghost":
+                            return 0;
+                        case "Dragon":
+                            return 1;
+                        case "Normal":
+                            return 2;
+                    }
+                    break;
                 case "Poison":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 1;
+                        case "Water":
+                            return 1;
+                        case "Grass":
+                            return 2;
+                        case "Ice":
+                            return 1;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 0.5f;
+                        case "Ground":
+                            return 0.5f;
+                        case "Flying":
+                            return 1;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 1;
+                        case "Rock":
+                            return 0.5f;
+                        case "Ghost":
+                            return 0.5f;
+                        case "Dragon":
+                            return 1;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
                 case "Ground":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 2;
+                        case "Fire":
+                            return 2;
+                        case "Water":
+                            return 1;
+                        case "Grass":
+                            return 0.5f;
+                        case "Ice":
+                            return 1;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 2;
+                        case "Ground":
+                            return 1;
+                        case "Flying":
+                            return 0;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 0.5f;
+                        case "Rock":
+                            return 2;
+                        case "Ghost":
+                            return 1;
+                        case "Dragon":
+                            return 1;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
                 case "Flying":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 0.5f;
+                        case "Fire":
+                            return 1;
+                        case "Water":
+                            return 1;
+                        case "Grass":
+                            return 2;
+                        case "Ice":
+                            return 1;
+                        case "Fighting":
+                            return 2;
+                        case "Poison":
+                            return 1;
+                        case "Ground":
+                            return 1;
+                        case "Flying":
+                            return 1;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 2;
+                        case "Rock":
+                            return 0.5f;
+                        case "Ghost":
+                            return 1;
+                        case "Dragon":
+                            return 1;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
                 case "Psychic":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 1;
+                        case "Water":
+                            return 1;
+                        case "Grass":
+                            return 1;
+                        case "Ice":
+                            return 1;
+                        case "Fighting":
+                            return 2;
+                        case "Poison":
+                            return 2;
+                        case "Ground":
+                            return 1;
+                        case "Flying":
+                            return 1;
+                        case "Psychic":
+                            return 0.5f;
+                        case "Bug":
+                            return 1;
+                        case "Rock":
+                            return 1;
+                        case "Ghost":
+                            return 1;
+                        case "Dragon":
+                            return 1;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
                 case "Bug":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 0.5f;
+                        case "Water":
+                            return 1;
+                        case "Grass":
+                            return 2;
+                        case "Ice":
+                            return 1;
+                        case "Fighting":
+                            return 0.5f;
+                        case "Poison":
+                            return 0.5f;
+                        case "Ground":
+                            return 1;
+                        case "Flying":
+                            return 0.5f;
+                        case "Psychic":
+                            return 2;
+                        case "Bug":
+                            return 1;
+                        case "Rock":
+                            return 1;
+                        case "Ghost":
+                            return 0.5f;
+                        case "Dragon":
+                            return 1;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
                 case "Rock":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 1;
+                        case "Water":
+                            return 1;
+                        case "Grass":
+                            return 1;
+                        case "Ice":
+                            return 2;
+                        case "Fighting":
+                            return 0.5f;
+                        case "Poison":
+                            return 1;
+                        case "Ground":
+                            return 0.5f;
+                        case "Flying":
+                            return 2;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 2;
+                        case "Rock":
+                            return 1;
+                        case "Ghost":
+                            return 1;
+                        case "Dragon":
+                            return 1;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
                 case "Ghost":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 1;
+                        case "Water":
+                            return 1;
+                        case "Grass":
+                            return 1;
+                        case "Ice":
+                            return 1;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 1;
+                        case "Ground":
+                            return 1;
+                        case "Flying":
+                            return 1;
+                        case "Psychic":
+                            return 2;
+                        case "Bug":
+                            return 1;
+                        case "Rock":
+                            return 1;
+                        case "Ghost":
+                            return 2;
+                        case "Dragon":
+                            return 1;
+                        case "Normal":
+                            return 0;
+                    }
+                    break;
                 case "Dragon":
+                    switch(defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 1;
+                        case "Water":
+                            return 1;
+                        case "Grass":
+                            return 1;
+                        case "Ice":
+                            return 1;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 1;
+                        case "Ground":
+                            return 1;
+                        case "Flying":
+                            return 1;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 1;
+                        case "Rock":
+                            return 1;
+                        case "Ghost":
+                            return 1;
+                        case "Dragon":
+                            return 2;
+                        case "Normal":
+                            return 1;
+                    }
+                    break;
 
             }
+            return 1;
         }
     }
 }
