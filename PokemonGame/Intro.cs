@@ -1,7 +1,4 @@
 //Class intro
-
-using System.Xml.Linq;
-
 namespace PokemonCS
 {
     public class Intro
@@ -36,13 +33,14 @@ namespace PokemonCS
             Console.ReadKey();
 
             //Dialogue to chose betwenn the starter pokemon
-            player.SetStarter();
+            Menu.StarterMenu();
 
             Console.Clear();
             Fight.DrawBorderLine();
-            Console.WriteLine("You will start with 3 pokeballs and 3 potions!");
-            player.AddItem(300, "Pokeball", "standard");
-            player.AddItem(3, "Potion", "standard");
+            Console.WriteLine("You will start with 3 pokeballs and 3 potions and 1000$");
+            player.AddItem(10, "Pokeball", "standard");
+            player.AddItem(10, "Potion", "standard");
+            player.money = 1000;
             Console.WriteLine("Good luck on your journey!");
             Console.WriteLine("Press any key to continue...");
             Fight.DrawBorderLine();

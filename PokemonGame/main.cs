@@ -1,8 +1,5 @@
 // Main function for the program
-
 using PokemonCS;
-using System;
-
 class Program
 {
     static void Main()

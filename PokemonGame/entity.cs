@@ -1,7 +1,4 @@
-﻿using System;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace PokemonCS
+﻿namespace PokemonCS
 {
 
     // Entity class
@@ -24,7 +21,7 @@ namespace PokemonCS
         protected int dmg_attack3;
         protected string attack_spe;
         protected int dmg_attack_spe;
-        protected int xp;
+        public int xp;
         protected int use_nb_base_atk;
         protected int use_nb_atk;
         protected int use_nb_atk2;
@@ -33,9 +30,10 @@ namespace PokemonCS
         protected int max_nb_atk;
         protected int max_nb_atk2;
         protected int max_nb_atk_spe;
+        protected bool CanEvolve;
 
         //constructor
-        public Entity(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack2, int dmg_attack2, string attack3, int dmg_attack3, string attack_spe, int dmg_attack_spe, int xp, int use_nb_base_atk, int use_nb_atk, int use_nb_atk2, int use_nb_atk_spe, int max_nb_base_atk, int max_nb_atk, int max_nb_atk2, int max_nb_atk_spe)
+        public Entity(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack2, int dmg_attack2, string attack3, int dmg_attack3, string attack_spe, int dmg_attack_spe, int xp, int use_nb_base_atk, int use_nb_atk, int use_nb_atk2, int use_nb_atk_spe, int max_nb_base_atk, int max_nb_atk, int max_nb_atk2, int max_nb_atk_spe, bool CanEvolve)
         {
             this.name = name;
             this.health = health;
@@ -62,6 +60,7 @@ namespace PokemonCS
             this.max_nb_atk = max_nb_atk;
             this.max_nb_atk2 = max_nb_atk2;
             this.max_nb_atk_spe = max_nb_atk_spe;
+            this.CanEvolve = CanEvolve;
         }
 
         //getters and setters
@@ -213,6 +212,12 @@ namespace PokemonCS
         {
             get { return max_nb_atk_spe; }
             set { max_nb_atk_spe = value; }
+        }
+
+        public bool canEvolve
+        {
+            get { return CanEvolve; }
+            set { CanEvolve = value; }
         }
 
         public void PrintStats(string type)

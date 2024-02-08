@@ -1,6 +1,4 @@
 ﻿// Class for menu
-using System;
-
 namespace PokemonCS
 {
 
@@ -12,6 +10,25 @@ namespace PokemonCS
         {
             Console.Clear();
             Fight.DrawBorderLine();
+            Console.WriteLine(@"
+||  _ __   ___ | | _____ _ __ ___   ___  _ __   ||
+|| | '_ \ / _ \| |/ / _ \ '_ ` _ \ / _ \| '_ \  ||
+|| | |_) | (_) |   <  __/ | | | | | (_) | | | | ||
+|| | .__/ \___/|_|\_\___|_| |_| |_|\___/|_| |_| ||
+|| |_|                                          ||
+||              ■■■■■■■■■■■■                    ||
+||            ■■▓▓▓▓▓▓▓▓▓▓▓▓■■                  ||
+||          ■▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓■                ||
+||         ■▓▓▓▓▓▓■■■■■■▓▓▓▓▓▓▓▓■               ||
+||        ■■■■■■■■      ■■■■■■■■■               ||
+||        ■■■■■■■■      ■■■■■■■■■               ||
+||         ■░░░░░░■■■■■■░░░░░░░■                ||
+||          ■░░░░░░░░░░░░░░░░░■                 ||
+||           ■■░░░░░░░░░░░░░■■                  ||
+||            ■■■■■■■■■■■■■                     ||
+||                                              ||
+");
+
             Console.WriteLine("Welcome to Pokemon!");
             Console.WriteLine("1. New Game");
             Console.WriteLine("2. Load Game");
@@ -47,8 +64,9 @@ namespace PokemonCS
             Console.WriteLine("1. Continue");
             Console.WriteLine("2. Team");
             Console.WriteLine("3. Bag");
-            Console.WriteLine("4. Save Game");
-            Console.WriteLine("5. Exit Game");
+            Console.WriteLine("4. Pokedex");
+            Console.WriteLine("5. Save Game");
+            Console.WriteLine("6. Exit Game");
             Console.WriteLine("Please enter your choice: ");
             Fight.DrawBorderLine();
             string choice = Console.ReadLine();
@@ -81,10 +99,14 @@ namespace PokemonCS
                     PauseMenu();
                     break;
                 case "4":
+                    // Pokedex
+                    PokedexMenu();
+                    break;
+                case "5":
                     // Save game
                     SaveGame(false);
                     break;
-                case "5":
+                case "6":
                     Environment.Exit(0);
                     break;
                 default:
@@ -93,6 +115,81 @@ namespace PokemonCS
                     PauseMenu();
                     break;
             }
+        }
+        public static void PokedexMenu()
+        {
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("Pokedex: \n ");
+
+            // Read data from pokedex.txt
+            string pokedexPath = "pokedex.txt";
+
+            if (File.Exists(pokedexPath))
+            {
+                string[] pokedexEntries = File.ReadAllLines(pokedexPath);
+
+                // Display Pokémon names
+                for (int i = 0; i < pokedexEntries.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {pokedexEntries[i].Split(',')[0]}");
+                }
+
+                Console.WriteLine("Enter the number of the Pokemon to view its stats (or 0 to exit): ");
+
+                // Get user choice
+                if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= pokedexEntries.Length)
+                {
+                    // Display Pokémon stats
+                    DisplayPokemonStats(pokedexEntries[choice - 1]);
+                }
+                else if (choice == 0)
+                {
+                    PauseMenu();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice. Press any key to continue...");
+                    Console.ReadKey();
+                    PokedexMenu();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Pokedex is empty.");
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Fight.DrawBorderLine();
+            Console.ReadKey();
+            PokedexMenu();
+        }
+        private static void DisplayPokemonStats(string pokemonData)
+        {
+            string[] info = pokemonData.Split(',');
+
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine($"Name: {info[0]}");
+            Console.WriteLine($"Type: {info[3]}");
+            Console.WriteLine($"Health: {info[1]}/{info[7]}");
+            Console.WriteLine($"Attack: {info[10]}");
+            Console.WriteLine($"Special Attack: {info[12]}");
+            Fight.DrawBorderLine();
+        }
+        //Starter selection menu
+        public static void StarterMenu()
+        {
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("Now, you will chose your starter pokemon!");
+            Console.WriteLine("You can chose between:");
+            Console.WriteLine("1. Salamèche          2. Bulbizarre          3. Carapuce");
+            Console.WriteLine("Press the number of the pokemon you want to chose!");
+            Fight.DrawBorderLine();
+            // get the player's choice
+            string choice = Console.ReadLine();
+            Player.SetStarter(choice, Intro.player);
         }
 
         //method to show the team
@@ -220,7 +317,7 @@ namespace PokemonCS
             Console.Clear();
         }
 
-        // method to shwow the vendor menu
+        // method to show the vendor menu
         public static void VendorMenu()
         {
             Console.Clear();
@@ -306,7 +403,7 @@ namespace PokemonCS
                     if (player.Money >= 1000)
                     {
                         player.Money -= 1000;
-                        Pokemon.AddEgg();
+                        Pokemon.AddEgg(Intro.player);
                     }
                     else
                     {
@@ -479,7 +576,7 @@ namespace PokemonCS
         {
             //Open the data file and write the player's info
             string path = "data.txt";
-            string[] lines = new string[22];
+            string[] lines = new string[24];
 
             lines[0] = Intro.player.Name;
 
@@ -518,16 +615,20 @@ namespace PokemonCS
             lines[14] = Intro.player.Money.ToString();
             lines[15] = Intro.player.Step.ToString();
 
+            // Save camera position
+            lines[16] = Map.xCam.ToString();
+            lines[17] = Map.yCam.ToString();
+
             // append to lines the info of the player's team while checking if the pokemon is null
             for (int i = 0; i < 6; i++)
             {
                 if (Intro.player.Team[i] != null)
                 {
-                    lines[i + 16] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].Dmg_Attack + "," + Intro.player.Team[i].Attack2 + "," + Intro.player.Team[i].Dmg_Attack2 + "," + Intro.player.Team[i].Attack3 + "," + Intro.player.Team[i].Dmg_Attack3 + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].Dmg_Attack_Spe + "," + Intro.player.Team[i].Xp + "," + Intro.player.Team[i].Use_nb_baseAtk + "," + Intro.player.Team[i].Use_nb_Atk + "," + Intro.player.Team[i].Use_nb_Atk2 + "," + Intro.player.Team[i].Use_nb_Atk_Spe + "," + Intro.player.Team[i].Max_nb_base_Atk + "," + Intro.player.Team[i].Max_nb_Atk1 + "," + Intro.player.Team[i].Max_nb_Atk2 + "," + Intro.player.Team[i].Max_nb_Atk_Spe;
+                    lines[i + 18] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].Dmg_Attack + "," + Intro.player.Team[i].Attack2 + "," + Intro.player.Team[i].Dmg_Attack2 + "," + Intro.player.Team[i].Attack3 + "," + Intro.player.Team[i].Dmg_Attack3 + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].Dmg_Attack_Spe + "," + Intro.player.Team[i].Xp + "," + Intro.player.Team[i].Use_nb_baseAtk + "," + Intro.player.Team[i].Use_nb_Atk + "," + Intro.player.Team[i].Use_nb_Atk2 + "," + Intro.player.Team[i].Use_nb_Atk_Spe + "," + Intro.player.Team[i].Max_nb_base_Atk + "," + Intro.player.Team[i].Max_nb_Atk1 + "," + Intro.player.Team[i].Max_nb_Atk2 + "," + Intro.player.Team[i].Max_nb_Atk_Spe + "," + Intro.player.Team[i].canEvolve;
                 }
                 else
                 {
-                    lines[i + 16] = "null";
+                    lines[i + 18] = "null";
                 }
             }
 
@@ -581,14 +682,16 @@ namespace PokemonCS
             // append to the player's money the info from the file
             Intro.player.Money = int.Parse(lines[14]);
             Intro.player.Step = int.Parse(lines[15]);
+            Map.xCam = int.Parse(lines[16]);
+            Map.yCam = int.Parse(lines[17]);
 
             // append to the player's team the info from the file while checking if the pokemon is null
             for (int i = 0; i < 6; i++)
             {
-                if (lines[i + 16] != "null")
+                if (lines[i + 18] != "null")
                 {
-                    string[] info = lines[i + 16].Split(',');
-                    Intro.player.Team[i] = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]));
+                    string[] info = lines[i + 18].Split(',');
+                    Intro.player.Team[i] = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]), bool.Parse(info[25]));
                 }
             }
 

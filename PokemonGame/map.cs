@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace PokemonCS
 {
@@ -7,6 +6,7 @@ namespace PokemonCS
     {
         public static int xPos, yPos;
         public static int xMap, yMap;
+        public static int xCam, yCam;
         public static int xHouse, yHouse;
         public static string? elementPos, player;
         public static string[]? lines;
@@ -28,7 +28,7 @@ namespace PokemonCS
             { '#', ConsoleColor.Yellow },
             { '░', ConsoleColor.DarkCyan }
         };
-        private static readonly HashSet<char> immovableCharacters = new() { '~', '|', '/', '\\', '(', ')', '║', '╣', '╠', '_', '▓', '@' };
+        private static readonly HashSet<char> immovableCharacters = new() { '~', '|', '/', '\\', '(', ')', '║', '╣', '╠', '_', '▓', '@', '█' };
         private static readonly Random rnd = new();
 
 
@@ -94,10 +94,12 @@ namespace PokemonCS
             Console.Write(player);
             Console.SetCursorPosition(xPos, yPos);
 
+
             // move the player
             ConsoleKeyInfo keyInfo;
             do
             {
+                SetCam();
                 keyInfo = Console.ReadKey();
                 switch (keyInfo.Key)
                 {
@@ -114,7 +116,7 @@ namespace PokemonCS
                         {
                             if (mapType == "map")
                             {
-                                Player.CheckStep();
+                                Player.CheckStep(Intro.player);
                             }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos, yPos + 1);
@@ -137,7 +139,7 @@ namespace PokemonCS
                         {
                             if (mapType == "map")
                             {
-                                Player.CheckStep();
+                                Player.CheckStep(Intro.player);
                             }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos, yPos - 1);
@@ -161,7 +163,7 @@ namespace PokemonCS
                         {
                             if (mapType == "map")
                             {
-                                Player.CheckStep();
+                                Player.CheckStep(Intro.player);
                             }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos + 1, yPos);
@@ -185,7 +187,7 @@ namespace PokemonCS
                         {
                             if (mapType == "map")
                             {
-                                Player.CheckStep();
+                                Player.CheckStep(Intro.player);
                             }
                             Console.Write(player);
                             Console.SetCursorPosition(xPos - 1, yPos);
@@ -217,8 +219,8 @@ namespace PokemonCS
 
             if (currentPos == "#")
             {
-                int random = rnd.Next(0, 9);
-                if (random == 3)
+                int random = rnd.Next(0, 99);
+                if (random < 7)
                 {
                     //Create a wild pokemon
                     Fight.currentEnemy = null;
@@ -228,6 +230,19 @@ namespace PokemonCS
                     Console.WriteLine("Press any key to start the fight!");
                     Console.ReadKey();
                     Fight.StartRound(Intro.player, Fight.currentEnemy);
+                    return true;
+                }
+                else if (random >= 59 && random <= 60) // 1% chance to find an item
+                {
+                    // give the player a random item
+                    Player.GetRandomItem(Intro.player);
+                    Console.Clear();
+                    Console.WriteLine("You found an item!");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    ReadMap();
+                    SpawnPlayer(xPos, yPos);
                     return true;
                 }
                 return false;
@@ -284,7 +299,10 @@ namespace PokemonCS
                 }
                 else
                 {
-                    return false;
+                    Console.Clear();
+                    ReadMap();
+                    SpawnPlayer(xPos, yPos);
+                    return true;
                 }
             }
             else if (lines[yPos].ElementAt(xPos).ToString() == "▒" && mapType == "house")
@@ -312,6 +330,25 @@ namespace PokemonCS
             }
 
             return false;
+        }
+
+        // Set the camera based on the player's position on the map
+        public static void SetCam()
+        {
+            if(mapType != "map")
+            {
+                return;
+            }
+
+            if (xPos - Console.WindowWidth / 2 >= 0 && xPos + Console.WindowWidth / 2 <= lines[yPos].Length - 1)
+            {
+                xCam = xPos - Console.WindowWidth / 2;
+            }
+            if (yPos - Console.WindowHeight / 2 >= 0 && yPos + Console.WindowHeight / 2 <= lines.Length)
+            {
+                yCam = yPos - Console.WindowHeight / 2;
+            }
+            Console.SetWindowPosition(xCam, yCam);
         }
 
         // Read the house map and color it
