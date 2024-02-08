@@ -36,7 +36,7 @@ namespace PokemonCS
             Console.ReadKey();
 
             //Dialogue to chose betwenn the starter pokemon
-            player.SetStarter();
+            Menu.StarterMenu();
 
             Console.Clear();
             Fight.DrawBorderLine();

@@ -71,35 +71,61 @@ namespace PokemonCS
 
 
         // get the starter pokemon
-        public void SetStarter()
+        public static void SetStarter(string choice, Player CurrentPlayer)
         {
-            Console.Clear();
-            Fight.DrawBorderLine();
-            Console.WriteLine("Now, you will chose your starter pokemon!");
-            Console.WriteLine("You can chose between:");
-            Console.WriteLine("1. Salamèche          2. Bulbizarre          3. Carapuce");
-            Console.WriteLine("Press the number of the pokemon you want to chose!");
-            Fight.DrawBorderLine();
-            // get the player's choice
-            string choice = Console.ReadLine();
+            
             switch (choice)
             {
                 case "1":
+                    //if the player is test
+                    if (CurrentPlayer.Name == "Test")
+                    {
+                        CurrentPlayer.Team[0] = Pokemon.CreatePokemon(2);
+                        break;
+                    }
+                    Console.Clear();
                     Fight.DrawBorderLine();
                     Console.WriteLine("You chose Salamèche!");
-                    Team[0] = Pokemon.CreatePokemon(2);
+                    CurrentPlayer.Team[0] = Pokemon.CreatePokemon(2);
+                    Fight.DrawBorderLine();
+                    Console.ReadKey();
+                    Console.Clear();
                     break;
                 case "2":
-                    Team[0] = Pokemon.CreatePokemon(5);
+                    //if the player is test
+                    if (CurrentPlayer.Name == "Test")
+                    {
+                        CurrentPlayer.Team[0] = Pokemon.CreatePokemon(5);
+                        break;
+                    }
+                    Console.Clear();
+                    Fight.DrawBorderLine();
+                    Console.WriteLine("You chose Bulbizarre!");
+                    CurrentPlayer.Team[0] = Pokemon.CreatePokemon(5);
+                    Fight.DrawBorderLine();
+                    Console.ReadKey();
+                    Console.Clear();
                     break;
                 case "3":
-                    Team[0] = Pokemon.CreatePokemon(8);
+                    //if the player is test
+                    if (CurrentPlayer.Name == "Test")
+                    {
+                        CurrentPlayer.Team[0] = Pokemon.CreatePokemon(8);
+                        break;
+                    }
+                    Console.Clear();
+                    Fight.DrawBorderLine();
+                    Console.WriteLine("You chose Carapuce!");
+                    CurrentPlayer.Team[0] = Pokemon.CreatePokemon(8);
+                    Fight.DrawBorderLine();
+                    Console.ReadKey();
+                    Console.Clear();
                     break;
                 default:
                     Fight.DrawBorderLine();
                     Console.WriteLine("Please enter a number.");
                     Fight.DrawBorderLine();
-                    SetStarter();
+                    Menu.StarterMenu();
                     break;
             }
 
@@ -217,6 +243,7 @@ namespace PokemonCS
             }
         }
 
+        
         //method to add a new pokemon to the team in a free slot
         public void AddPokemon(Pokemon pokemon)
         {
@@ -333,15 +360,15 @@ namespace PokemonCS
         }
 
         // Check the step number
-        public static void CheckStep()
+        public static void CheckStep(Player currentPlayer)
         {
-            if (CheckEgg())
+            if (CheckEgg(currentPlayer))
             {
-                Intro.player.Step += 1;
-                if (Intro.player.Step >= 1000 && Map.mapType =="map")
+                currentPlayer.Step += 1;
+                if (currentPlayer.Step >= 1000 && Map.mapType =="map")
                 {
                     Pokemon.HatchEgg();
-                    Intro.player.Step = 0;
+                    currentPlayer.Step = 0;
                 }
             }
             else
@@ -351,11 +378,11 @@ namespace PokemonCS
         }
 
         // check if the player got an egg in his team
-        public static bool CheckEgg()
+        public static bool CheckEgg(Player currentPlayer)
         {
-            for (int i = 0; i < Intro.player.Team.Length; i++)
+            for (int i = 0; i < currentPlayer.Team.Length; i++)
             {
-                if (Intro.player.Team[i] != null && Intro.player.Team[i].Name == "Egg")
+                if (currentPlayer.Team[i] != null && currentPlayer.Team[i].Name == "Egg")
                 {
                     return true;
                 }

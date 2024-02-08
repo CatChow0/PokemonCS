@@ -95,6 +95,21 @@ namespace PokemonCS
             }
         }
 
+        //Starter selection menu
+        public static void StarterMenu()
+        {
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("Now, you will chose your starter pokemon!");
+            Console.WriteLine("You can chose between:");
+            Console.WriteLine("1. Salamèche          2. Bulbizarre          3. Carapuce");
+            Console.WriteLine("Press the number of the pokemon you want to chose!");
+            Fight.DrawBorderLine();
+            // get the player's choice
+            string choice = Console.ReadLine();
+            Player.SetStarter(choice, Intro.player);
+        }
+
         //method to show the team
         public static void TeamMenu()
         {
@@ -306,7 +321,7 @@ namespace PokemonCS
                     if (player.Money >= 1000)
                     {
                         player.Money -= 1000;
-                        Pokemon.AddEgg();
+                        Pokemon.AddEgg(Intro.player);
                     }
                     else
                     {
@@ -523,7 +538,7 @@ namespace PokemonCS
             {
                 if (Intro.player.Team[i] != null)
                 {
-                    lines[i + 16] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].Dmg_Attack + "," + Intro.player.Team[i].Attack2 + "," + Intro.player.Team[i].Dmg_Attack2 + "," + Intro.player.Team[i].Attack3 + "," + Intro.player.Team[i].Dmg_Attack3 + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].Dmg_Attack_Spe + "," + Intro.player.Team[i].Xp + "," + Intro.player.Team[i].Use_nb_baseAtk + "," + Intro.player.Team[i].Use_nb_Atk + "," + Intro.player.Team[i].Use_nb_Atk2 + "," + Intro.player.Team[i].Use_nb_Atk_Spe + "," + Intro.player.Team[i].Max_nb_base_Atk + "," + Intro.player.Team[i].Max_nb_Atk1 + "," + Intro.player.Team[i].Max_nb_Atk2 + "," + Intro.player.Team[i].Max_nb_Atk_Spe;
+                    lines[i + 16] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].Dmg_Attack + "," + Intro.player.Team[i].Attack2 + "," + Intro.player.Team[i].Dmg_Attack2 + "," + Intro.player.Team[i].Attack3 + "," + Intro.player.Team[i].Dmg_Attack3 + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].Dmg_Attack_Spe + "," + Intro.player.Team[i].Xp + "," + Intro.player.Team[i].Use_nb_baseAtk + "," + Intro.player.Team[i].Use_nb_Atk + "," + Intro.player.Team[i].Use_nb_Atk2 + "," + Intro.player.Team[i].Use_nb_Atk_Spe + "," + Intro.player.Team[i].Max_nb_base_Atk + "," + Intro.player.Team[i].Max_nb_Atk1 + "," + Intro.player.Team[i].Max_nb_Atk2 + "," + Intro.player.Team[i].Max_nb_Atk_Spe + "," + Intro.player.Team[i].canEvolve;
                 }
                 else
                 {
@@ -588,7 +603,7 @@ namespace PokemonCS
                 if (lines[i + 16] != "null")
                 {
                     string[] info = lines[i + 16].Split(',');
-                    Intro.player.Team[i] = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]));
+                    Intro.player.Team[i] = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]), bool.Parse(info[25]));
                 }
             }
 
