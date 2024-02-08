@@ -83,5 +83,29 @@
             // Assert
             Assert.AreEqual(Expected, player.Step);
         }
+
+        // Test The GetRandomItem method
+        [Test]
+        public void TestGetRandomItem()
+        {
+            // Arrange
+            Player player = new("Test");
+
+            Player.GetRandomItem(player);
+
+            //check if the player has a potion or a pokeball
+            if (player.potion[0] > 0 || player.potion[1] > 0 || player.potion[2] > 0)
+            {
+                Assert.AreEqual(true, true);
+            }
+            else if (player.pokeball[0] > 0 || player.pokeball[1] > 0 || player.pokeball[2] > 0)
+            {
+                Assert.AreEqual(true, true);
+            }
+            else
+            {
+                Assert.AreEqual(true, false);
+            }
+        }
     }
 }
