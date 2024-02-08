@@ -6,7 +6,6 @@ namespace PokemonCS
 
     public class Pokemon : Entity
     {
-
         private static readonly string[] lines = File.ReadAllLines("pokedex.txt");
         //constructor
         public Pokemon(string name, int health, int armor, string type, int level, int catchRate, bool isCatchable, int maxHp, string attack, int dmg_attack, string attack2, int dmg_attack2, string attack3, int dmg_attack3, string attack_spe, int dmg_attack_spe, int xp, int use_nb_base_atk, int use_nb_atk, int use_nb_atk2, int use_nb_atk_spe, int max_nb_base_atk, int max_nb_atk, int max_nb_atk2, int max_nb_atk_spe, bool CanEvolve) : base(name, health, armor, type, level, catchRate, isCatchable, maxHp, attack, dmg_attack, attack2, dmg_attack2, attack3, dmg_attack3, attack_spe, dmg_attack_spe, xp, use_nb_base_atk, use_nb_atk, use_nb_atk2, use_nb_atk_spe, max_nb_base_atk, max_nb_atk, max_nb_atk2, max_nb_atk_spe, CanEvolve)
@@ -180,5 +179,93 @@ namespace PokemonCS
             });
         }
 
+        // method to check the type advantage of the pokemon against the enemy pokemon type and return the damage multiplier (based on the type chart) 
+        public static float CheckTypeAdvantages(string atkType, string defType)
+        {
+            
+            switch (atkType)
+            {
+                case "Normal":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 1;
+                        case "Fire":
+                            return 1;
+                        case "Water":
+                            return 1;
+                        case "Grass":
+                            return 1;
+                        case "Ice":
+                            return 1;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 1;
+                        case "Ground":
+                            return 1;
+                        case "Flying":
+                            return 1;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 1;
+                        case "Rock":
+                            return 0.5f;
+                        case "Ghost":
+                            return 0;
+                        case "Dragon":
+                            return 1;
+                    }
+                    break;
+                case "Electric":
+                    switch (defType)
+                    {
+                        case "Electric":
+                            return 0.5f;
+                        case "Fire":
+                            return 1;
+                        case "Water":
+                            return 2;
+                        case "Grass":
+                            return 0.5f;
+                        case "Ice":
+                            return 1;
+                        case "Fighting":
+                            return 1;
+                        case "Poison":
+                            return 1;
+                        case "Ground":
+                            return 0;
+                        case "Flying":
+                            return 2;
+                        case "Psychic":
+                            return 1;
+                        case "Bug":
+                            return 1;
+                        case "Rock":
+                            return 1;
+                        case "Ghost":
+                            return 1;
+                        case "Dragon":
+                            return 0.5f;
+                    }
+                    break;
+                case "Fire":
+                case "Water":
+                case "Grass":
+                case "Ice":
+                case "Fighting":
+                case "Poison":
+                case "Ground":
+                case "Flying":
+                case "Psychic":
+                case "Bug":
+                case "Rock":
+                case "Ghost":
+                case "Dragon":
+
+            }
+        }
     }
 }

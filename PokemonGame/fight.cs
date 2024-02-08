@@ -80,6 +80,16 @@ namespace PokemonCS
                         damage /= 2;
                     }
                     break;
+                case "Normal":
+                    if (enemyPokemon.Type == "Electric")
+                    {
+                        damage *= 2;
+                    }
+                    else if (enemyPokemon.Type == "Normal")
+                    {
+                        damage /= 2;
+                    }
+                    break;
                 default:
                     if (attack_type == "1")
                     {
@@ -197,6 +207,26 @@ namespace PokemonCS
                         damage /= 2;
                     }
                     break;
+                case "Normal":
+                    if (playerPokemon.Type == "Electric")
+                    {
+                        damage *= 2;
+                    }
+                    else if (playerPokemon.Type == "Normal")
+                    {
+                        damage /= 2;
+                    }
+                    break;
+                case "Poison":
+                    if (playerPokemon.Type == "Grass")
+                    {
+                        damage *= 2;
+                    }
+                    else if (playerPokemon.Type == "Poison")
+                    {
+                        damage /= 2;
+                    }
+                    break;
                 default:
                     if (attack_type_random == 1)
                     {
@@ -306,7 +336,7 @@ namespace PokemonCS
                 PrintStats();
                 Console.WriteLine("What attack do you want to use?");
                 DrawBorderLine();
-                Console.WriteLine("1. Basic Attack : " + playerPokemon.Attack + " " + playerPokemon.Use_nb_baseAtk + "/" + playerPokemon.Max_nb_base_Atk);
+                Console.WriteLine("1. " + playerPokemon.Attack + " " + playerPokemon.Use_nb_baseAtk + "/" + playerPokemon.Max_nb_base_Atk);
                 Console.WriteLine("2. " + playerPokemon.Attack2 + " " + playerPokemon.Use_nb_Atk + "/" + playerPokemon.Max_nb_Atk1);
                 Console.WriteLine("3. " + playerPokemon.Attack3 + " " + playerPokemon.Use_nb_Atk2 + "/" + playerPokemon.Max_nb_Atk2);
                 Console.WriteLine("4. " + playerPokemon.Attack_Spe + " " + playerPokemon.Use_nb_Atk_Spe + "/" + playerPokemon.Max_nb_Atk_Spe);
@@ -452,10 +482,11 @@ namespace PokemonCS
             }
             // print a message
             Console.WriteLine("You encountered a " + enemyPokemon.Name + "!");
-            playerPokemon.Use_nb_baseAtk = 30;
-            playerPokemon.Use_nb_Atk = 50;
-            playerPokemon.Use_nb_Atk2 = 50;
-            playerPokemon.Use_nb_Atk_Spe = 10;
+
+            playerPokemon.Use_nb_Atk = playerPokemon.Max_nb_Atk1;
+            playerPokemon.Use_nb_Atk2 = playerPokemon.Max_nb_Atk2;
+            playerPokemon.Use_nb_baseAtk = playerPokemon.Max_nb_base_Atk;
+            playerPokemon.Use_nb_Atk_Spe = playerPokemon.Max_nb_Atk_Spe;
 
             // while both players are alive
             while (playerPokemon.Health > 0 && enemyPokemon.Health > 0 && isRunning)
