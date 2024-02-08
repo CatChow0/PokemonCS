@@ -1,7 +1,4 @@
 // Class for player
-
-using System;
-
 namespace PokemonCS
 {
 

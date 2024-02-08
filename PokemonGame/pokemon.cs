@@ -1,9 +1,4 @@
 ﻿// Class for pokemon
-
-using System;
-using System.Diagnostics.Metrics;
-using System.Drawing;
-
 namespace PokemonCS
 {
 

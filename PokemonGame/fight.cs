@@ -1,8 +1,4 @@
 ﻿// Class for fight
-
-using System;
-using System.Security.Principal;
-
 namespace PokemonCS
 {
     public class Fight

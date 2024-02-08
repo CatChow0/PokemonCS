@@ -1,10 +1,4 @@
 //Class fot the item to use in fight
-
-using System;
-using System.Reflection.Emit;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-
 namespace PokemonCS
 {
     public class Item

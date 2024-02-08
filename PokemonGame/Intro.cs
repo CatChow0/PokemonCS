@@ -1,7 +1,4 @@
 //Class intro
-
-using System.Xml.Linq;
-
 namespace PokemonCS
 {
     public class Intro
