@@ -45,8 +45,9 @@ namespace PokemonCS
             Console.WriteLine("1. Continue");
             Console.WriteLine("2. Team");
             Console.WriteLine("3. Bag");
-            Console.WriteLine("4. Save Game");
-            Console.WriteLine("5. Exit Game");
+            Console.WriteLine("4.Pokedex");
+            Console.WriteLine("5. Save Game");
+            Console.WriteLine("6. Exit Game");
             Console.WriteLine("Please enter your choice: ");
             Fight.DrawBorderLine();
             string choice = Console.ReadLine();
@@ -79,10 +80,14 @@ namespace PokemonCS
                     PauseMenu();
                     break;
                 case "4":
+                    // Pokedex
+                    PokedexMenu();
+                    break;
+                case "5":
                     // Save game
                     SaveGame(false);
                     break;
-                case "5":
+                case "6":
                     Environment.Exit(0);
                     break;
                 default:
@@ -92,7 +97,67 @@ namespace PokemonCS
                     break;
             }
         }
+        public static void PokedexMenu()
+        {
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("Pokedex: \n ");
 
+            // Read data from pokedex.txt
+            string pokedexPath = "pokedex.txt";
+
+            if (File.Exists(pokedexPath))
+            {
+                string[] pokedexEntries = File.ReadAllLines(pokedexPath);
+
+                // Display Pokémon names
+                for (int i = 0; i < pokedexEntries.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {pokedexEntries[i].Split(',')[0]}");
+                }
+
+                Console.WriteLine("Enter the number of the Pokémon to view its stats (or 0 to exit): ");
+
+                // Get user choice
+                if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= pokedexEntries.Length)
+                {
+                    // Display Pokémon stats
+                    DisplayPokemonStats(pokedexEntries[choice - 1]);
+                }
+                else if (choice == 0)
+                {
+                    PauseMenu();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice. Press any key to continue...");
+                    Console.ReadKey();
+                    PokedexMenu();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Pokedex is empty.");
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Fight.DrawBorderLine();
+            Console.ReadKey();
+            PokedexMenu();
+        }
+        private static void DisplayPokemonStats(string pokemonData)
+        {
+            string[] info = pokemonData.Split(',');
+
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine($"Name: {info[0]}");
+            Console.WriteLine($"Type: {info[3]}");
+            Console.WriteLine($"Health: {info[1]}/{info[7]}");
+            Console.WriteLine($"Attack: {info[10]}");
+            Console.WriteLine($"Special Attack: {info[12]}");
+            Fight.DrawBorderLine();
+        }
         //Starter selection menu
         public static void StarterMenu()
         {
@@ -233,7 +298,7 @@ namespace PokemonCS
             Console.Clear();
         }
 
-        // method to shwow the vendor menu
+        // method to show the vendor menu
         public static void VendorMenu()
         {
             Console.Clear();
