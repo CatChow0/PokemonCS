@@ -1,6 +1,4 @@
 ﻿// Class for menu
-using System;
-
 namespace PokemonCS
 {
 

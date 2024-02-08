@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UnitTest2
+﻿namespace UnitTest2
 {
     internal class PlayerTest
     {
@@ -16,7 +10,7 @@ namespace UnitTest2
         public void TestSetStarter(string expected, string choice)
         {
             // Arrange
-            Player player = new Player("Test");
+            Player player = new("Test");
             // Act
             Player.SetStarter(choice, player);
             // Assert

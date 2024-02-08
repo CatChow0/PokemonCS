@@ -1,7 +1,4 @@
-﻿using System;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace PokemonCS
+﻿namespace PokemonCS
 {
 
     // Entity class
