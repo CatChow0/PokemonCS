@@ -30,10 +30,9 @@ miaouss,100,5,Normal,5,100,true,100,Hyper Fang,10,Scratch,5,Tail Whip,12,Super F
 persian,120,5,Normal,10,100,true,120,Hyper Fang,10,Scratch,5,Tail Whip,12,Super Fang,30,0,40,40,30,10,40,40,30,10,false
 psykokwak,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
 akwakwak,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
-ferosinge,100,5,Fighting,15,100,true,140,Low Kick,10,Scratch,5,Focus Energy,12,Seismic Toss,30,0,40,40,30,10,40,40,30,10,false
 colossinge,140,5,Fighting,15,100,true,140,Low Kick,10,Scratch,5,Focus Energy,12,Seismic Toss,30,0,40,40,30,10,40,40,30,10,false
-caninos,140,5,Fire,15,100,true,140,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,30,0,40,40,30,10,40,40,30,10,false
-arcanin,160,5,Fire,20,100,true,160,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,30,0,40,40,30,10,40,40,30,10,false
+caninos,140,5,Fire,5,100,true,140,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,30,0,40,40,30,10,40,40,30,10,true
+arcanin,160,5,Fire,10,100,true,160,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,30,0,40,40,30,10,40,40,30,10,false
 ptitard,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
 têtarte,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
 tartard,140,5,Water,15,100,true,140,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
@@ -43,7 +42,7 @@ alakazam,140,5,Psychic,15,100,true,140,Psybeam,10,Confusion,5,Teleport,12,Recove
 machoc,100,5,Fighting,5,100,true,100,Low Kick,10,Scratch,5,Focus Energy,12,Seismic Toss,30,0,40,40,30,10,40,40,30,10,true
 machopeur,120,5,Fighting,10,100,true,120,Low Kick,10,Scratch,5,Focus Energy,12,Seismic Toss,30,0,40,40,30,10,40,40,30,10,true
 mackogneur,140,5,Fighting,15,100,true,140,Low Kick,10,Scratch,5,Focus Energy,12,Seismic Toss,30,0,40,40,30,10,40,40,30,10,false
-chetiflor,100,5,Grass,5,100,true,100,Razor Leaf,10,Vine Whip,5,Stun Spore,12,Sleep Powder,30,0,40,40,30,10,40,40,30,10,true
+chétiflor,100,5,Grass,5,100,true,100,Razor Leaf,10,Vine Whip,5,Stun Spore,12,Sleep Powder,30,0,40,40,30,10,40,40,30,10,true
 boustiflor,120,5,Grass,10,100,true,120,Razor Leaf,10,Vine Whip,5,Stun Spore,12,Sleep Powder,30,0,40,40,30,10,40,40,30,10,true
 empiflor,140,5,Grass,15,100,true,140,Razor Leaf,10,Vine Whip,5,Stun Spore,12,Sleep Powder,30,0,40,40,30,10,40,40,30,10,false
 tentacool,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Constrict,12,Surf,30,0,40,40,30,10,40,40,30,10,true
@@ -55,8 +54,8 @@ ponyta,100,5,Fire,5,100,true,100,Flamethrower,10,Ember,5,Stomp,12,Fire Spin,30,0
 galopa,120,5,Fire,10,100,true,120,Flamethrower,10,Ember,5,Stomp,12,Fire Spin,30,0,40,40,30,10,40,40,30,10,false
 ramoloss,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
 flagadoss,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
-magneti,100,5,Electric,5,100,true,100,Thunderbolt,10,Quick Attack,5,Supersonic,12,Thunder,30,0,40,40,30,10,40,40,30,10,true
-magneton,120,5,Electric,10,100,true,120,Thunderbolt,10,Quick Attack,5,Supersonic,12,Thunder,30,0,40,40,30,10,40,40,30,10,false
+magnéti,100,5,Electric,5,100,true,100,Thunderbolt,10,Quick Attack,5,Supersonic,12,Thunder,30,0,40,40,30,10,40,40,30,10,true
+magnéton,120,5,Electric,10,100,true,120,Thunderbolt,10,Quick Attack,5,Supersonic,12,Thunder,30,0,40,40,30,10,40,40,30,10,false
 canarticho,100,5,Flying,5,100,true,100,Peck,10,Scratch,5,Leer,12,Drill Peck,30,0,40,40,30,10,40,40,30,10,true
 doduo,120,5,Flying,10,100,true,120,Peck,10,Scratch,5,Leer,12,Drill Peck,30,0,40,40,30,10,40,40,30,10,true
 dodrio,140,5,Flying,15,100,true,140,Peck,10,Scratch,5,Leer,12,Drill Peck,30,0,40,40,30,10,40,40,30,10,false
@@ -75,7 +74,7 @@ hypnomade,120,5,Psychic,10,100,true,120,Psybeam,10,Confusion,5,Hypnosis,12,Rest,
 krabby,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
 krabboss,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
 voltorbe,100,5,Electric,5,100,true,100,Thunderbolt,10,Quick Attack,5,Screech,12,Thunder,30,0,40,40,30,10,40,40,30,10,true
-electrode,120,5,Electric,10,100,true,120,Thunderbolt,10,Quick Attack,5,Screech,12,Thunder,30,0,40,40,30,10,40,40,30,10,false
+électrode,120,5,Electric,10,100,true,120,Thunderbolt,10,Quick Attack,5,Screech,12,Thunder,30,0,40,40,30,10,40,40,30,10,false
 noeunoeuf,100,5,Normal,5,100,true,100,Hyper Voice,10,Double Slap,5,Sing,12,Rest,30,0,40,40,30,10,40,40,30,10,true
 noadkoko,120,5,Normal,10,100,true,120,Hyper Voice,10,Double Slap,5,Sing,12,Rest,30,0,40,40,30,10,40,40,30,10,false
 osselait,100,5,Ground,5,100,true,100,Earthquake,10,Scratch,5,Screech,12,Dig,30,0,40,40,30,10,40,40,30,10,true
@@ -86,28 +85,28 @@ excelangue,100,5,Normal,5,100,true,100,Hyper Voice,10,Double Slap,5,Sing,12,Rest
 smogo,100,5,Poison,5,100,true,100,Sludge Bomb,10,Scratch,5,Smog,12,Toxic,30,0,40,40,30,10,40,40,30,10,true
 smogogo,120,5,Poison,10,100,true,120,Sludge Bomb,10,Scratch,5,Smog,12,Toxic,30,0,40,40,30,10,40,40,30,10,false
 rhinocorne,100,5,Ground,5,100,true,100,Earthquake,10,Scratch,5,Stomp,12,Horn Drill,30,0,40,40,30,10,40,40,30,10,true
-rhinoferos,120,5,Ground,10,100,true,120,Earthquake,10,Scratch,5,Stomp,12,Horn Drill,30,0,40,40,30,10,40,40,30,10,false
+rhinoféros,120,5,Ground,10,100,true,120,Earthquake,10,Scratch,5,Stomp,12,Horn Drill,30,0,40,40,30,10,40,40,30,10,false
 leveinard,100,5,Normal,5,100,true,100,Hyper Voice,10,Double Slap,5,Sing,12,Rest,30,0,40,40,30,10,40,40,30,10,false
 saquedeneu,100,5,Grass,5,100,true,100,Razor Leaf,10,Vine Whip,5,Stun Spore,12,Sleep Powder,30,0,40,40,30,10,40,40,30,10,false
 kangourex,100,5,Normal,5,100,true,100,Hyper Voice,10,Double Slap,5,Sing,12,Rest,30,0,40,40,30,10,40,40,30,10,false
 hypotrempe,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
-hypocean,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
-poissirene,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
+hypocéan,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
+poissirène,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
 poissoroy,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
 stari,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
 staross,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
 m. mime,100,5,Psychic,5,100,true,100,Psybeam,10,Confusion,5,Teleport,12,Recover,30,0,40,40,30,10,40,40,30,10,false
-insecateur,100,5,Bug,5,100,true,100,Slash,10,Scratch,5,Stun Spore,12,Spore,30,0,40,40,30,10,40,40,30,10,false
+insécateur,100,5,Bug,5,100,true,100,Slash,10,Scratch,5,Stun Spore,12,Spore,30,0,40,40,30,10,40,40,30,10,false
 lippoutou,100,5,Ice,5,100,true,100,Ice Beam,10,Scratch,5,Confuse Ray,12,Rest,30,0,40,40,30,10,40,40,30,10,false
-elektek,100,5,Electric,5,100,true,100,Thunderbolt,10,Quick Attack,5,Screech,12,Thunder,30,0,40,40,30,10,40,40,30,10,false
+élektek,100,5,Electric,5,100,true,100,Thunderbolt,10,Quick Attack,5,Screech,12,Thunder,30,0,40,40,30,10,40,40,30,10,false
 magmar,100,5,Fire,5,100,true,100,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,30,0,40,40,30,10,40,40,30,10,false
 scarabrute,100,5,Bug,5,100,true,100,Slash,10,Scratch,5,Stun Spore,12,Spore,30,0,40,40,30,10,40,40,30,10,false
 tauros,100,5,Normal,5,100,true,100,Hyper Voice,10,Double Slap,5,Stomp,12,Rest,30,0,40,40,30,10,40,40,30,10,false
 magicarpe,100,5,Water,5,100,true,100,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,true
-leviator,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
+léviator,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
 lokhlass,140,5,Water,15,100,true,140,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
-metamorph,100,5,Normal,5,100,true,100,Hyper Voice,10,Double Slap,5,Sing,12,Rest,30,0,40,40,30,10,40,40,30,10,false
-evoli,100,5,Normal,5,100,true,100,Hyper Voice,10,Double Slap,5,Sing,12,Rest,30,0,40,40,30,10,40,40,30,10,true
+métamorph,100,5,Normal,5,100,true,100,Hyper Voice,10,Double Slap,5,Sing,12,Rest,30,0,40,40,30,10,40,40,30,10,false
+évoli,100,5,Normal,5,100,true,100,Hyper Voice,10,Double Slap,5,Sing,12,Rest,30,0,40,40,30,10,40,40,30,10,true
 aquali,120,5,Water,10,100,true,120,Hydro Pump,10,Bubble,5,Scratch,12,Surf,30,0,40,40,30,10,40,40,30,10,false
 voltali,120,5,Electric,10,100,true,120,Thunderbolt,10,Quick Attack,5,Screech,12,Thunder,30,0,40,40,30,10,40,40,30,10,false
 pyroli,120,5,Fire,10,100,true,120,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,30,0,40,40,30,10,40,40,30,10,false
@@ -116,13 +115,13 @@ amonita,100,5,Rock,5,100,true,100,Rock Slide,10,Scratch,5,Stomp,12,Earthquake,30
 amonistar,120,5,Rock,10,100,true,120,Rock Slide,10,Scratch,5,Stomp,12,Earthquake,30,0,40,40,30,10,40,40,30,10,false
 kabuto,100,5,Rock,5,100,true,100,Rock Slide,10,Scratch,5,Stomp,12,Earthquake,30,0,40,40,30,10,40,40,30,10,true
 kabutops,120,5,Rock,10,100,true,120,Rock Slide,10,Scratch,5,Stomp,12,Earthquake,30,0,40,40,30,10,40,40,30,10,false
-ptera,100,5,Rock,5,100,true,100,Rock Slide,10,Scratch,5,Stomp,12,Earthquake,30,0,40,40,30,10,40,40,30,10,false
+ptéra,100,5,Rock,5,100,true,100,Rock Slide,10,Scratch,5,Stomp,12,Earthquake,30,0,40,40,30,10,40,40,30,10,false
 ronflex,100,5,Normal,5,100,true,100,Hyper Voice,10,Double Slap,5,Sing,12,Rest,30,0,40,40,30,10,40,40,30,10,false
 minidraco,100,5,Dragon,5,100,true,100,Dragon Rage,10,Scratch,5,Leer,12,Rest,30,0,40,40,30,10,40,40,30,10,true
 draco,120,5,Dragon,10,100,true,120,Dragon Rage,10,Scratch,5,Leer,12,Rest,30,0,40,40,30,10,40,40,30,10,true
 dracolosse,140,5,Dragon,15,100,true,140,Dragon Rage,10,Scratch,5,Leer,12,Rest,30,0,40,40,30,10,40,40,30,10,false
-artikodin,100,5,Ice,5,100,true,100,Ice Beam,10,Scratch,5,Confuse Ray,12,Rest,30,0,40,40,30,10,40,40,30,10,false
-electhor,100,5,Electric,5,100,true,100,Thunderbolt,10,Quick Attack,5,Screech,12,Thunder,30,0,40,40,30,10,40,40,30,10,false
-sulfura,100,5,Fire,5,100,true,100,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,30,0,40,40,30,10,40,40,30,10,false
-mewtwo,100,5,Psychic,5,100,true,100,Psybeam,10,Confusion,5,Teleport,12,Recover,30,0,40,40,30,10,40,40,30,10,false
-mew,100,5,Psychic,5,100,true,100,Psybeam,10,Confusion,5,Teleport,12,Recover,30,0,40,40,30,10,40,40,30,10,false
+artikodin,150,5,Ice,5,10,true,150,Ice Beam,10,Scratch,5,Confuse Ray,12,Rest,40,0,40,40,30,10,40,40,30,10,false
+électhor,150,5,Electric,5,10,true,150,Thunderbolt,10,Quick Attack,5,Screech,12,Thunder,40,0,40,40,30,10,40,40,30,10,false
+sulfura,150,5,Fire,5,10,true,150,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,40,0,40,40,30,10,40,40,30,10,false
+mew,150,5,Psychic,5,10,true,150,Psybeam,10,Confusion,5,Teleport,12,Recover,40,0,40,40,30,10,40,40,30,10,false
+mewtwo,200,5,Psychic,5,10,true,200,Psybeam,10,Confusion,5,Teleport,12,Recover,50,0,40,40,30,10,40,40,30,10,false

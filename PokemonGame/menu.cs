@@ -170,6 +170,18 @@ namespace PokemonCS
 
             Console.Clear();
             Fight.DrawBorderLine();
+            // Display the pokemon's sprite if it exists
+            if (File.Exists($"sprite_ascii/{info[0].ToLower()}.txt"))
+            {
+                string[] sprite = File.ReadAllLines($"sprite_ascii/{info[0].ToLower()}.txt");
+                foreach (string line in sprite)
+                {
+                    Console.WriteLine(line);
+                }
+            }
+
+            // Show Pokémon stats
+            Fight.DrawBorderLine();
             Console.WriteLine($"Name: {info[0]}");
             Console.WriteLine($"Type: {info[3]}");
             Console.WriteLine($"Health: {info[1]}/{info[7]}");
@@ -315,6 +327,54 @@ namespace PokemonCS
 
 
             Console.Clear();
+        }
+
+        // method to show the surf guy menu
+        public static void SurfMenu()
+        {
+            Console.Clear();
+            Fight.DrawBorderLine();
+            Console.WriteLine("Do you want to surf!");
+            Console.WriteLine("1. Buy Surfboard - 5000$");
+            Console.WriteLine("2. Exit");
+            Console.WriteLine("Please enter your choice: ");
+            Fight.DrawBorderLine();
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    // Buy surfboard
+                    if (Intro.player.Money >= 1)
+                    {
+                        Intro.player.Money -= 5000;
+                        Console.Clear();
+                        Fight.DrawBorderLine();
+                        Console.WriteLine("Ha Ha! let's go to lake!");
+                        Console.WriteLine("Press any key to continue...");
+                        Fight.DrawBorderLine();
+                        Console.ReadKey();
+                        //Spawn the player on the island in the middle of the lake
+                        Map.ReadMap();
+                        Map.SpawnPlayer(464, 82);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You don't have enough money!");
+                        Console.ReadKey();
+                        SurfMenu();
+                    }
+                    break;
+                case "2":
+                    Console.Clear();
+                    Map.ReadMap();
+                    Map.SpawnPlayer(Map.xPos, Map.yPos);
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice");
+                    Console.ReadKey();
+                    SurfMenu();
+                    break;
+            }
         }
 
         // method to show the vendor menu
