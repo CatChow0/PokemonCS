@@ -224,8 +224,7 @@
         {
             if (type == "Player")
             {
-                int x, y;
-                (x, y) = Console.GetCursorPosition();
+                int y = 30;
                 //print player stats
                 Console.SetCursorPosition(10, y);
                 Console.WriteLine("┌────────────────────────────┐");
@@ -335,14 +334,6 @@
                 Console.WriteLine("└────────────────────────────┘");
             }
 
-        }
-
-        //method to draw a sprite
-        public static void DrawSprite(string sprite)
-        {
-            //draw the sprite
-            Console.SetCursorPosition(10, 10);
-            Console.WriteLine(sprite);
         }
 
         //method to check the number of spaces needed to print the border correctly

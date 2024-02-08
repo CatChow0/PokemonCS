@@ -334,6 +334,12 @@ namespace PokemonCS
                 if (result < CaptureChance)
                 {
                     player.AddPokemon(enemyPokemon);
+                    // check if the enemy is Mewtwo
+                    if (enemyPokemon.Name == "Mewtwo")
+                    {
+                        Map.Secret = true;
+                    }
+
                     Map.ReadMap();
                     Map.SpawnPlayer(Map.xPos, Map.yPos);
 
