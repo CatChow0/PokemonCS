@@ -457,10 +457,10 @@ namespace PokemonCS
             }
             // print a message
             Console.WriteLine("You encountered a " + enemyPokemon.Name + "!");
-            playerPokemon.Use_nb_baseAtk = 30;
-            playerPokemon.Use_nb_Atk = 50;
-            playerPokemon.Use_nb_Atk2 = 50;
-            playerPokemon.Use_nb_Atk_Spe = 10;
+            playerPokemon.Use_nb_baseAtk = playerPokemon.Max_nb_base_Atk;
+            playerPokemon.Use_nb_Atk = playerPokemon.Max_nb_Atk1;
+            playerPokemon.Use_nb_Atk2 = playerPokemon.Max_nb_Atk2;
+            playerPokemon.Use_nb_Atk_Spe = playerPokemon.Max_nb_Atk_Spe;
 
             // while both players are alive
             while (playerPokemon.Health > 0 && enemyPokemon.Health > 0 && isRunning)
