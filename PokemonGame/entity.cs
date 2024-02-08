@@ -262,7 +262,7 @@
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                 }
-                for (int i = 0; i < Math.Floor((double)(health * 25 / maxHp)) - 1; i++)
+                for (int i = 0; i < Math.Floor((double)(health * 24 / maxHp)); i++)
                 {
                     if (health > maxHp / 2)
                     {
@@ -322,7 +322,7 @@
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                 }
-                for (int i = 0; i < Math.Floor((double)(health * 25 / maxHp)) - 1; i++)
+                for (int i = 0; i < Math.Floor((double)(health * 24 / maxHp)) ; i++)
                 {
 
                     Console.Write("█");

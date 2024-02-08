@@ -125,4 +125,4 @@ artikodin,150,5,Ice,5,10,true,150,Ice Beam,10,Scratch,5,Confuse Ray,12,Rest,40,0
 electhor,150,5,Electric,5,10,true,150,Thunderbolt,10,Quick Attack,5,Screech,12,Thunder,40,0,40,40,30,10,40,40,30,10,false
 sulfura,150,5,Fire,5,10,true,150,Flamethrower,10,Ember,5,Scratch,12,Fire Spin,40,0,40,40,30,10,40,40,30,10,false
 mew,150,5,Psychic,5,10,true,150,Psybeam,10,Confusion,5,Teleport,12,Recover,40,0,40,40,30,10,40,40,30,10,false
-mewtwo,200,5,Psychic,5,10,true,200,Psybeam,10,Confusion,5,Teleport,12,Recover,50,0,40,40,30,10,40,40,30,10,false
+mewtwo,240,5,Psychic,20,10,true,240,Psybeam,10,Confusion,5,Teleport,12,Recover,50,0,40,40,30,10,40,40,30,10,false

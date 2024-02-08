@@ -335,7 +335,7 @@ namespace PokemonCS
                 {
                     player.AddPokemon(enemyPokemon);
                     // check if the enemy is Mewtwo
-                    if (enemyPokemon.Name == "Mewtwo")
+                    if (enemyPokemon.Name == "mewtwo")
                     {
                         Map.Secret = true;
                     }

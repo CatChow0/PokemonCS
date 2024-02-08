@@ -243,7 +243,7 @@ namespace PokemonCS
         // Get Random Item
         public static void GetRandomItem(Player currentPlayer)
         {
-            Random random = new Random();
+            Random random = new();
             int index = random.Next(0, 1);
             string item;
             if (index == 0)
@@ -436,6 +436,44 @@ namespace PokemonCS
             }
             return false;
         }
+
+        // method to heal and restore the use_nb for the player's team
+        public void HealTeam()
+        {
+            for (int i = 0; i < Team.Length; i++)
+            {
+                if (Team[i] != null)
+                {
+                    // set the current health to the max;
+                    Team[i].Health = Team[i].MaxHp;
+                    // set the use_nb to the max;
+                    Team[i].Use_nb_baseAtk = Team[i].Max_nb_base_Atk;
+                    Team[i].Use_nb_Atk = Team[i].Max_nb_Atk1;
+                    Team[i].Use_nb_Atk2 = Team[i].Max_nb_Atk2;
+                    Team[i].Use_nb_Atk_Spe = Team[i].Max_nb_Atk_Spe;
+                }
+            }
+        }
+
+        // method to check if the player's team is alive
+        public bool CheckTeamState()
+        {
+            bool isAlive = true;
+            //while a pokemon is alive in team return true
+            while (isAlive)
+            {
+                for (int i = 0; i < Team.Length; i++)
+                {
+                    if (Team[i].Health <= 0 && Team[i] != null)
+                    {
+                        isAlive = false;
+                    }
+                }
+            }
+
+            return isAlive;
+        }
+
 
     }
 

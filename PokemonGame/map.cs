@@ -12,6 +12,7 @@ namespace PokemonCS
         public static string[]? lines;
         public static string? mapType;
         public static bool Secret = false;
+        public static Pokemon[]? UFCFighter;
         public static Dictionary<char, ConsoleColor> colorMap = new()
         {
             { '║', ConsoleColor.DarkYellow },
@@ -218,11 +219,92 @@ namespace PokemonCS
                 return true;
             }
 
+            if (currentPos == "☻" && xPos >= 456 && xPos <= 459 && yPos >= 83 && yPos <= 85)
+            {
+                Console.Clear();
+                Fight.DrawBorderLine();
+                Console.WriteLine("Do you want to leave? (y/n)");
+                Fight.DrawBorderLine();
+                string answer = Console.ReadLine();
+                if (answer == "y")
+                {
+                    Console.Clear();
+                    Fight.DrawBorderLine();
+                    Console.WriteLine("You are back in town!");
+                    Console.WriteLine("Press any key to continue...");
+                    Fight.DrawBorderLine();
+                    Console.ReadKey();
+                    Console.Clear();
+                    Map.ReadMap();
+                    Map.SpawnPlayer(329, 89);
+                }
+                else
+                {
+                    Console.Clear();
+                    ReadMap();
+                    SpawnPlayer(xPos, yPos);
+                    return true;
+                }
+                return true;
+            }
+
+            // Check if the player is between y = 32 and y = 33 and x = 293 and x = 308
+            if (yPos >= 32 && yPos <= 33 && xPos >= 293 && xPos <= 308 && currentPos == "▒")
+            {
+                // Ask if the player wants to enter the UFC Arena and fight 10 strong pokemons in a row
+                Console.Clear();
+                Fight.DrawBorderLine();
+                Console.WriteLine("Do you want to enter the UFC Arena? (y/n)");
+                Fight.DrawBorderLine();
+                string answer = Console.ReadLine();
+                if (answer == "y")
+                {
+                    Console.Clear();
+                    Fight.DrawBorderLine();
+                    Console.WriteLine("You entered the UFC Arena!");
+                    Console.WriteLine("Press any key to continue...");
+                    Fight.DrawBorderLine();
+                    Console.ReadKey();
+                    Console.Clear();
+                    Intro.player.HealTeam();
+                    UFCFighter = Pokemon.CreatePokemonList();
+                    // fight all the pokemon in UFCFighter one by one
+                    for (int i = 0; i < UFCFighter.Length; i++)
+                    {
+                        Fight.UFCFight(Intro.player, UFCFighter[i]);
+                    }
+
+                    //if the player has won all the fight
+                    if (UFCFighter[9].Health <= 0)
+                    {
+                        Console.Clear();
+                        Fight.DrawBorderLine();
+                        Console.WriteLine("You won all the fights!");
+                        Console.WriteLine("You are now a UFC Champion!");
+                        Console.WriteLine("Press any key to continue...");
+                        Fight.DrawBorderLine();
+                        Console.ReadKey();
+                        Console.Clear();
+                        ReadMap();
+                        SpawnPlayer(xPos, yPos);
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    Console.Clear();
+                    ReadMap();
+                    SpawnPlayer(xPos, yPos);
+                    return true;
+                }
+            }
+
             // Check if the player is between y = 73 and y = 80 and x= 462 and x = 474
             if (yPos >= 73 && yPos <= 80 && xPos >= 462 && xPos <= 474 && !Secret && currentPos == "#")
             {
                 // Fight with Mewtwo
-                Fight.currentEnemy = Pokemon.CreatePokemon(126);
+                Fight.currentEnemy = Pokemon.CreatePokemon(127);
                 // Start the fight
                 Console.Clear();
                 Console.WriteLine("You found a wild pokemon!");
@@ -377,14 +459,9 @@ namespace PokemonCS
                 return;
             }
 
-            if (xPos - Console.WindowWidth / 2 >= 0 && xPos + Console.WindowWidth / 2 <= lines[yPos].Length - 1)
-            {
-                xCam = xPos - Console.WindowWidth / 2;
-            }
-            if (yPos - Console.WindowHeight / 2 >= 0 && yPos + Console.WindowHeight / 2 <= lines.Length)
-            {
-                yCam = yPos - Console.WindowHeight / 2;
-            }
+            // Set the camera position based on the player's position anywere on the map
+            xCam = Math.Min(Console.BufferWidth - Console.WindowWidth, Math.Max(0, xPos - Console.WindowWidth / 2));
+            yCam = Math.Min(Console.BufferHeight - Console.WindowHeight, Math.Max(0, yPos - Console.WindowHeight / 2));
             Console.SetWindowPosition(xCam, yCam);
         }
 

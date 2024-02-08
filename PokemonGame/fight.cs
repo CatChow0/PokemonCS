@@ -18,9 +18,108 @@ namespace PokemonCS
         public static bool isRunning = false;
         private static float damageMultiplier;
 
+        // method for the UFC fight
+        public static void UFCFight(Player player, Pokemon enemyPokemon)
+        {
+            // print a message
+            Console.WriteLine("You encountered a " + enemyPokemon.Name + "!");
+            Console.ReadKey();
+            Console.Clear();
+
+            currentPlayer ??= player;
+
+            playerPokemon ??= player.Team[player.CurrentPokemon];
+
+            currentEnemy ??= enemyPokemon;
+
+            // while both players are alive
+            while (playerPokemon.Health > 0 && enemyPokemon.Health > 0)
+            {
+                // print the menu
+                PrintStats();
+                Console.WriteLine("What do you want to do?");
+                DrawBorderLine();
+                Console.WriteLine("1. Attack           2. Change Pokemon");
+                DrawBorderLine();
+
+                // get the player's choice
+                string choice = Console.ReadLine();
+
+                // if the choice is not 1 or 2
+                if (choice != "1" && choice != "2")
+                {
+                    // print an error message
+                    Console.WriteLine("That is not a valid choice!");
+                    Console.ReadKey();
+                    Console.Clear();
+                    continue;
+                }
+
+                // if the player chose to attack
+                if (choice == "1")
+                {
+                    // print the player's attacks
+                    Console.Clear();
+                    PrintStats();
+                    Console.WriteLine("What attack do you want to use?");
+                    DrawBorderLine();
+                    Console.WriteLine("1. " + playerPokemon.Attack + "    " + playerPokemon.Use_nb_baseAtk + "/" + playerPokemon.Max_nb_base_Atk);
+                    Console.WriteLine("2. " + playerPokemon.Attack2 + "    " + playerPokemon.Use_nb_Atk + "/" + playerPokemon.Max_nb_Atk1);
+                    Console.WriteLine("3. " + playerPokemon.Attack3 + "    " + playerPokemon.Use_nb_Atk2 + "/" + playerPokemon.Max_nb_Atk2);
+                    Console.WriteLine("4. " + playerPokemon.Attack_Spe + "    " + playerPokemon.Use_nb_Atk_Spe + "/" + playerPokemon.Max_nb_Atk_Spe);
+                    DrawBorderLine();
+
+                    // get the player's choice
+                    string attack_choice = Console.ReadLine();
+
+                    // if the choice is not 1 or 2
+                    if (attack_choice != "1" && attack_choice != "2" && attack_choice != "3" && attack_choice != "4")
+                    {
+                        // print an error message
+                        Console.WriteLine("That is not a valid choice!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        continue;
+                    }
+
+                    // call the round method with attack choice
+                    Console.Clear();
+                    Round(playerPokemon, enemyPokemon, attack_choice, "ufc");
+                }
+
+                // if the player chose to change pokemon
+                else if (choice == "2")
+                {
+                    // change the player
+                    player.ChangePokemon();
+                }
+            }
+
+            // if the player is dead
+            if (playerPokemon.Health <= 0)
+            {
+                // print a message
+                Console.WriteLine("You have no more pokemon!");
+                Console.WriteLine("You blacked out!");
+                Console.ReadKey();
+                Console.Clear();
+                Intro.player.HealTeam();
+                Map.ReadMap();
+                Map.SpawnPlayer(Map.xPos, Map.yPos);
+            }
+
+            // if the enemy is dead
+            else
+            {
+                // print a message
+                Console.WriteLine("You defeated " + enemyPokemon.Name + "!");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
 
         //method for round
-        public static void Round(Pokemon playerPokemon, Pokemon enemyPokemon, string attack_type)
+        public static void Round(Pokemon playerPokemon, Pokemon enemyPokemon, string attack_type, string Arena)
         {
             //player attacks enemy
             if (attack_type == "1")
@@ -73,17 +172,32 @@ namespace PokemonCS
             //if enemy is dead
             if (enemyPokemon.Health <= 0)
             {
-                int xp = playerPokemon.CalculateXp(enemyPokemon.Level);
-                playerPokemon.AddXp(xp);
-                playerPokemon.PrintStats("Player");
-                DrawBorderLine();
-                Console.WriteLine("You defeated " + enemyPokemon.Name + "!");
-                Console.WriteLine("You earned " + xp + " xp!");
-                DrawBorderLine();
-                Console.ReadKey();
-                Console.Clear();
-                Map.ReadMap();
-                Map.SpawnPlayer(Map.xPos, Map.yPos);
+                if (Arena == "ufc")
+                {
+                    int xp = playerPokemon.CalculateXp(enemyPokemon.Level);
+                    playerPokemon.AddXp(xp);
+                    playerPokemon.PrintStats("Player");
+                    DrawBorderLine();
+                    Console.WriteLine("You defeated " + enemyPokemon.Name + "!");
+                    Console.WriteLine("You earned " + xp + " xp!");
+                    DrawBorderLine();
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                else
+                {
+                    int xp = playerPokemon.CalculateXp(enemyPokemon.Level);
+                    playerPokemon.AddXp(xp);
+                    playerPokemon.PrintStats("Player");
+                    DrawBorderLine();
+                    Console.WriteLine("You defeated " + enemyPokemon.Name + "!");
+                    Console.WriteLine("You earned " + xp + " xp!");
+                    DrawBorderLine();
+                    Console.ReadKey();
+                    Console.Clear();
+                    Map.ReadMap();
+                    Map.SpawnPlayer(Map.xPos, Map.yPos);
+                }
                 return;
             }
 
@@ -139,8 +253,8 @@ namespace PokemonCS
             if (playerPokemon.Health <= 0)
             {
                 Console.WriteLine(playerPokemon.Name + " has died!");
-                //if the player has more pokemon
-                if (currentPlayer.Team.Length > 1)
+                //if the player has more pokemon still alive
+                if (Intro.player.CheckTeamState())
                 {
                     currentPlayer.ChangePokemon();
                     playerPokemon = currentPlayer.Team[currentPlayer.CurrentPokemon];
@@ -159,6 +273,7 @@ namespace PokemonCS
                     Console.WriteLine("You blacked out!");
                     Console.ReadKey();
                     Console.Clear();
+                    Intro.player.HealTeam();
                     Map.ReadMap();
                     Map.SpawnPlayer(Map.xPos, Map.yPos);
                     return;
@@ -335,7 +450,7 @@ namespace PokemonCS
             // call the round method with attack choice
             Console.ReadKey();
             Console.Clear();
-            Round(playerPokemon, enemyPokemon, attack_choice);
+            Round(playerPokemon, enemyPokemon, attack_choice, "wild");
         }
 
 
@@ -407,15 +522,15 @@ namespace PokemonCS
         }
 
         // create a method to read sprites and print it in a fight
-        public static void enemy_sprite(Pokemon enemyPokemon)
+        public static void Enemy_sprite(Pokemon enemyPokemon)
         {
             // read the sprite
-            StreamReader sr = new StreamReader("sprite_ascii\\"+ enemyPokemon.Name + ".txt");
+            StreamReader sr = new("sprite_ascii\\"+ enemyPokemon.Name + ".txt");
             string line = sr.ReadLine();
-            int x,y;
+            int y;
             while (line != null)
             {
-                (x, y) = Console.GetCursorPosition();
+                (_, y) = Console.GetCursorPosition();
                 Console.SetCursorPosition(135, y);
                 //write the line to console window
                 Console.WriteLine(line);
@@ -427,15 +542,15 @@ namespace PokemonCS
         }
 
         //second sprite
-        public static void player_pokemon_sprite(Pokemon playerPokemon)
+        public static void Player_pokemon_sprite(Pokemon playerPokemon)
         {
             // read the sprite
-            StreamReader sr = new StreamReader("sprite_ascii\\" + playerPokemon.Name + ".txt");
+            StreamReader sr = new("sprite_ascii\\" + playerPokemon.Name + ".txt");
             string line = sr.ReadLine();
-            int x, y;
+            int y;
             while (line != null)
             {
-                (x, y) = Console.GetCursorPosition();
+                (_, y) = Console.GetCursorPosition();
                 Console.SetCursorPosition(30, y);
                 //write the line to console window
                 Console.WriteLine(line);
@@ -450,8 +565,8 @@ namespace PokemonCS
         public static void PrintStats()
         {
             currentEnemy.PrintStats("Enemy");
-            enemy_sprite(currentEnemy);
-            player_pokemon_sprite(playerPokemon);
+            Enemy_sprite(currentEnemy);
+            Player_pokemon_sprite(playerPokemon);
             playerPokemon.PrintStats("Player");
         }
 

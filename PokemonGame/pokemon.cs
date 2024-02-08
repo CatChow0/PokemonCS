@@ -21,6 +21,40 @@ namespace PokemonCS
 
         }
 
+        // method to find a pokemon level 15 or upper in the list of pokemons lines
+        public static int FindPokemonLevel15()
+        {
+            Random random = new ();
+            int index = random.Next(0, 121);
+            string[] info = lines[index].Split(',');
+            while (int.Parse(info[4]) < 15)
+            {
+                index = random.Next(0, 121);
+                info = lines[index].Split(',');
+            }
+            return index;
+        }
+
+        // metho to create an array of 10 pokemons level 15 or upper
+        public static Pokemon[] CreatePokemonList()
+        {
+            Pokemon[] pokemonList = new Pokemon[10];
+            for (int i = 0; i < 10; i++)
+            {
+                pokemonList[i] = CreatePokemon(FindPokemonLevel15());
+                pokemonList[i].use_nb_base_atk = pokemonList[i].max_nb_base_atk;
+                pokemonList[i].use_nb_atk = pokemonList[i].max_nb_atk;
+                pokemonList[i].use_nb_atk2 = pokemonList[i].max_nb_atk2;
+                pokemonList[i].use_nb_atk_spe = pokemonList[i].max_nb_atk_spe;
+
+
+            }
+            return pokemonList;
+        }
+
+
+
+
         // method to add xp to the pokemon
         public void AddXp(int XpEarn)
         {

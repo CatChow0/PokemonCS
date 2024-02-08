@@ -66,7 +66,8 @@ namespace PokemonCS
             Console.WriteLine("3. Bag");
             Console.WriteLine("4. Pokedex");
             Console.WriteLine("5. Save Game");
-            Console.WriteLine("6. Exit Game");
+            Console.WriteLine("6. Main Menu");
+            Console.WriteLine("7. Exit Game");
             Console.WriteLine("Please enter your choice: ");
             Fight.DrawBorderLine();
             string choice = Console.ReadLine();
@@ -107,6 +108,9 @@ namespace PokemonCS
                     SaveGame(false);
                     break;
                 case "6":
+                    StartMenu();
+                    break;
+                case "7":
                     Environment.Exit(0);
                     break;
                 default:
@@ -354,8 +358,11 @@ namespace PokemonCS
                         Fight.DrawBorderLine();
                         Console.ReadKey();
                         //Spawn the player on the island in the middle of the lake
+                        Console.Clear();
                         Map.ReadMap();
                         Map.SpawnPlayer(464, 82);
+
+
                     }
                     else
                     {
