@@ -7,7 +7,7 @@ class Program
 {
     static void Main()
     {
-        Console.SetWindowSize(width: Console.LargestWindowWidth, height: Console.LargestWindowHeight);
+        Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
         Console.Title = "Pokemon";
         Console.CursorVisible = false;
         Console.Clear();

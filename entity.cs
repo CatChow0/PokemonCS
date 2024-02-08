@@ -219,18 +219,20 @@ namespace PokemonCS
         {
             if (type == "Player")
             {
+                int x, y;
+                (x, y) = Console.GetCursorPosition();
                 //print player stats
-                Console.SetCursorPosition(10, 30);
+                Console.SetCursorPosition(10, y);
                 Console.WriteLine("┌────────────────────────────┐");
-                Console.SetCursorPosition(10, 31);
+                Console.SetCursorPosition(10, y+1);
                 Console.Write("│" + name);
                 //Get the number of spaces to print the border correctly
                 CheckSpaceNeed(name);
-                Console.SetCursorPosition(10, 32);
+                Console.SetCursorPosition(10, y+2);
                 Console.Write("│Lv: " + level);
                 CheckSpaceNeed("Lv: " + level);
                 //Print life into a bar of 20
-                Console.SetCursorPosition(10, 33);
+                Console.SetCursorPosition(10, y+3);
                 //print life into a bar background
                 Console.Write("    ");
                 for (int i = 0; i < 25; i++)
@@ -241,7 +243,7 @@ namespace PokemonCS
                 Console.ResetColor();
                 Console.WriteLine("│");
                 Console.ResetColor();
-                Console.SetCursorPosition(10, 33);
+                Console.SetCursorPosition(10, y+3);
                 Console.Write("│HP: ");
                 if (health > maxHp / 4 && health <= maxHp / 2)
                 {
@@ -272,10 +274,10 @@ namespace PokemonCS
                     Console.Write("█");
                 }
                 Console.ResetColor();
-                Console.SetCursorPosition(10, 34);
+                Console.SetCursorPosition(10, y+4);
                 Console.Write("│" + health + "/" + maxHp);
                 CheckSpaceNeed(health + "/" + maxHp);
-                Console.SetCursorPosition(10, 35);
+                Console.SetCursorPosition(10, y+5);
                 Console.WriteLine("└────────────────────────────┘");
             }
             else if (type == "Enemy")

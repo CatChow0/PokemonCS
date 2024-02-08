@@ -2,6 +2,7 @@
 
 using System;
 using System.Security.Principal;
+using System.Text.RegularExpressions;
 
 namespace PokemonCS
 {
@@ -98,7 +99,6 @@ namespace PokemonCS
             }
             enemyPokemon.Health -= damage;
             PrintStats();
-            Console.SetCursorPosition(0, 36);
             DrawBorderLine();
             if (attack_type == "1")
             {
@@ -504,10 +504,52 @@ namespace PokemonCS
 
         }
 
+        // create a method to read sprites and print it in a fight
+        public static void enemy_sprite(Pokemon enemyPokemon)
+        {
+            // read the sprite
+            StreamReader sr = new StreamReader("sprite_ascii\\"+ enemyPokemon.Name + ".txt");
+            string line = sr.ReadLine();
+            int x,y;
+            while (line != null)
+            {
+                (x, y) = Console.GetCursorPosition();
+                Console.SetCursorPosition(165, y);
+                //write the line to console window
+                Console.WriteLine(line);
+                //Read the next line
+                line = sr.ReadLine();
+
+            }
+            sr.Close();
+        }
+
+        //second sprite
+        public static void player_pokemon_sprite(Pokemon playerPokemon)
+        {
+            // read the sprite
+            StreamReader sr = new StreamReader("sprite_ascii\\" + playerPokemon.Name + ".txt");
+            string line = sr.ReadLine();
+            int x, y;
+            while (line != null)
+            {
+                (x, y) = Console.GetCursorPosition();
+                Console.SetCursorPosition(30, y);
+                //write the line to console window
+                Console.WriteLine(line);
+                //Read the next line
+                line = sr.ReadLine();
+
+            }
+            sr.Close();
+        }
+
         //method to print Stats of pokemon
         public static void PrintStats()
         {
             currentEnemy.PrintStats("Enemy");
+            enemy_sprite(currentEnemy);
+            player_pokemon_sprite(playerPokemon);
             currentPlayer.Team[currentPlayer.CurrentPokemon].PrintStats("Player");
         }
     }
