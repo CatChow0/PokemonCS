@@ -28,7 +28,7 @@ namespace PokemonCS
             { '#', ConsoleColor.Yellow },
             { '░', ConsoleColor.DarkCyan }
         };
-        private static readonly HashSet<char> immovableCharacters = new() { '~', '|', '/', '\\', '(', ')', '║', '╣', '╠', '_', '▓', '@' };
+        private static readonly HashSet<char> immovableCharacters = new() { '~', '|', '/', '\\', '(', ')', '║', '╣', '╠', '_', '▓', '@', '█' };
         private static readonly Random rnd = new();
 
 
