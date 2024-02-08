@@ -299,7 +299,10 @@ namespace PokemonCS
                 }
                 else
                 {
-                    return false;
+                    Console.Clear();
+                    ReadMap();
+                    SpawnPlayer(xPos, yPos);
+                    return true;
                 }
             }
             else if (lines[yPos].ElementAt(xPos).ToString() == "▒" && mapType == "house")

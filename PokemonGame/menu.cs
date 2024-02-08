@@ -116,7 +116,7 @@ namespace PokemonCS
                     Console.WriteLine($"{i + 1}. {pokedexEntries[i].Split(',')[0]}");
                 }
 
-                Console.WriteLine("Enter the number of the Pokémon to view its stats (or 0 to exit): ");
+                Console.WriteLine("Enter the number of the Pokemon to view its stats (or 0 to exit): ");
 
                 // Get user choice
                 if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= pokedexEntries.Length)
