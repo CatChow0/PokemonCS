@@ -557,7 +557,7 @@ namespace PokemonCS
         {
             //Open the data file and write the player's info
             string path = "data.txt";
-            string[] lines = new string[22];
+            string[] lines = new string[24];
 
             lines[0] = Intro.player.Name;
 
@@ -596,16 +596,20 @@ namespace PokemonCS
             lines[14] = Intro.player.Money.ToString();
             lines[15] = Intro.player.Step.ToString();
 
+            // Save camera position
+            lines[16] = Map.xCam.ToString();
+            lines[17] = Map.yCam.ToString();
+
             // append to lines the info of the player's team while checking if the pokemon is null
             for (int i = 0; i < 6; i++)
             {
                 if (Intro.player.Team[i] != null)
                 {
-                    lines[i + 16] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].Dmg_Attack + "," + Intro.player.Team[i].Attack2 + "," + Intro.player.Team[i].Dmg_Attack2 + "," + Intro.player.Team[i].Attack3 + "," + Intro.player.Team[i].Dmg_Attack3 + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].Dmg_Attack_Spe + "," + Intro.player.Team[i].Xp + "," + Intro.player.Team[i].Use_nb_baseAtk + "," + Intro.player.Team[i].Use_nb_Atk + "," + Intro.player.Team[i].Use_nb_Atk2 + "," + Intro.player.Team[i].Use_nb_Atk_Spe + "," + Intro.player.Team[i].Max_nb_base_Atk + "," + Intro.player.Team[i].Max_nb_Atk1 + "," + Intro.player.Team[i].Max_nb_Atk2 + "," + Intro.player.Team[i].Max_nb_Atk_Spe + "," + Intro.player.Team[i].canEvolve;
+                    lines[i + 18] = Intro.player.Team[i].Name + "," + Intro.player.Team[i].Health + "," + Intro.player.Team[i].Armor + "," + Intro.player.Team[i].Type + "," + Intro.player.Team[i].Level + "," + Intro.player.Team[i].CatchRate + "," + Intro.player.Team[i].IsCatchable + "," + Intro.player.Team[i].MaxHp + "," + Intro.player.Team[i].Attack + "," + Intro.player.Team[i].Dmg_Attack + "," + Intro.player.Team[i].Attack2 + "," + Intro.player.Team[i].Dmg_Attack2 + "," + Intro.player.Team[i].Attack3 + "," + Intro.player.Team[i].Dmg_Attack3 + "," + Intro.player.Team[i].Attack_Spe + "," + Intro.player.Team[i].Dmg_Attack_Spe + "," + Intro.player.Team[i].Xp + "," + Intro.player.Team[i].Use_nb_baseAtk + "," + Intro.player.Team[i].Use_nb_Atk + "," + Intro.player.Team[i].Use_nb_Atk2 + "," + Intro.player.Team[i].Use_nb_Atk_Spe + "," + Intro.player.Team[i].Max_nb_base_Atk + "," + Intro.player.Team[i].Max_nb_Atk1 + "," + Intro.player.Team[i].Max_nb_Atk2 + "," + Intro.player.Team[i].Max_nb_Atk_Spe + "," + Intro.player.Team[i].canEvolve;
                 }
                 else
                 {
-                    lines[i + 16] = "null";
+                    lines[i + 18] = "null";
                 }
             }
 
@@ -659,13 +663,15 @@ namespace PokemonCS
             // append to the player's money the info from the file
             Intro.player.Money = int.Parse(lines[14]);
             Intro.player.Step = int.Parse(lines[15]);
+            Map.xCam = int.Parse(lines[16]);
+            Map.yCam = int.Parse(lines[17]);
 
             // append to the player's team the info from the file while checking if the pokemon is null
             for (int i = 0; i < 6; i++)
             {
-                if (lines[i + 16] != "null")
+                if (lines[i + 18] != "null")
                 {
-                    string[] info = lines[i + 16].Split(',');
+                    string[] info = lines[i + 18].Split(',');
                     Intro.player.Team[i] = new Pokemon(info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]), bool.Parse(info[25]));
                 }
             }
