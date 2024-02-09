@@ -18,7 +18,6 @@ namespace PokemonCS
             string[] info = lines[lineIndex].Split(',');
             Pokemon pokemon = new (info[0], int.Parse(info[1]), int.Parse(info[2]), info[3], int.Parse(info[4]), int.Parse(info[5]), bool.Parse(info[6]), int.Parse(info[7]), info[8], int.Parse(info[9]), info[10], int.Parse(info[11]), info[12], int.Parse(info[13]), info[14], int.Parse(info[15]), int.Parse(info[16]), int.Parse(info[17]), int.Parse(info[18]), int.Parse(info[19]), int.Parse(info[20]), int.Parse(info[21]), int.Parse(info[22]), int.Parse(info[23]), int.Parse(info[24]), bool.Parse(info[25]));
             return pokemon;
-
         }
 
         // method to find a pokemon level 15 or upper in the list of pokemons lines
@@ -77,7 +76,7 @@ namespace PokemonCS
 
                 Fight.DrawBorderLine();
                 Console.WriteLine("Congratulations! " + name + " leveled up to level " + level + "!");
-                Console.WriteLine("Your " + name + " has now " + maxHp + " HP, " + armor + " armor and does " + dmg_attack + " damage with " + attack + "!");
+                Console.WriteLine("Your " + name + " has now " + maxHp + " HP and deals more damage!");
                 Console.WriteLine("Press any key to continue...");
                 Fight.DrawBorderLine();
                 Console.ReadKey();

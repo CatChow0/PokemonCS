@@ -6,7 +6,7 @@
     {
         //set variables for entitys
         protected string name;
-        protected int health;
+        public int health;
         protected int armor;
         protected string type;
         protected int level;
@@ -46,9 +46,9 @@
             this.attack = attack;
             this.dmg_attack = dmg_attack;
             this.attack2 = attack2;
-            this.dmg_attack = dmg_attack2;
+            this.dmg_attack2 = dmg_attack2;
             this.attack3 = attack3;
-            this.dmg_attack = dmg_attack3;
+            this.dmg_attack3 = dmg_attack3;
             this.attack_spe = attack_spe;
             this.dmg_attack_spe = dmg_attack_spe;
             this.xp = xp;

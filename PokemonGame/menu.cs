@@ -76,7 +76,7 @@ namespace PokemonCS
                 case "1":
                     Console.Clear();
                     Map.CheckMap();
-                    Map.SpawnPlayer(Map.xPos, Map.yPos);
+                     Map.SpawnPlayer(Map.xPos, Map.yPos);
                     break;
                 case "2":
                     // Show team and can use potion to restore hp
@@ -242,7 +242,9 @@ namespace PokemonCS
                         Console.WriteLine("Level: " + Intro.player.Team[result - 1].Level);
                         Console.WriteLine("Health: " + Intro.player.Team[result - 1].Health + "/" + Intro.player.Team[result - 1].MaxHp);
                         Console.WriteLine("Attack: " + Intro.player.Team[result - 1].Attack);
-                        Console.WriteLine("Special Attack: " + Intro.player.Team[result - 1].Attack_Spe);
+                        Console.WriteLine("Attack 2: " + Intro.player.Team[result - 1].Attack2);
+                        Console.WriteLine("Attack 3: " + Intro.player.Team[result - 1].Attack3);
+                        Console.WriteLine("Atack Spe: " + Intro.player.Team[result - 1].Attack_Spe);
                         Console.WriteLine("Type: " + Intro.player.Team[result - 1].Type);
                         Console.WriteLine("Xp : " + Intro.player.Team[result - 1].Xp + "/100");
                         Console.ResetColor();

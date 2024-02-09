@@ -37,7 +37,7 @@ namespace PokemonCS
 
             Console.Clear();
             Fight.DrawBorderLine();
-            Console.WriteLine("You will start with 3 pokeballs and 3 potions and 1000$");
+            Console.WriteLine("You will start with 10 pokeballs and 10 potions and 1000$");
             player.AddItem(10, "Pokeball", "standard");
             player.AddItem(10, "Potion", "standard");
             player.money = 1000;

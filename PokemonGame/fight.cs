@@ -486,7 +486,7 @@ namespace PokemonCS
                 PrintMenu();
 
                 // get the player's choice
-                int choice = GetChoice();
+                 int choice = GetChoice();
 
                 playerPokemon = player.Team[player.CurrentPokemon];
 

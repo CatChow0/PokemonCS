@@ -464,7 +464,7 @@ namespace PokemonCS
             {
                 for (int i = 0; i < Team.Length; i++)
                 {
-                    if (Team[i].Health <= 0 && Team[i] != null)
+                    if (Team[i].health <= 0 && Team[i] != null)
                     {
                         isAlive = false;
                     }
