@@ -54,7 +54,7 @@
             this.xp = xp;
             this.use_nb_base_atk = use_nb_base_atk;
             this.use_nb_atk = use_nb_atk;
-            this.use_nb_atk = use_nb_atk2;
+            this.use_nb_atk2 = use_nb_atk2;
             this.use_nb_atk_spe = use_nb_atk_spe;
             this.max_nb_base_atk = max_nb_base_atk;
             this.max_nb_atk = max_nb_atk;
